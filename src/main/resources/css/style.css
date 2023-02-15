@@ -1,0 +1,50 @@
+.root{
+/*
+    -fx-background-image:url('background3.jpg');
+*/
+    -fx-background-color: white;
+    -fx-background-size:cover;
+}
+#paneleftsidelogin{
+    -fx-background-color: linear-gradient(to top, #34216B, BLACK);
+}
+
+#button_login{
+     -fx-background-color: #FBDF17;
+     -fx-background-radius: 30;
+}
+#register{
+    -fx-background-color: #FBDF17;
+    -fx-background-radius: 30;
+}
+#input_psw{
+
+}
+#input_pseudo{
+    -fx-background-radius: 30;
+}
+
+#isConnected{
+    -fx-background-color: #FFFFFF;
+}
+#leftSide{
+    -fx-background-color: #FBDF17;
+}
+#link{
+    -fx-text-inner-color: #05038A;
+    -fx-background-color: #00000000;
+}
+#border{
+    -fx-border-color: #FBDF17;
+}
+
+#my-table .table-column {
+    -fx-alignment: CENTER;
+}
+
+.bg_white{
+    -fx-background-color: #FFFFFF;
+}
+.bg_transparant{
+    -fx-background-color: #FFFFFF;
+}

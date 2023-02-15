@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="597.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8.0.171"
+      fx:controller="main.java.controller.AddEmployeeController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYE" textAlignment="CENTER"
+                  wrappingWidth="410.72119140625">
+               <font>
+                  <Font size="57.0"/>
+               </font>
+            </Text>
+            <Button fx:id="btn_back" mnemonicParsing="false" onAction="#MappingBack" text="Retour"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="63.0" prefWidth="411.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom"/>
+            <TextField fx:id="input_name"/>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom"/>
+            <TextField fx:id="input_firstname"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Badge"/>
+            <TextField fx:id="input_badge"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse"/>
+            <TextField fx:id="input_adresse"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance"/>
+            <TextField fx:id="input_datebirth"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date d'embauche"/>
+            <TextField fx:id="input_datehiring"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numéo de Téléphone"/>
+            <TextField fx:id="input_numtel"/>
+            <CheckBox fx:id="check_isadmin" mnemonicParsing="false" text="Administrateur" underline="true"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btn_save" mnemonicParsing="false" onMouseClicked="#save" prefHeight="80.0" prefWidth="251.0"
+                    text="Enregistrer"/>
+            <Button fx:id="btn_clean" mnemonicParsing="false" onMouseClicked="#clean" prefHeight="80.0"
+                    prefWidth="251.0" text="Effacer"/>
+         </children>
+      </HBox>
+   </children>
+</VBox>
