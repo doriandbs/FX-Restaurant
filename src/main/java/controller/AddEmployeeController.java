@@ -1,6 +1,6 @@
-package main.java.controller;
+package controller;
 
-import main.java.bdd.DatabaseSingleton;
+import bdd.DatabaseSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.java.models.Employee;
+import models.Employee;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static main.java.constantes.SQLConstants.INSERTEMPLOYEE;
+import static constantes.SQLConstants.INSERTEMPLOYEE;
 
 
 public class AddEmployeeController implements Initializable {
@@ -93,7 +93,7 @@ public class AddEmployeeController implements Initializable {
     @FXML
     private void MappingBack(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/admin.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

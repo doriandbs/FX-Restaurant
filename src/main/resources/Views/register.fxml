@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="main.java.controller.InscriptionPageController">
+            fx:controller="controller.InscriptionPageController">
    <children>
       <AnchorPane id="leftSide" prefHeight="605.0" prefWidth="212.0" stylesheets="@../css/style.css">
          <children>

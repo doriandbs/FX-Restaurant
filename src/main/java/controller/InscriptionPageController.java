@@ -1,9 +1,9 @@
-package main.java.controller;
+package controller;
 
 
 
-import main.java.bdd.DatabaseSingleton;
-import main.java.constantes.Constants;
+import bdd.DatabaseSingleton;
+import constantes.Constants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,9 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import main.java.models.Users;
-import main.java.utils.Md5;
-import main.java.utils.ValidationInput;
+import models.Users;
+import utils.Md5;
+import utils.ValidationInput;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -23,8 +23,8 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Objects;
 
-import static main.java.constantes.SQLConstants.INSERTUSER;
-import static main.java.constantes.SQLConstants.SELECTUSERS;
+import static constantes.SQLConstants.INSERTUSER;
+import static constantes.SQLConstants.SELECTUSERS;
 
 
 public class InscriptionPageController {
@@ -129,7 +129,7 @@ public class InscriptionPageController {
                             " BADGE : " + utilisateur.getBadge() + " ADMINISTRATEUR : " + utilisateur.getIsAdmin());
                 }
                 InsertUser.close();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/login_page.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
@@ -150,7 +150,7 @@ public class InscriptionPageController {
 
     public void MappingLogging(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/login_page.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

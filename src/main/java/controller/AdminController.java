@@ -1,5 +1,5 @@
-package main.java.controller;
-import main.java.bdd.DatabaseSingleton;
+package controller;
+import bdd.DatabaseSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import main.java.models.Employee;
+import models.Employee;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +26,8 @@ import java.sql.ResultSet;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static main.java.constantes.SQLConstants.COUNTEMPLOYEE;
-import static main.java.constantes.SQLConstants.SELECTEMPLOYEE;
+import static constantes.SQLConstants.COUNTEMPLOYEE;
+import static constantes.SQLConstants.SELECTEMPLOYEE;
 
 public class AdminController implements Initializable {
     @FXML
@@ -80,7 +80,7 @@ public class AdminController implements Initializable {
 
     public void MappingLogout(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/login_page.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -156,7 +156,7 @@ public class AdminController implements Initializable {
 
 
     public void addEmployee(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/addEmployee.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/addEmployee.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

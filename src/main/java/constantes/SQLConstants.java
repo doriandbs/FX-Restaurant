@@ -1,4 +1,4 @@
-package main.java.constantes;
+package constantes;
 
 public class SQLConstants {
     public static final String SELECTUSERS = "SELECT * FROM user WHERE NOM = ? AND BADGE = ? AND PASSWORD = ? AND ISADMIN = ?";

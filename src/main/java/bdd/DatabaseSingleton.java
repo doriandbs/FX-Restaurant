@@ -1,7 +1,7 @@
-package main.java.bdd;
+package bdd;
 
 
-import main.java.constantes.Constants;
+import constantes.Constants;
 
 import java.sql.*;
 

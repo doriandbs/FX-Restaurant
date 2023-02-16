@@ -1,8 +1,8 @@
-package main.java.controller;
+package controller;
 
 
-import main.java.bdd.DatabaseSingleton;
-import main.java.constantes.Constants;
+import bdd.DatabaseSingleton;
+import constantes.Constants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,8 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import main.java.models.Users;
-import main.java.utils.ValidationInput;
+import models.Users;
+import utils.ValidationInput;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -20,8 +20,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Objects;
 
-import static main.java.constantes.SQLConstants.SELECTUSER;
-import static main.java.utils.Md5.generateHash;
+import static constantes.SQLConstants.SELECTUSER;
+import static utils.Md5.generateHash;
 
 
 public class LoginController {
@@ -72,7 +72,7 @@ public class LoginController {
                             isConnected.setText(Constants.connSucc);
                             isConnected.setTextFill(Color.GREEN);
                             errormsg.setText("");
-                            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/admin.fxml")));
+                            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             scene = new Scene(root);
                             stage.setScene(scene);
@@ -87,7 +87,7 @@ public class LoginController {
                             isConnected.setText(Constants.connSucc);
                             isConnected.setTextFill(Color.GREEN);
                             errormsg.setText("");
-                            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/home.fxml")));
+                            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/home.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             scene = new Scene(root);
                             stage.setScene(scene);
@@ -112,7 +112,7 @@ public class LoginController {
 
     public void MappingInscription(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/resources/Views/register.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/register.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

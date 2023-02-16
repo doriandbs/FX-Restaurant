@@ -1,4 +1,4 @@
-package main.java.models;
+package models;
 
 public class Users {
     public String Name;

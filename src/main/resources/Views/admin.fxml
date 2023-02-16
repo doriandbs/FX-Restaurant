@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="550.0" prefWidth="1000.0" stylesheets="@../css/style.css"
-            xmlns="http://javafx.com/javafx/8.0.171" fx:controller="main.java.controller.AdminController">
+            xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.AdminController">
     <children>
         <AnchorPane fx:id="leftSide" layoutX="-2.0" prefHeight="710.0" prefWidth="196.0"
                     style="-fx-background-color: #5B08D4;" stylesheets="@../css/style.css">

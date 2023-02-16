@@ -1,4 +1,4 @@
-package main.java.constantes;
+package constantes;
 public class Constants {
     public static final String nomRec = "Nom requis";
 
