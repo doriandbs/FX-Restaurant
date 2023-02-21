@@ -53,7 +53,7 @@ public class AddEmployeeController implements Initializable {
     private Button btn_clean;
 
     @FXML
-    private void save() throws SQLException {
+    private void save(ActionEvent event) throws IOException {
         try {
             Employee employee = new Employee(0, input_name.getText(), input_firstname.getText(), input_badge.getText(), input_adresse.getText(), input_datebirth.getText(), input_numtel.getText(), input_datehiring.getText(), check_isadmin.isSelected());
             if (input_name.getText().isEmpty() || input_firstname.getText().isEmpty()) {
@@ -77,6 +77,12 @@ public class AddEmployeeController implements Initializable {
                 insertEmp.executeUpdate();
                 insertEmp.close();
                 db.close();
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
             }
         } catch (SQLException e) {
             System.out.println("Error");
@@ -86,7 +92,14 @@ public class AddEmployeeController implements Initializable {
     }
 
     @FXML
-    private void clean() {
+    private void clean(ActionEvent event) {
+        input_adresse.clear();
+        input_badge.clear();
+        input_datebirth.clear();
+        input_name.clear();
+        input_datehiring.clear();
+        input_numtel.clear();
+        input_firstname.clear();
 
     }
 

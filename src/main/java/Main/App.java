@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class App extends Application {
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         try {
             AnchorPane pan = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
             Scene scene = new Scene(pan);
@@ -18,7 +18,7 @@ public class App extends Application {
             stage.setScene(scene);
             stage.show();
         }catch(Exception e){
-            System.out.println("eerreur " + e);
+            e.printStackTrace();
         }
     }
     public static void main(String[] args){

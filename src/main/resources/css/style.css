@@ -1,24 +1,24 @@
 .root{
-/*
-    -fx-background-image:url('background3.jpg');
-*/
     -fx-background-color: white;
     -fx-background-size:cover;
 }
-#paneleftsidelogin{
-    -fx-background-color: linear-gradient(to top, #34216B, BLACK);
-}
 
-#button_login{
-     -fx-background-color: #FBDF17;
+.button{
+     -fx-background-color: #E1ECB5;
      -fx-background-radius: 30;
+     -fx-font-weight: bold;
 }
-#register{
-    -fx-background-color: #FBDF17;
-    -fx-background-radius: 30;
+.button_black{
+     -fx-background-color: #000000;
+     -fx-background-radius: 30;
+     -fx-font-weight: bold;
 }
-#input_psw{
+.tac{
+    -fx-alignment: center ;
+}
 
+.input_border_color{
+    -fx-border-color: #A5AD88;
 }
 #input_pseudo{
     -fx-background-radius: 30;
@@ -27,15 +27,25 @@
 #isConnected{
     -fx-background-color: #FFFFFF;
 }
-#leftSide{
-    -fx-background-color: #FBDF17;
+.leftSide{
+    -fx-background-color: #E1ECB5;
 }
-#link{
+.leftSide_employee{
+    -fx-background-color: #E1ECB5;
+    -fx-border-color: #000000;
+}
+.bg_Employee{
+    -fx-background-color: #000000;
+}
+.rightSide{
+    -fx-background-color: #A5AD88;
+}
+.HomeColor{
+    -fx-background-color: #E8ECE4;
+}
+.link{
     -fx-text-inner-color: #05038A;
     -fx-background-color: #00000000;
-}
-#border{
-    -fx-border-color: #FBDF17;
 }
 
 #my-table .table-column {
