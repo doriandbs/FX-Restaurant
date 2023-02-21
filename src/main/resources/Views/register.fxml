@@ -1,70 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
-<?import java.net.URL?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.InscriptionPageController">
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionPageController">
    <children>
-      <AnchorPane id="leftSide" prefHeight="605.0" prefWidth="212.0" stylesheets="@../css/style.css">
+      <AnchorPane prefHeight="605.0" prefWidth="233.0" styleClass="leftSide" stylesheets="@../css/style.css">
          <children>
-            <ImageView fitHeight="199.0" fitWidth="198.0" layoutX="7.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="84.0" fitWidth="83.0" layoutX="77.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/logo.png" />
+                  <Image url="@../img2/Common/Logo2-4.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="6.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="16.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/ensitechlogo.png" />
+                  <Image url="@../img2/Common/ensitechlogo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="71.0" fitWidth="192.0" layoutX="22.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img2/Common/Logo2-2.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <TextField id="border" fx:id="input_nameRegister" layoutX="275.0" layoutY="124.0" prefHeight="57.0"
-                 prefWidth="353.0" promptText="Name">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="14.0"/>
-         </font>
-      </TextField>
-      <Label fx:id="name_errorLabel" layoutX="275.0" layoutY="181.0" prefHeight="34.0" prefWidth="353.0" />
-      <TextField id="border" fx:id="input_badgeRegister" layoutX="275.0" layoutY="218.0" prefHeight="57.0"
-                 prefWidth="353.0" promptText="Badge number">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="14.0"/>
-         </font>
-      </TextField>
-      <Label fx:id="badge_ErrorLabel" layoutX="275.0" layoutY="272.0" prefHeight="34.0" prefWidth="353.0"/>
-      <Hyperlink id="link" layoutX="469.0" layoutY="541.0" onAction="#MappingLogging" text="Log In" underline="true">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
-         </font></Hyperlink>
-      <PasswordField id="border" fx:id="input_pswRegister" layoutX="275.0" layoutY="307.0" prefHeight="51.0" prefWidth="353.0" promptText="password">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
-         </font></PasswordField>
-      <Label fx:id="userNotFound" layoutX="276.0" layoutY="28.0" prefHeight="34.0" prefWidth="353.0" />
-      <Label fx:id="psw_errorLabel" layoutX="278.0" layoutY="358.0" prefHeight="34.0" prefWidth="353.0" />
-      <Button id="register" fx:id="button_inscription" layoutX="333.0" layoutY="446.0" mnemonicParsing="false" onAction="#addUser" prefHeight="34.0" prefWidth="239.0" text="Register">
+      <Button fx:id="button_inscription" layoutX="350.0" layoutY="450.0" mnemonicParsing="false" onAction="#addUser" prefHeight="34.0" prefWidth="239.0" stylesheets="@../css/style.css" text="Register">
          <font>
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
       </Button>
+      <Hyperlink layoutX="456.0" layoutY="541.0" onAction="#MappingLogging" styleClass="link" text="Login" underline="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font></Hyperlink>
+      <TextField fx:id="input_nameRegister" layoutX="292.0" layoutY="123.0" prefHeight="50.0" prefWidth="353.0" promptText="Name" styleClass="input_border_color">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="name_errorLabel" layoutX="292.0" layoutY="173.0" prefHeight="34.0" prefWidth="353.0" />
+      <TextField fx:id="input_badgeRegister" layoutX="292.0" layoutY="207.0" prefHeight="50.0" prefWidth="353.0" promptText="Badge number" styleClass="input_border_color">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="badge_ErrorLabel" layoutX="293.0" layoutY="257.0" prefHeight="34.0" prefWidth="353.0" />
+      <PasswordField fx:id="input_pswRegister" layoutX="292.0" layoutY="291.0" prefHeight="50.0" prefWidth="353.0" promptText="password" styleClass="input_border_color">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font></PasswordField>
+      <Label fx:id="userNotFound" layoutX="276.0" layoutY="28.0" prefHeight="34.0" prefWidth="353.0" />
+      <Label fx:id="psw_errorLabel" layoutX="292.0" layoutY="341.0" prefHeight="34.0" prefWidth="353.0" />
       <Label contentDisplay="CENTER" layoutX="406.0" layoutY="68.0" prefHeight="22.0" prefWidth="124.0" text="Register" textAlignment="CENTER" underline="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
-      <Label contentDisplay="CENTER" layoutX="333.0" layoutY="543.0" prefHeight="22.0" prefWidth="141.0" text="Already member :" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="333.0" layoutY="543.0" prefHeight="20.0" prefWidth="136.0" text="Already member :" textAlignment="CENTER">
          <font>
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
       </Label>
-      <CheckBox fx:id="isAdmin" layoutX="395.0" layoutY="399.0" mnemonicParsing="false" text="Administrator">
+      <CheckBox fx:id="isAdmin" layoutX="409.0" layoutY="399.0" mnemonicParsing="false" text="Administrator">
          <font>
-            <Font name="Arial Rounded MT Bold" size="14.0"/>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
       </CheckBox>
    </children>

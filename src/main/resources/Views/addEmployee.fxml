@@ -1,69 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="597.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8.0.171"
-      fx:controller="controller.AddEmployeeController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="500.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddEmployeeController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYE" textAlignment="CENTER"
-                  wrappingWidth="410.72119140625">
-               <font>
-                  <Font size="57.0"/>
-               </font>
-            </Text>
-            <Button fx:id="btn_back" mnemonicParsing="false" onAction="#MappingBack" text="Retour"/>
-         </children>
-      </HBox>
-      <HBox prefHeight="63.0" prefWidth="411.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom"/>
-            <TextField fx:id="input_name"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom"/>
-            <TextField fx:id="input_firstname"/>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Badge"/>
-            <TextField fx:id="input_badge"/>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse"/>
-            <TextField fx:id="input_adresse"/>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance"/>
-            <TextField fx:id="input_datebirth"/>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date d'embauche"/>
-            <TextField fx:id="input_datehiring"/>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numéo de Téléphone"/>
-            <TextField fx:id="input_numtel"/>
-            <CheckBox fx:id="check_isadmin" mnemonicParsing="false" text="Administrateur" underline="true"/>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="btn_save" mnemonicParsing="false" onMouseClicked="#save" prefHeight="80.0" prefWidth="251.0"
-                    text="Enregistrer"/>
-            <Button fx:id="btn_clean" mnemonicParsing="false" onMouseClicked="#clean" prefHeight="80.0"
-                    prefWidth="251.0" text="Effacer"/>
-         </children>
-      </HBox>
+      <AnchorPane prefHeight="90.0" prefWidth="500.0" styleClass="leftSide_employee" />
+      <AnchorPane layoutY="510.0" prefHeight="90.0" prefWidth="500.0" styleClass="leftSide_employee" />
+      <AnchorPane layoutY="90.0" prefHeight="420.0" prefWidth="25.0" styleClass="bg_Employee" />
+      <AnchorPane layoutX="475.0" layoutY="90.0" prefHeight="420.0" prefWidth="25.0" styleClass="bg_Employee" />
    </children>
-</VBox>
+   <ImageView fitHeight="69.0" fitWidth="157.0" layoutX="165.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../img2/Common/Logo2-3.png" />
+      </image>
+   </ImageView>
+   <TextField fx:id="input_name" layoutX="45.0" layoutY="104.0" prefHeight="50.0" prefWidth="180.0" promptText="Name" styleClass="input_border_color">
+   </TextField>
+   <TextField fx:id="input_firstname" layoutX="262.0" layoutY="104.0" prefHeight="50.0" prefWidth="180.0" promptText="First name" styleClass="input_border_color">
+   </TextField>
+   <TextField fx:id="input_badge" layoutX="45.0" layoutY="176.0" prefHeight="50.0" prefWidth="180.0" promptText="Badge" styleClass="input_border_color">
+   </TextField>
+   <TextField fx:id="input_numtel" layoutX="262.0" layoutY="176.0" prefHeight="50.0" prefWidth="180.0" promptText="Phone number" styleClass="input_border_color">
+   </TextField>
+   <TextField fx:id="input_adresse" layoutX="45.0" layoutY="250.0" prefHeight="106.0" prefWidth="397.0" promptText="Adree" styleClass="input_border_color">
+   </TextField>
+   <TextField fx:id="input_datehiring" layoutX="45.0" layoutY="379.0" prefHeight="50.0" prefWidth="180.0" promptText="Date of hiring" styleClass="input_border_color">
+   </TextField>
+   <TextField fx:id="input_datebirth" layoutX="262.0" layoutY="379.0" prefHeight="50.0" prefWidth="180.0" promptText="Date of birth" styleClass="input_border_color">
+   </TextField>
+   <CheckBox fx:id="check_isadmin" layoutX="207.0" layoutY="458.0" mnemonicParsing="false" text="Administrator" />
+   <Button fx:id="btn_save" onAction="#save" layoutX="34.0" layoutY="543.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" styleClass="button_black" text="Save" textFill="WHITE" />
+   <Button fx:id="btn_clean" onAction="#clean" layoutX="274.0" layoutY="543.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" styleClass="button_black" text="Clear" textFill="WHITE" />
+   <Button fx:id="btn_back" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#MappingBack" prefHeight="17.0" prefWidth="94.0" styleClass="button_black" text="Back" textFill="WHITE" />
+</AnchorPane>
