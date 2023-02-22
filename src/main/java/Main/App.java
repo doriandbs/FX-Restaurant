@@ -17,6 +17,7 @@ public class App extends Application {
             stage.setTitle("Frusty's App");
             stage.getIcons().add(new Image("img2/icon.png"));
             //stage.initStyle(StageStyle.UNDECORATED); Enleve la croix de l'écran
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         }catch(Exception e){
