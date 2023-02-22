@@ -163,7 +163,7 @@ public class InscriptionPageController {
     }
 
     @FXML
-    protected void Exit(ActionEvent event) {
+    public void Exit(ActionEvent event) {
         Platform.exit();
     }
 
