@@ -3,7 +3,7 @@
      -fx-background-radius: 30;
      -fx-font-weight: bold;
 }
-.button : hoover{
+.button:hover{
      -fx-background-color: #000000;
      -fx-background-radius: 30;
      -fx-font-weight: bold;
