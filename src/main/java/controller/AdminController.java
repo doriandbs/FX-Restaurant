@@ -1,5 +1,6 @@
 package controller;
 import bdd.DatabaseSingleton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -161,5 +162,10 @@ public class AdminController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    protected void Exit(ActionEvent event) {
+        Platform.exit();
     }
 }

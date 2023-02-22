@@ -493,7 +493,12 @@
         </AnchorPane>
       <AnchorPane layoutX="947.0" prefHeight="495.0" prefWidth="200.0" styleClass="rightSide">
          <children>
-            <Button layoutX="74.0" layoutY="433.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="33.0" layoutY="444.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="145.0" styleClass="bg_white" text="Validate">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+             <Button layoutX="135.0" layoutY="9.0" mnemonicParsing="false" onAction="#Exit" stylesheets="@../css/style_cancel.css" text="Cancel" textFill="WHITE" />
          </children>
       </AnchorPane>
     </children>

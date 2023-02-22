@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class App extends Application {
             Scene scene = new Scene(pan);
             stage.setTitle("Frusty's App");
             stage.getIcons().add(new Image("img2/icon.png"));
-            //stage.initStyle(StageStyle.UNDECORATED); Enleve la croix de l'écran
+            stage.initStyle(StageStyle.UNDECORATED); //Enleve la croix de l'écran
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();

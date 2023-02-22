@@ -1,0 +1,10 @@
+.button{
+     -fx-background-color: #E20000;
+     -fx-background-radius: 30;
+     -fx-font-weight: bold;
+}
+.button : hoover{
+     -fx-background-color: #000000;
+     -fx-background-radius: 30;
+     -fx-font-weight: bold;
+}

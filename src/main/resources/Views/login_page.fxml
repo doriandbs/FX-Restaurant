@@ -67,6 +67,7 @@
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
       </Label>
+      <Button layoutX="629.0" layoutY="16.0" mnemonicParsing="false" onAction="#Exit" stylesheets="@../css/style_cancel.css" text="Cancel" textFill="WHITE" />
    </children>
    <stylesheets>
       <URL value="@../css/style.css" />

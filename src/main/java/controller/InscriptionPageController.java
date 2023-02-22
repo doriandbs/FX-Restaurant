@@ -4,7 +4,9 @@ package controller;
 
 import bdd.DatabaseSingleton;
 import constantes.Constants;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -158,7 +160,11 @@ public class InscriptionPageController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    @FXML
+    protected void Exit(ActionEvent event) {
+        Platform.exit();
     }
 
 
