@@ -42,50 +42,10 @@ public class HomeController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        GridPaneSupp.getChildren().clear();
-        GridPaneBurger.getChildren().clear();
-        //Vbox suppléments
-        VBox productView1 = productView(Product.CHIPS) ;
-        GridPaneSupp.add(productView1,0,0);
-        VBox productView2=productView(Product.MAIS);
-        GridPaneSupp.add(productView2,1,0);
-        
-        //Vbox burger
-        VBox productView3=productView(Product.CANTALBURGER);
-        GridPaneBurger.add(productView3,0,0);
-        VBox productView4=productView(Product.CHICKENBURGER);
-        GridPaneBurger.add(productView4,1,0);
-        VBox productView5=productView(Product.VEGANBURGER);
-        GridPaneBurger.add(productView5,2,0);
+        cleanPanels();
+        ajoutItemMenu();
+        pnl_menu.toFront();
 
-        //Vbox menu
-        VBox productViews6=productView(Product.MENU1);
-        GridPaneMenu.add(productViews6,0,0);
-        VBox productViews7=productView(Product.MENU2);
-        GridPaneMenu.add(productViews7,1,0);
-
-        //Vbox boisson
-        VBox productViews8=productView(Product.PEPSI);
-        GridPaneBoisson.add(productViews8,0,0);
-        VBox productViews9=productView(Product.SPRITE);
-        GridPaneBoisson.add(productViews9,1,0);
-        VBox productViews10=productView(Product.FANTA);
-        GridPaneBoisson.add(productViews10,2,0);
-        VBox productViews11=productView(Product.EAU);
-        GridPaneBoisson.add(productViews11,3,0);
-
-        //Vbox dessert
-        VBox productViews12=productView(Product.DONUTS);
-        GridPaneDessert.add(productViews12,0,0);
-        VBox productViews13=productView(Product.MACARON);
-        GridPaneDessert.add(productViews13,1,0);
-        VBox productViews14=productView(Product.COOKIE);
-        GridPaneDessert.add(productViews14,2,0);
-        VBox productViews15=productView(Product.CAKE);
-        GridPaneDessert.add(productViews15,3,0);
-
-
-        
     }
 
     private VBox productView(Product product) throws FileNotFoundException {
@@ -103,21 +63,48 @@ public class HomeController {
         layout.getChildren().addAll(imageView,productName,price,addButton);
         return layout;
     }
+
+    private void cleanPanels(){
+        GridPaneSupp.getChildren().clear();
+        GridPaneBurger.getChildren().clear();
+        GridPaneDessert.getChildren().clear();
+        GridPaneBoisson.getChildren().clear();
+        GridPaneMenu.getChildren().clear();
+    }
     @FXML
-    private void handleButtonAction(MouseEvent mouseDragEvent) {
+    private void handleButtonAction(MouseEvent mouseDragEvent) throws FileNotFoundException {
         if (mouseDragEvent.getSource() == img_menu) {
+            cleanPanels();
+
             pnl_menu.toFront();
-            System.out.println("Test bien appuyé");
+
+            ajoutItemMenu();
+
         } else if (mouseDragEvent.getSource() == img_burger) {
+            cleanPanels();
+
             pnl_burger.toFront();
+
+            ajoutItemBurger();
+            
         } else if (mouseDragEvent.getSource() == img_drink) {
+            cleanPanels();
+
             pnl_boisson.toFront();
+
+            ajoutItemBoisson();
         } else if (mouseDragEvent.getSource() == img_dessert) {
+            cleanPanels();
             pnl_dessert.toFront();
+            ajoutItemDessert();
         } else if (mouseDragEvent.getSource() == img_supp) {
+            cleanPanels();
             pnl_supp.toFront();
+            ajoutItemSupp();
+
         }
     }
+
 
     public void MappingLogout(ActionEvent event) {
         try {
@@ -140,5 +127,58 @@ public class HomeController {
 
     }
 
+
+
+
+
+    private void ajoutItemBurger() throws FileNotFoundException {
+        VBox productView3=productView(Product.CANTALBURGER);
+        GridPaneBurger.add(productView3,0,0);
+        VBox productView4=productView(Product.CHICKENBURGER);
+        GridPaneBurger.add(productView4,1,0);
+        VBox productView5=productView(Product.VEGANBURGER);
+        GridPaneBurger.add(productView5,2,0);
+    }
+
+
+
+    private void ajoutItemBoisson() throws FileNotFoundException {
+        VBox productView6=productView(Product.PEPSI);
+        GridPaneBoisson.add(productView6,0,0);
+        VBox productView7=productView(Product.SPRITE);
+        GridPaneBoisson.add(productView7,1,0);
+        VBox productView8=productView(Product.FANTA);
+        GridPaneBoisson.add(productView8,2,0);
+        VBox productView9=productView(Product.EAU);
+        GridPaneBoisson.add(productView9,3,0);
+    }
+
+
+    private void ajoutItemMenu() throws FileNotFoundException {
+        VBox productView10=productView(Product.MENU1);
+        GridPaneMenu.add(productView10,0,0);
+        VBox productView11=productView(Product.MENU2);
+        GridPaneMenu.add(productView11,1,0);
+    }
+
+
+    private void ajoutItemDessert() throws FileNotFoundException {
+        VBox productView12=productView(Product.DONUTS);
+        GridPaneDessert.add(productView12,0,0);
+        VBox productView13=productView(Product.MACARON);
+        GridPaneDessert.add(productView13,1,0);
+        VBox productView14=productView(Product.COOKIE);
+        GridPaneDessert.add(productView14,2,0);
+        VBox productView15=productView(Product.CAKE);
+        GridPaneDessert.add(productView15,3,0);
+    }
+
+
+    private void ajoutItemSupp() throws FileNotFoundException {
+        VBox productView16=productView(Product.CHIPS);
+        GridPaneSupp.add(productView16,0,0);
+        VBox productView17=productView(Product.MAIS);
+        GridPaneSupp.add(productView17,1,0);
+    }
 
 }
