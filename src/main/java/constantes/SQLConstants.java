@@ -9,4 +9,5 @@ public class SQLConstants {
     public static final String COUNTEMPLOYEE = "SELECT COUNT(*) AS recordCount FROM employee";
     public static final String SELECTEMPLOYEE = "SELECT * FROM employee";
     public static final String INSERTEMPLOYEE = "INSERT INTO employee(NAME,BADGE,ISADMIN,FIRSTNAME,ADRESSE,DATEBIRTH, DATEHIRING, NUMTEL) VALUES(?,?,?,?,?,?,?,?)";
+    public static final String INSERTADDPRODUCT = "INSERT INTO addProduct(NAME,PRICE,QUANTITY,MIN_QUANTITY,DOP,BBD) VALUES(?,?,?,?,?,?)";
 }

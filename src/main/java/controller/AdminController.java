@@ -10,25 +10,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.AddProducts;
 import models.Employee;
+import models.Product;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static constantes.SQLConstants.COUNTEMPLOYEE;
-import static constantes.SQLConstants.SELECTEMPLOYEE;
+import static constantes.SQLConstants.*;
 
 public class AdminController implements Initializable {
     @FXML
@@ -63,6 +63,21 @@ public class AdminController implements Initializable {
     private TableView<Employee> dataTB;
     private ObservableList<Employee> data = FXCollections.observableArrayList();
     private int count;
+
+    @FXML
+    private TextField input_name_product;
+    @FXML
+    private TextField input_price;
+    @FXML
+    private TextField input_quantity;
+    @FXML
+    private TextField input_min_quantity;
+    @FXML
+    private TextField input_dop;
+    @FXML
+    private TextField input_bbd;
+    @FXML
+    private Button btn_add_product;
 
     @FXML
     private void handleButtonAction(MouseEvent mouseDragEvent) {
@@ -167,5 +182,37 @@ public class AdminController implements Initializable {
     @FXML
     public void Exit(ActionEvent event) {
         Platform.exit();
+    }
+
+
+    @FXML
+    private void add_product(ActionEvent event) throws IOException {
+        try {
+            AddProducts addProducts = new AddProducts(0, input_name_product.getText(), input_price.getText(), input_quantity.getText(), input_min_quantity.getText(), input_dop.getText(), input_bbd.getText());
+            if (input_name_product.getText().isEmpty() || input_price.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("veuillez rentrer des valeurs");
+                alert.showAndWait();
+            } else {
+                DatabaseSingleton db = DatabaseSingleton.getInstance();
+                db.connect();
+                PreparedStatement insertEmp = db.prepareStatement(INSERTEMPLOYEE);
+                insertEmp.setString(1, addProducts.getName_products());
+                insertEmp.setString(2, addProducts.getPrice());
+                insertEmp.setString(3, addProducts.getQuantity());
+                insertEmp.setString(4, addProducts.getMinQuantity());
+                insertEmp.setObject(5, addProducts.getDOP());
+                insertEmp.setObject(6, addProducts.getBBD());
+
+                insertEmp.executeUpdate();
+                insertEmp.close();
+                db.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error");
+        }
+
+
     }
 }

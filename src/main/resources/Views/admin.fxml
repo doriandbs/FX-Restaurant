@@ -171,7 +171,7 @@
                         </Label>
                      </children>
                   </Pane>
-                        <TextField layoutX="255.0" layoutY="144.0" prefHeight="27.0" prefWidth="330.0" promptText="Name">
+                        <TextField fx:id="input_name_product" layoutX="255.0" layoutY="144.0" prefHeight="27.0" prefWidth="330.0" promptText="Name">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
@@ -206,32 +206,32 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="255.0" layoutY="188.0" prefHeight="27.0" prefWidth="330.0" promptText="Price">
+                        <TextField fx:id="input_price" layoutX="255.0" layoutY="188.0" prefHeight="27.0" prefWidth="330.0" promptText="Price">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="255.0" layoutY="230.0" prefHeight="27.0" prefWidth="330.0" promptText="Quantity">
+                        <TextField fx:id="input_quantity" layoutX="255.0" layoutY="230.0" prefHeight="27.0" prefWidth="330.0" promptText="Quantity">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="255.0" layoutY="272.0" prefHeight="27.0" prefWidth="330.0" promptText="Min Quantity">
+                        <TextField fx:id="input_min_quantity" layoutX="255.0" layoutY="272.0" prefHeight="27.0" prefWidth="330.0" promptText="Min Quantity">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="255.0" layoutY="318.0" prefHeight="27.0" prefWidth="330.0" promptText="DOP">
+                        <TextField fx:id="input_dop" layoutX="255.0" layoutY="318.0" prefHeight="27.0" prefWidth="330.0" promptText="DOP">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField layoutX="255.0" layoutY="362.0" prefHeight="27.0" prefWidth="330.0" promptText="BBD">
+                        <TextField fx:id="input_bbd" layoutX="255.0" layoutY="362.0" prefHeight="27.0" prefWidth="330.0" promptText="BBD">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <Button layoutX="134.0" layoutY="452.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="470.0" text="ADD">
+                        <Button fx:id="btn_add_product" layoutX="134.0" layoutY="452.0" mnemonicParsing="false" onAction="#add_product" prefHeight="25.0" prefWidth="470.0" text="ADD">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
