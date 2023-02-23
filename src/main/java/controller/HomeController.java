@@ -36,26 +36,56 @@ public class HomeController {
     @FXML
     private Button ajout1, ajout2;
     @FXML
-    private GridPane GridPaneSupp, GridPaneMenu;
+    private GridPane GridPaneSupp, GridPaneBurger, GridPaneMenu, GridPaneBoisson, GridPaneDessert;
     Scene scene;
     Stage stage;
 
     @FXML
     public void initialize() throws FileNotFoundException {
         GridPaneSupp.getChildren().clear();
-        GridPaneMenu.getChildren().clear();
-
+        GridPaneBurger.getChildren().clear();
+        //Vbox suppléments
         VBox productView1 = productView(Product.CHIPS) ;
         GridPaneSupp.add(productView1,0,0);
-
         VBox productView2=productView(Product.MAIS);
         GridPaneSupp.add(productView2,1,0);
+        
+        //Vbox burger
         VBox productView3=productView(Product.CANTALBURGER);
-        GridPaneMenu.add(productView3,0,0);
+        GridPaneBurger.add(productView3,0,0);
         VBox productView4=productView(Product.CHICKENBURGER);
-        GridPaneMenu.add(productView4,1,0);
+        GridPaneBurger.add(productView4,1,0);
         VBox productView5=productView(Product.VEGANBURGER);
-        GridPaneMenu.add(productView5,2,0);
+        GridPaneBurger.add(productView5,2,0);
+
+        //Vbox menu
+        VBox productViews6=productView(Product.MENU1);
+        GridPaneMenu.add(productViews6,0,0);
+        VBox productViews7=productView(Product.MENU2);
+        GridPaneMenu.add(productViews7,1,0);
+
+        //Vbox boisson
+        VBox productViews8=productView(Product.PEPSI);
+        GridPaneBoisson.add(productViews8,0,0);
+        VBox productViews9=productView(Product.SPRITE);
+        GridPaneBoisson.add(productViews9,1,0);
+        VBox productViews10=productView(Product.FANTA);
+        GridPaneBoisson.add(productViews10,2,0);
+        VBox productViews11=productView(Product.EAU);
+        GridPaneBoisson.add(productViews11,3,0);
+
+        //Vbox dessert
+        VBox productViews12=productView(Product.DONUTS);
+        GridPaneDessert.add(productViews12,0,0);
+        VBox productViews13=productView(Product.MACARON);
+        GridPaneDessert.add(productViews13,1,0);
+        VBox productViews14=productView(Product.COOKIE);
+        GridPaneDessert.add(productViews14,2,0);
+        VBox productViews15=productView(Product.CAKE);
+        GridPaneDessert.add(productViews15,3,0);
+
+
+        
     }
 
     private VBox productView(Product product) throws FileNotFoundException {

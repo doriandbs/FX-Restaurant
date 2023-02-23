@@ -134,7 +134,7 @@
                                 <Glow level="0.0" />
                             </effect>
                         </TextArea>
-                  <GridPane fx:id="GridPaneMenu">
+                  <GridPane fx:id="GridPaneBurger">
 
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -207,6 +207,17 @@
                   <Text layoutX="89.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink + Dessert" wrappingWidth="129.0" />
                   <Text layoutX="258.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger + Side dish" wrappingWidth="108.796875" />
                   <Text layoutX="280.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink" wrappingWidth="64.0" />
+                        <GridPane fx:id="GridPaneMenu">
+
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
                     </children>
                 </Pane>
                 <Pane fx:id="pnl_boisson" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
@@ -307,6 +318,19 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
+                        <GridPane fx:id="GridPaneBoisson">
+
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
                     </children>
                 </Pane>
                 <Pane fx:id="pnl_dessert" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
@@ -414,6 +438,19 @@
                         </Label>
                   <Button fx:id="ajout1" layoutX="128.0" layoutY="293.0" mnemonicParsing="false" onAction="#add" text="Ajouter" />
                   <Button fx:id="ajout2" layoutX="289.0" layoutY="293.0" mnemonicParsing="false" text="Ajouter" />
+                        <GridPane fx:id="GridPaneDessert" layoutX="76.0" layoutY="90.0" prefHeight="261.0" prefWidth="702.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        </GridPane>
+
                     </children>
                 </Pane>
                 <Pane fx:id="pnl_supp" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
