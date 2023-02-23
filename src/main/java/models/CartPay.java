@@ -4,7 +4,9 @@
 
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CartPay {
@@ -53,7 +55,12 @@ public class CartPay {
          float total=0;
          for(CartEntry entry : entries.values()){
              float entryCost = entry.getProduct().getPrice()*entry.getQuantity();
+             total += entryCost;
          }
          return total;
+     }
+
+     public List<CartEntry> getEntries(){
+         return new ArrayList<>(entries.values());
      }
 }

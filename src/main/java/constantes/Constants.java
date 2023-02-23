@@ -14,10 +14,7 @@ public class Constants {
     public static final String userExist = "L'utilisateur existe déjà";
 
     public static final String userCreat = "Utilisateur créer";
-    public static final String user = "admin";
-    public static final String psw = "Dorian78Jldtop";
-    public static final String url = "jdbc:mysql://dd1026654-001.eu.clouddb.ovh.net:35621/javaprojets";
-    public static final String driver = "com.mysql.cj.jdbc.Driver";
+
 
 
 }

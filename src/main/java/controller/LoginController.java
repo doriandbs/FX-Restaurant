@@ -122,10 +122,10 @@ public class LoginController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
 
+    }
     @FXML
-    protected void Exit(ActionEvent event) {
+    public void Exit(ActionEvent event) {
         Platform.exit();
     }
 

@@ -238,7 +238,7 @@
                         </Button>
                     </children>
                 </Pane>
-                <Button layoutX="890.0" layoutY="7.0" mnemonicParsing="false" onAction="#Exit" stylesheets="@../css/style_cancel.css" text="Cancel" textFill="WHITE" />
+                <Button layoutX="890.0" layoutY="7.0" mnemonicParsing="false" onAction="#Exit" stylesheets="@../css/style_cancel.css" text="Exit" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>

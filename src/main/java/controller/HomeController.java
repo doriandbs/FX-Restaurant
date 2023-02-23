@@ -5,38 +5,47 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import models.CartEntry;
+import models.CartPay;
 import models.Product;
 
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class HomeController {
     @FXML
-    private Pane pnl_menu, pnl_burger, pnl_boisson, pnl_dessert, pnl_supp;
+    private Pane pnl_menu, pnl_burger, pnl_boisson, pnl_dessert, pnl_supp, pnl_cart;
     @FXML
-    private ImageView img_menu, img_burger, img_drink, img_dessert, img_supp;
+    private ImageView img_menu, img_burger, img_drink, img_dessert, img_supp, img_cart;
 
     @FXML
-    private Button ajout1, ajout2;
+    private Button button_cart;
+
     @FXML
     private GridPane GridPaneSupp, GridPaneBurger, GridPaneMenu, GridPaneBoisson, GridPaneDessert;
+
+    @FXML
+    private VBox cartPane;
+
+    private Label totalPriceLabel;
+
     Scene scene;
     Stage stage;
 
@@ -44,6 +53,7 @@ public class HomeController {
     public void initialize() throws FileNotFoundException {
         cleanPanels();
         ajoutItemMenu();
+
         pnl_menu.toFront();
 
     }
@@ -60,6 +70,16 @@ public class HomeController {
         Label productName = new Label(product.name());
         Label price = new Label(product.getPrice()+"€");
         Button addButton = new Button("ADD to cart");
+        addButton.setUserData(product.name());
+        addButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Node source = (Node) event.getSource();
+                String productName= (String)  source.getUserData();
+                CartPay cart = CartPay.getInstance();
+                cart.addProduct(productName);
+            }
+        });
         layout.getChildren().addAll(imageView,productName,price,addButton);
         return layout;
     }
@@ -72,36 +92,39 @@ public class HomeController {
         GridPaneMenu.getChildren().clear();
     }
     @FXML
-    private void handleButtonAction(MouseEvent mouseDragEvent) throws FileNotFoundException {
-        if (mouseDragEvent.getSource() == img_menu) {
+    private void handleButtonAction(MouseEvent mouseEvent) throws FileNotFoundException {
+        if (mouseEvent.getSource() == img_menu) {
             cleanPanels();
 
             pnl_menu.toFront();
 
             ajoutItemMenu();
 
-        } else if (mouseDragEvent.getSource() == img_burger) {
+        } else if (mouseEvent.getSource() == img_burger) {
             cleanPanels();
 
             pnl_burger.toFront();
 
             ajoutItemBurger();
             
-        } else if (mouseDragEvent.getSource() == img_drink) {
+        } else if (mouseEvent.getSource() == img_drink) {
             cleanPanels();
 
             pnl_boisson.toFront();
 
             ajoutItemBoisson();
-        } else if (mouseDragEvent.getSource() == img_dessert) {
+        } else if (mouseEvent.getSource() == img_dessert) {
             cleanPanels();
             pnl_dessert.toFront();
             ajoutItemDessert();
-        } else if (mouseDragEvent.getSource() == img_supp) {
+        } else if (mouseEvent.getSource() == img_supp) {
             cleanPanels();
             pnl_supp.toFront();
             ajoutItemSupp();
-
+        }else if (mouseEvent.getSource() == img_cart){
+            cleanPanels();
+            System.out.println("bien cliqué");
+            pnl_cart.toFront();
         }
     }
 
@@ -123,12 +146,101 @@ public class HomeController {
         Platform.exit();
     }
 
-    public void add(ActionEvent event){
 
+
+
+
+    @FXML
+    public void opencart() throws FileNotFoundException {
+        List<CartEntry> entries = CartPay.getInstance().getEntries();
+        cartPane.getChildren().clear();
+        if(entries.isEmpty()){
+            Label empty = new Label("Cart Empty");
+            cartPane.getChildren().add(empty);
+        }else {
+            Label notEmpty = new Label("Cart : ");
+            cartPane.getChildren().add(notEmpty);
+            for (CartEntry cartEntry : entries) {
+                HBox productView = cartEntry(cartEntry);
+                cartPane.getChildren().add(productView);
+            }
+            Separator separator = new Separator();
+            separator.setOrientation(Orientation.HORIZONTAL);
+            cartPane.getChildren().add(separator);
+
+            HBox totalView = totalView(CartPay.getInstance().calculateTotal());
+            cartPane.getChildren().add(totalView);
+        }
     }
 
 
 
+    private HBox totalView(float totalPrice){
+        HBox layout = new HBox();
+        layout.setAlignment(Pos.CENTER);
+        Label total = new Label("TOTAL : ");
+        total.setStyle("-fx-font-size:15pt;");
+        this.totalPriceLabel = new Label(String.valueOf(totalPrice));
+        layout.getChildren().addAll(total,this.totalPriceLabel);
+        return layout;
+    }
+
+    private HBox cartEntry(CartEntry cartEntry) throws FileNotFoundException {
+        HBox layout = new HBox();
+        layout.setAlignment(Pos.CENTER_LEFT);
+        FileInputStream input = new FileInputStream("src/main/resources/"+cartEntry.getProduct().getImageFile());
+        Image image = new Image(input);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+
+        //NAME OF PRODUCT
+        Label productName = new Label(cartEntry.getProduct().name());
+        productName.setPrefWidth(100);
+        productName.setStyle("-fx-font-size:15pt; -fx-padding:5px");
+
+        //QUANTITY
+
+        Label quantity = new Label(String.valueOf(cartEntry.getQuantity()));
+        quantity.setStyle("-fx-padding:5px");
+
+
+
+        //BUTTON MENUS
+        //ImageView viewM = new ImageView(String.valueOf(getClass().getClassLoader().getResource("img2/Common/remove.png")));
+        Button buttonM = new Button("-");
+        buttonM.setStyle("-fx-padding:5px");
+        buttonM.setUserData(cartEntry.getProduct().name());
+        buttonM.setOnAction(e -> {
+            String name = (String) ((Node) e.getSource()).getUserData();
+            CartPay.getInstance().removeProduct(name);
+            quantity.setText(String.valueOf(CartPay.getInstance().getQuantity(name)));
+            this.totalPriceLabel.setText(String.valueOf(CartPay.getInstance().calculateTotal()));
+        });
+        //buttonM.setGraphic(viewM);
+
+        //BUTTON PLUS
+        //ImageView viewP = new ImageView(String.valueOf(getClass().getClassLoader().getResource("img2/Common/plus.png")));
+        Button buttonP = new Button("+");
+        buttonP.setStyle("-fx-padding:5px");
+        buttonP.setUserData(cartEntry.getProduct().name());
+        buttonP.setOnAction(e -> {
+            String name = (String) ((Node) e.getSource()).getUserData();
+            CartPay.getInstance().addProduct(name);
+            quantity.setText(String.valueOf(CartPay.getInstance().getQuantity(name)));
+            this.totalPriceLabel.setText(String.valueOf(CartPay.getInstance().calculateTotal()));
+        });
+        //buttonP.setGraphic(viewP);
+
+
+        //PRICE
+        Label price = new Label(String.valueOf("€" + cartEntry.getProduct().getPrice()));
+        price.setStyle("-fx-padding:5px");
+        layout.getChildren().addAll(imageView,productName,buttonP,quantity,buttonM,price);
+
+        return layout;
+
+    }
 
 
     private void ajoutItemBurger() throws FileNotFoundException {

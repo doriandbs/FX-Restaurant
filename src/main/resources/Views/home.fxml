@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,15 +17,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="476.0" prefWidth="1124.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="946.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
     <children>
         <AnchorPane layoutX="107.0" layoutY="1.0" prefHeight="406.0" prefWidth="493.0" styleClass="HomeColor">
             <children>
-                <ImageView fx:id="img_panier" fitHeight="45.0" fitWidth="45.0" layoutX="761.0" layoutY="11.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+               <!-- <ImageView fx:id="img_panier" fitHeight="45.0" fitWidth="45.0" layoutX="761.0" layoutY="11.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img2/Home/chariot.png" />
                     </image>
-                </ImageView>
+                </ImageView>-->
                 <CheckBox fx:id="check_eat_in" alignment="CENTER" layoutX="235.0" layoutY="24.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="104.0" text="Eat In">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -42,48 +41,6 @@
                 </CheckBox>
                 <Text layoutX="536.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N°Commande :" />
                 <TextArea disable="true" layoutX="643.0" layoutY="10.0" prefHeight="17.0" prefWidth="23.0" />
-                <Pane fx:id="pnl_burger" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
-                    <children>
-                        <Label layoutX="26.0" layoutY="22.0" text="Our Burgers">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="24.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="26.0" layoutY="50.0" prefHeight="17.0" prefWidth="874.0" text="Today, Frusty's burgers satisfy every hunger and every craving!">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextArea disable="true" layoutX="20.0" layoutY="287.0" prefHeight="119.0" prefWidth="187.0" style="-fx-opacity: 1;" styleClass="tac" text="Cantal Burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak">
-                            <effect>
-                                <Glow level="0.0" />
-                            </effect>
-                        </TextArea>
-
-                        <TextArea disable="true" layoutX="224.0" layoutY="287.0" prefHeight="119.0" prefWidth="187.0" style="-fx-opacity: 1;" text="Goat cheese burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak&#10;">
-                            <effect>
-                                <Glow level="0.0" />
-                            </effect>
-                        </TextArea>
-                        <TextArea disable="true" layoutX="446.0" layoutY="287.0" prefHeight="119.0" prefWidth="187.0" style="-fx-opacity: 1;" text="Chickpea Burger&#10;Salad / tomato / onion&#10;Vegetable cheese&#10;Mayonnaise&#10;">
-                            <effect>
-                                <Glow level="0.0" />
-                            </effect>
-                        </TextArea>
-                  <GridPane fx:id="GridPaneBurger" layoutX="76.0" layoutY="90.0" prefHeight="261.0" prefWidth="702.0">
-
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-                    </children>
-                </Pane>
                 <Pane fx:id="pnl_menu" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
                     <children>
                         <Label layoutX="26.0" layoutY="22.0" text="Our Menus">
@@ -96,11 +53,11 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <Text layoutX="91.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger + Side dish" wrappingWidth="126.05859375" />
-                  <Text layoutX="89.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink + Dessert" wrappingWidth="129.0" />
-                  <Text layoutX="258.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger + Side dish" wrappingWidth="108.796875" />
-                  <Text layoutX="280.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink" wrappingWidth="64.0" />
-                        <GridPane fx:id="GridPaneMenu" layoutX="76.0" layoutY="90.0" prefHeight="261.0" prefWidth="702.0">
+                        <Text layoutX="198.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger + Side dish" wrappingWidth="126.05859375" />
+                  <Text layoutX="196.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink + Dessert" wrappingWidth="129.0" />
+                  <Text layoutX="556.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger + Side dish" wrappingWidth="108.796875" />
+                  <Text layoutX="578.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink" wrappingWidth="64.0" />
+                        <GridPane fx:id="GridPaneMenu" layoutX="69.0" layoutY="150.0" prefHeight="261.0" prefWidth="702.0">
 
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -126,9 +83,9 @@
                             </font>
                         </Label>
 
-                        <GridPane fx:id="GridPaneBoisson" layoutX="76.0" layoutY="90.0" prefHeight="261.0" prefWidth="702.0">
+                        <GridPane fx:id="GridPaneBoisson" layoutX="69.0" layoutY="150.0" prefHeight="261.0" prefWidth="702.0">
 
-                            <columnConstraints >
+                            <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -139,6 +96,30 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
+                    </children>
+                </Pane>
+                <Pane fx:id="pnl_supp" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
+                    <children>
+                        <Label layoutX="26.0" layoutY="22.0" text="Our Fries">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="50.0" prefHeight="17.0" prefWidth="874.0" text="Fancy some good fries or corn? Let yourself be tempted by our new range.">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                  <GridPane fx:id="GridPaneSupp" layoutX="69.0" layoutY="150.0" prefHeight="261.0" prefWidth="702.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                     </children>
                 </Pane>
                 <Pane fx:id="pnl_dessert" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
@@ -158,7 +139,7 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <GridPane fx:id="GridPaneDessert" layoutX="76.0" layoutY="180" prefHeight="261.0" prefWidth="702.0">
+                        <GridPane fx:id="GridPaneDessert" layoutX="69.0" layoutY="150.0" prefHeight="261.0" prefWidth="702.0">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -173,33 +154,54 @@
 
                     </children>
                 </Pane>
-                <Pane fx:id="pnl_supp" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
+                <Pane fx:id="pnl_burger" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
                     <children>
-                        <Label layoutX="26.0" layoutY="22.0" text="Our Fries">
+                        <Label layoutX="26.0" layoutY="22.0" text="Our Burgers">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="24.0" />
                             </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="50.0" prefHeight="17.0" prefWidth="874.0" text="Fancy some good fries or corn? Let yourself be tempted by our new range.">
+                        <Label layoutX="26.0" layoutY="50.0" prefHeight="17.0" prefWidth="874.0" text="Today, Frusty's burgers satisfy every hunger and every craving!">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                  <GridPane fx:id="GridPaneSupp" layoutX="76.0" layoutY="90.0" prefHeight="261.0" prefWidth="702.0">
+                        <TextArea disable="true" layoutX="90.0" layoutY="299.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" styleClass="tac" text="Cantal Burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak">
+                            <effect>
+                                <Glow level="0.0" />
+                            </effect>
+                        </TextArea>
+
+                        <TextArea disable="true" layoutX="327.0" layoutY="300.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" text="Goat cheese burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak&#10;">
+                            <effect>
+                                <Glow level="0.0" />
+                            </effect>
+                        </TextArea>
+                        <TextArea disable="true" layoutX="562.0" layoutY="299.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" text="Chickpea Burger&#10;Salad / tomato / onion&#10;Vegetable cheese&#10;Mayonnaise&#10;">
+                            <effect>
+                                <Glow level="0.0" />
+                            </effect>
+                        </TextArea>
+                  <GridPane fx:id="GridPaneBurger" layoutX="69.0" layoutY="131.0" prefHeight="261.0" prefWidth="702.0">
+      
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                     <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" />
-                     </children>
                   </GridPane>
                     </children>
                 </Pane>
+             <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#Exit" stylesheets="@../css/style_cancel.css" text="Exit" textFill="WHITE" />
+            <Pane fx:id="pnl_cart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
+
+                  <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="354.0" />
+             
+            </Pane>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="leftSide" prefHeight="495.0" prefWidth="111.0" styleClass="leftSide" stylesheets="@../css/style.css">
@@ -219,7 +221,7 @@
                         <Image url="@../img2/Home/dessert.png" />
                     </image>
                 </ImageView>
-                <Hyperlink fx:id="input_logOut" layoutX="20.0" layoutY="424.0" onAction="#MappingLogout" styleClass="link" text="Log Out" textFill="#0e0eb5" underline="true">
+                <Hyperlink fx:id="input_logOut" layoutX="22.0" layoutY="455.0" onAction="#MappingLogout" styleClass="link" text="Log Out" textFill="#0e0eb5" underline="true">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                     </font>
@@ -234,17 +236,12 @@
                         <Image url="@../img2/Home/frites.png" />
                     </image>
                 </ImageView>
+            <ImageView fx:id="img_cart" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="402.0" onMouseClicked="#handleButtonAction" onMousePressed="#opencart" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img2/Home/chariot.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
-      <AnchorPane layoutX="947.0" prefHeight="495.0" prefWidth="200.0" styleClass="rightSide">
-         <children>
-            <Button layoutX="33.0" layoutY="444.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="145.0" styleClass="bg_white" text="Validate">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-            </Button>
-             <Button layoutX="135.0" layoutY="9.0" mnemonicParsing="false" onAction="#Exit" stylesheets="@../css/style_cancel.css" text="Cancel" textFill="WHITE" />
-         </children>
-      </AnchorPane>
     </children>
 </AnchorPane>
