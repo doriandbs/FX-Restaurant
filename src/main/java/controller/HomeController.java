@@ -1,4 +1,5 @@
 package controller;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import models.CartEntry;
 import models.CartPay;
 import models.Product;
@@ -71,6 +74,7 @@ public class HomeController {
         Label price = new Label(product.getPrice()+"€");
         Button addButton = new Button("ADD to cart");
         addButton.setUserData(product.name());
+
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -78,6 +82,21 @@ public class HomeController {
                 String productName= (String)  source.getUserData();
                 CartPay cart = CartPay.getInstance();
                 cart.addProduct(productName);
+                addButton.setStyle("-fx-background-color: #00ff00");
+                StackPane stackPane = new StackPane(new Label("added"));
+                Scene popupScene = new Scene(stackPane, 50, 50);
+                Stage popup = new Stage();
+                popup.initStyle(StageStyle.UNDECORATED);
+                stackPane.setAlignment(Pos.BOTTOM_CENTER);
+                popup.setScene(popupScene);
+                popup.show();
+
+                PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
+                wait.setOnFinished((e) -> {
+                    popup.close();
+                    addButton.setStyle("-fx-background-color: #e3ecb4");
+                });
+                wait.play();
             }
         });
         layout.getChildren().addAll(imageView,productName,price,addButton);
