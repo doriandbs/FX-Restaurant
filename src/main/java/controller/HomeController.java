@@ -198,12 +198,30 @@ public class HomeController {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER);
         Label total = new Label("TOTAL : ");
+        Button sendCart = new Button("ENVOYER LA COMMANDE");
         total.setStyle("-fx-font-size:15pt;");
         this.totalPriceLabel = new Label(String.valueOf(totalPrice));
-        layout.getChildren().addAll(total,this.totalPriceLabel);
+        layout.getChildren().addAll(total,this.totalPriceLabel, sendCart);
+        sendCart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                envoyerCommande();
+            }
+        });
+
         return layout;
     }
 
+    private void envoyerCommande(){
+        List<CartEntry> cartEntries = CartPay.getInstance().getEntries();
+
+        // Effectuez les mises à jour de la base de données pour chaque CartEntry
+        for (CartEntry cartEntry : cartEntries) {
+            String productName = cartEntry.getProduct().name();
+            int quantity = cartEntry.getQuantity();
+            System.out.println(quantity + productName);
+        }
+    }
     private HBox cartEntry(CartEntry cartEntry) throws FileNotFoundException {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER_LEFT);
@@ -311,5 +329,7 @@ public class HomeController {
         VBox productView17=productView(Product.MAIS);
         GridPaneSupp.add(productView17,1,0);
     }
+
+
 
 }
