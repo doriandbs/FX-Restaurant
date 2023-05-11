@@ -45,6 +45,13 @@
         <version>4.11.0</version>
         <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>org.sonarsource.sonarqube</groupId>
+        <artifactId>sonar-plugin-api</artifactId>
+        <version>9.3.0.51899</version>
+        <scope>provided</scope>
+    </dependency>
+
 </dependencies>
 
     <build>
