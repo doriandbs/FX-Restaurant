@@ -8,8 +8,8 @@ public class AddProducts {
     private StringProperty Price;
     private StringProperty Quantity;
     private StringProperty MinQuantity;
-    private ObjectProperty DOP;
-    private ObjectProperty BBD;
+    private ObjectProperty<Object> DOP;
+    private ObjectProperty<Object> BBD;
 
     private IntegerProperty id;
 
@@ -20,8 +20,8 @@ public class AddProducts {
         this.Price = new SimpleStringProperty(Price);
         this.Quantity = new SimpleStringProperty(Quantity);
         this.MinQuantity = new SimpleStringProperty(MinQuantity);
-        this.DOP = new SimpleObjectProperty(DOP);
-        this.BBD = new SimpleObjectProperty(BBD);
+        this.DOP = new SimpleObjectProperty<>(DOP);
+        this.BBD = new SimpleObjectProperty<>(BBD);
     }
 
     public String getName_products() {
@@ -76,7 +76,7 @@ public class AddProducts {
         return DOP.get();
     }
 
-    public ObjectProperty DOPProperty() {
+    public ObjectProperty<Object> DOPProperty() {
         return DOP;
     }
 
@@ -88,7 +88,7 @@ public class AddProducts {
         return BBD.get();
     }
 
-    public ObjectProperty BBDProperty() {
+    public ObjectProperty<Object> BBDProperty() {
         return BBD;
     }
 
