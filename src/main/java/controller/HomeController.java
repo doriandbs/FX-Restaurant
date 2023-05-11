@@ -1,45 +1,49 @@
 package controller;
+
+import bdd.DatabaseSingleton;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import models.CartEntry;
 import models.CartPay;
 import models.Product;
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import static constantes.SQLConstants.INSERTCOMMANDE;
+
 public class HomeController {
+    public TextArea no_cmd;
     @FXML
     private Pane pnl_menu, pnl_burger, pnl_boisson, pnl_dessert, pnl_supp, pnl_cart;
     @FXML
     private ImageView img_menu, img_burger, img_drink, img_dessert, img_supp, img_cart;
-
-    @FXML
-    private Button button_cart;
 
     @FXML
     private GridPane GridPaneSupp, GridPaneBurger, GridPaneMenu, GridPaneBoisson, GridPaneDessert;
@@ -53,14 +57,24 @@ public class HomeController {
     Stage stage;
 
     @FXML
-    public void initialize() throws FileNotFoundException {
+    public void initialize() throws IOException, SQLException {
         cleanPanels();
         ajoutItemMenu();
-
+        majnumcommande();
         pnl_menu.toFront();
 
     }
-
+    private void majnumcommande() throws SQLException, IOException {
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        db.connect();
+        PreparedStatement selectIdCmd = db.prepareStatement("SELECT ID FROM COMMANDES ORDER BY id DESC LIMIT 1");
+        ResultSet selectRes = selectIdCmd.executeQuery();
+        if (selectRes.next()) {
+            int id = selectRes.getInt("ID");
+            no_cmd.setText(String.valueOf(id+1));
+        }
+        db.close();
+    }
     private VBox productView(Product product) throws FileNotFoundException {
         VBox layout= new VBox();
         layout.setAlignment(Pos.CENTER);
@@ -75,29 +89,26 @@ public class HomeController {
         Button addButton = new Button("ADD to cart");
         addButton.setUserData(product.name());
 
-        addButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Node source = (Node) event.getSource();
-                String productName= (String)  source.getUserData();
-                CartPay cart = CartPay.getInstance();
-                cart.addProduct(productName);
-                addButton.setStyle("-fx-background-color: #00ff00");
-                StackPane stackPane = new StackPane(new Label("added"));
-                Scene popupScene = new Scene(stackPane, 50, 50);
-                Stage popup = new Stage();
-                popup.initStyle(StageStyle.UNDECORATED);
-                stackPane.setAlignment(Pos.BOTTOM_CENTER);
-                popup.setScene(popupScene);
-                popup.show();
+        addButton.setOnAction(event -> {
+            Node source = (Node) event.getSource();
+            String productName1 = (String)  source.getUserData();
+            CartPay cart = CartPay.getInstance();
+            cart.addProduct(productName1);
+            addButton.setStyle("-fx-background-color: #00ff00");
+            StackPane stackPane = new StackPane(new Label("added"));
+            Scene popupScene = new Scene(stackPane, 50, 50);
+            Stage popup = new Stage();
+            popup.initStyle(StageStyle.UNDECORATED);
+            stackPane.setAlignment(Pos.BOTTOM_CENTER);
+            popup.setScene(popupScene);
+            popup.show();
 
-                PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
-                wait.setOnFinished((e) -> {
-                    popup.close();
-                    addButton.setStyle("-fx-background-color: #e3ecb4");
-                });
-                wait.play();
-            }
+            PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
+            wait.setOnFinished((e) -> {
+                popup.close();
+                addButton.setStyle("-fx-background-color: #e3ecb4");
+            });
+            wait.play();
         });
         layout.getChildren().addAll(imageView,productName,price,addButton);
         return layout;
@@ -161,7 +172,7 @@ public class HomeController {
     }
 
     @FXML
-    public void Exit(ActionEvent event) {
+    public void Exit() {
         Platform.exit();
     }
 
@@ -198,10 +209,39 @@ public class HomeController {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER);
         Label total = new Label("TOTAL : ");
+        Button sendCart = new Button("ENVOYER LA COMMANDE");
         total.setStyle("-fx-font-size:15pt;");
         this.totalPriceLabel = new Label(String.valueOf(totalPrice));
-        layout.getChildren().addAll(total,this.totalPriceLabel);
+        layout.getChildren().addAll(total,this.totalPriceLabel, sendCart);
+        sendCart.setOnAction(event -> {
+            try {
+                envoyerCommande();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         return layout;
+    }
+
+    private void envoyerCommande() throws SQLException, IOException {
+        List<CartEntry> cartEntries = CartPay.getInstance().getEntries();
+        // Effectuez les mises à jour de la base de données pour chaque CartEntry
+        for (CartEntry cartEntry : cartEntries) {
+            String productName = cartEntry.getProduct().name();
+            int quantity = cartEntry.getQuantity();
+            System.out.println(quantity + productName);
+        }
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        db.connect();
+        PreparedStatement insertEmp = db.prepareStatement(INSERTCOMMANDE);
+        insertEmp.setString(1, String.valueOf(LocalDateTime. now()));
+        insertEmp.setString(2, String.valueOf(CartPay.getInstance().calculateTotal()));
+        insertEmp.executeUpdate();
+        insertEmp.close();
+        db.close();
+        majnumcommande();
+        cartPane.getChildren().clear();
     }
 
     private HBox cartEntry(CartEntry cartEntry) throws FileNotFoundException {
@@ -235,6 +275,12 @@ public class HomeController {
             CartPay.getInstance().removeProduct(name);
             quantity.setText(String.valueOf(CartPay.getInstance().getQuantity(name)));
             this.totalPriceLabel.setText(String.valueOf(CartPay.getInstance().calculateTotal()));
+            if(CartPay.getInstance().calculateTotal()==0){
+                cartPane.getChildren().clear();
+            }
+            if(cartEntry.getQuantity()==0){
+                layout.getChildren().clear();
+            }
         });
         //buttonM.setGraphic(viewM);
 
@@ -253,7 +299,7 @@ public class HomeController {
 
 
         //PRICE
-        Label price = new Label(String.valueOf("€" + cartEntry.getProduct().getPrice()));
+        Label price = new Label("€" + cartEntry.getProduct().getPrice());
         price.setStyle("-fx-padding:5px");
         layout.getChildren().addAll(imageView,productName,buttonP,quantity,buttonM,price);
 
