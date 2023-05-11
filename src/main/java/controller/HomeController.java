@@ -226,14 +226,24 @@ public class HomeController {
 
     private void envoyerCommande() throws SQLException, IOException {
         List<CartEntry> cartEntries = CartPay.getInstance().getEntries();
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        db.connect();
         // Effectuez les mises à jour de la base de données pour chaque CartEntry
         for (CartEntry cartEntry : cartEntries) {
             String productName = cartEntry.getProduct().name();
             int quantity = cartEntry.getQuantity();
             System.out.println(quantity + productName);
+            //REQUETE D'UPDATE DU PRODUIT ET DE LA QUANTITE
+
+            //IF GETPRODUCT=MENU1
+            //REQUETE UPDATE DES PRODUITS ET INGREDIENTS DU MENU1
+            //ELSE IF MENU2
+            //SAME
+            //ELSE IF MENU3
+            //SAME
+
         }
-        DatabaseSingleton db = DatabaseSingleton.getInstance();
-        db.connect();
+
         PreparedStatement insertEmp = db.prepareStatement(INSERTCOMMANDE);
         insertEmp.setString(1, String.valueOf(LocalDateTime. now()));
         insertEmp.setString(2, String.valueOf(CartPay.getInstance().calculateTotal()));
