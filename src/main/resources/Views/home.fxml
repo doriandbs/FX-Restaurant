@@ -41,7 +41,7 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <Text layoutX="198.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger + Side dish" wrappingWidth="126.05859375" />
+                        <Text layoutX="198.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger cantal + accompagnement " wrappingWidth="126.05859375" />
                   <Text layoutX="196.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink + Dessert" wrappingWidth="129.0" />
                   <Text layoutX="556.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burger + Side dish" wrappingWidth="108.796875" />
                   <Text layoutX="578.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ Drink" wrappingWidth="64.0" />

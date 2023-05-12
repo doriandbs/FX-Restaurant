@@ -12,6 +12,7 @@ import java.util.Map;
 public class CartPay {
 
 
+
     private static CartPay INSTANCE;
     public static CartPay getInstance(){
         if(INSTANCE==null){
@@ -21,6 +22,7 @@ public class CartPay {
     }
 
     private Map<String,CartEntry> entries;
+    
      public CartPay(){
          this.entries= new HashMap<>();
      }
@@ -36,12 +38,15 @@ public class CartPay {
          }
      }
 
-     public void removeProduct(String productName){
-         CartEntry productEntry = entries.get(productName.toUpperCase());
-        if(productEntry!=null){
+    public void removeProduct(String productName) {
+        CartEntry productEntry = entries.get(productName.toUpperCase());
+        if (productEntry != null) {
             productEntry.decreaseQuantity();
+            if (productEntry.getQuantity() == 0) {
+                entries.remove(productName.toUpperCase());
+            }
         }
-     }
+    }
 
      public int getQuantity(String productName){
          CartEntry entry = entries.get(productName.toUpperCase());
@@ -63,4 +68,9 @@ public class CartPay {
      public List<CartEntry> getEntries(){
          return new ArrayList<>(entries.values());
      }
+    public void resetEntries() {
+        entries.clear();
+    }
+
+
 }

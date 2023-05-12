@@ -100,15 +100,29 @@ public class HomeController {
             Stage popup = new Stage();
             popup.initStyle(StageStyle.UNDECORATED);
             stackPane.setAlignment(Pos.BOTTOM_CENTER);
-            popup.setScene(popupScene);
-            popup.show();
+            if("MENU1".equals(productName1) || "MENU2".equals(productName1)){
+                Parent root;
+                try {
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChoose.fxml")));
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
-            PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
-            wait.setOnFinished((e) -> {
-                popup.close();
-                addButton.setStyle("-fx-background-color: #e3ecb4");
-            });
-            wait.play();
+            }else {
+                popup.setScene(popupScene);
+                popup.show();
+
+                PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
+                wait.setOnFinished((e) -> {
+                    popup.close();
+                    addButton.setStyle("-fx-background-color: #e3ecb4");
+                });
+                wait.play();
+            }
         });
         layout.getChildren().addAll(imageView,productName,price,addButton);
         return layout;
@@ -228,20 +242,53 @@ public class HomeController {
         List<CartEntry> cartEntries = CartPay.getInstance().getEntries();
         DatabaseSingleton db = DatabaseSingleton.getInstance();
         db.connect();
-        // Effectuez les mises à jour de la base de données pour chaque CartEntry
+
+        // Effectuer les mises à jour de la base de données pour chaque CartEntry
         for (CartEntry cartEntry : cartEntries) {
             String productName = cartEntry.getProduct().name();
             int quantity = cartEntry.getQuantity();
             System.out.println(quantity + productName);
-            //REQUETE D'UPDATE DU PRODUIT ET DE LA QUANTITE
+            // REQUETE D'UPDATE DU PRODUIT ET DE LA QUANTITE
+/*
+            if (cartEntry.getProduct() == Product.MENU1) {
+                // Mise à jour des ingrédients pour le MENU1
+                int burgerIngredientID1 = 1; // Remplacer par l'ID réel de l'ingrédient 1 du burger pour le MENU1
+                int burgerIngredientID2 = 2; // Remplacer par l'ID réel de l'ingrédient 2 du burger pour le MENU1
+                int burgerIngredientID3 = 3; // Remplacer par l'ID réel de l'ingrédient 3 du burger pour le MENU1
 
-            //IF GETPRODUCT=MENU1
-            //REQUETE UPDATE DES PRODUITS ET INGREDIENTS DU MENU1
-            //ELSE IF MENU2
-            //SAME
-            //ELSE IF MENU3
-            //SAME
+                String updateBurgerIngredientQuery1 = "UPDATE INGREDIENTS SET stock_ingredient = stock_ingredient - 1 WHERE id_ingredient = ?";
+                PreparedStatement updateBurgerIngredientStmt1 = db.prepareStatement(updateBurgerIngredientQuery1);
+                updateBurgerIngredientStmt1.setInt(1, burgerIngredientID1);
+                updateBurgerIngredientStmt1.executeUpdate();
 
+                String updateBurgerIngredientQuery2 = "UPDATE INGREDIENTS SET stock_ingredient = stock_ingredient - 1 WHERE id_ingredient = ?";
+                PreparedStatement updateBurgerIngredientStmt2 = db.prepareStatement(updateBurgerIngredientQuery2);
+                updateBurgerIngredientStmt2.setInt(1, burgerIngredientID2);
+                updateBurgerIngredientStmt2.executeUpdate();
+
+                String updateBurgerIngredientQuery3 = "UPDATE INGREDIENTS SET stock_ingredient = stock_ingredient - 1 WHERE id_ingredient = ?";
+                PreparedStatement updateBurgerIngredientStmt3 = db.prepareStatement(updateBurgerIngredientQuery3);
+                updateBurgerIngredientStmt3.setInt(1, burgerIngredientID3);
+                updateBurgerIngredientStmt3.executeUpdate();
+            }
+            else if (cartEntry.getProduct() == Product.MENU2) {
+                // Mise à jour des ingrédients pour le MENU2
+                int burgerIngredientID1 = 4; // Remplacer par l'ID réel de l'ingrédient 1 du burger pour le MENU2
+                int burgerIngredientID2 = 5; // Remplacer par l'ID réel de l'ingrédient 2 du burger pour le MENU2
+                int burgerIngredientID3 = 6; // Remplacer par l'ID réel de l'ingrédient 3 du burger pour le MENU2
+
+                String updateBurgerIngredientQuery1 = "UPDATE INGREDIENTS SET stock_ingredient = stock_ingredient - 1 WHERE id_ingredient = ?";
+                PreparedStatement updateBurgerIngredientStmt1 = db.prepareStatement(updateBurgerIngredientQuery1);
+                updateBurgerIngredientStmt1.setInt(1, burgerIngredientID1);
+                updateBurgerIngredientStmt1.executeUpdate();
+
+                String updateBurgerIngredientQuery3 = "UPDATE INGREDIENTS SET stock_ingredient = stock_ingredient - 1 WHERE id_ingredient = ?";
+                PreparedStatement updateBurgerIngredientStmt3 = db.prepareStatement(updateBurgerIngredientQuery3);
+                updateBurgerIngredientStmt3.setInt(1, burgerIngredientID3);
+                updateBurgerIngredientStmt3.executeUpdate();
+            }
+
+ */
         }
 
         PreparedStatement insertEmp = db.prepareStatement(INSERTCOMMANDE);
@@ -254,6 +301,9 @@ public class HomeController {
         cartPane.getChildren().clear();
     }
 
+
+
+
     private HBox cartEntry(CartEntry cartEntry) throws FileNotFoundException {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER_LEFT);
@@ -262,6 +312,7 @@ public class HomeController {
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
+
 
         //NAME OF PRODUCT
         Label productName = new Label(cartEntry.getProduct().name());
@@ -274,6 +325,11 @@ public class HomeController {
         quantity.setStyle("-fx-padding:5px");
 
 
+        //price
+
+        Label price = new Label(String.valueOf(cartEntry.getProduct().getPrice())+"€");
+        price.setStyle("-fx-padding:5px");
+
 
         //BUTTON MENUS
         //ImageView viewM = new ImageView(String.valueOf(getClass().getClassLoader().getResource("img2/Common/remove.png")));
@@ -284,13 +340,16 @@ public class HomeController {
             String name = (String) ((Node) e.getSource()).getUserData();
             CartPay.getInstance().removeProduct(name);
             quantity.setText(String.valueOf(CartPay.getInstance().getQuantity(name)));
+            price.setText(cartEntry.getProduct().getPrice()*CartPay.getInstance().getQuantity(name)+"€");
+            if(quantity.getText().equals("0")){
+                layout.getChildren().clear();
+            }
             this.totalPriceLabel.setText(String.valueOf(CartPay.getInstance().calculateTotal()));
             if(CartPay.getInstance().calculateTotal()==0){
                 cartPane.getChildren().clear();
+                CartPay.getInstance().resetEntries();
             }
-            if(cartEntry.getQuantity()==0){
-                layout.getChildren().clear();
-            }
+
         });
         //buttonM.setGraphic(viewM);
 
@@ -304,13 +363,13 @@ public class HomeController {
             CartPay.getInstance().addProduct(name);
             quantity.setText(String.valueOf(CartPay.getInstance().getQuantity(name)));
             this.totalPriceLabel.setText(String.valueOf(CartPay.getInstance().calculateTotal()));
+            price.setText(cartEntry.getProduct().getPrice()*CartPay.getInstance().getQuantity(name)+"€");
         });
         //buttonP.setGraphic(viewP);
 
 
         //PRICE
-        Label price = new Label("€" + cartEntry.getProduct().getPrice());
-        price.setStyle("-fx-padding:5px");
+
         layout.getChildren().addAll(imageView,productName,buttonP,quantity,buttonM,price);
 
         return layout;

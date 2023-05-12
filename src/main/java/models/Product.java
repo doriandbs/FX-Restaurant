@@ -22,6 +22,12 @@ public enum Product {
     SPRITE("img2/Home/Drink/soda_sprite.png",2.30f),
     EAU("img2/Home/Drink/bouteille_eau.png",1.50f),
 
+
+    PEPSIform("img2/Home/Drink/soda_pepsi.png",0),
+    FANTAform("img2/Home/Drink/soda_fanta.png",0),
+    SPRITEform("img2/Home/Drink/soda_sprite.png",0),
+    EAUform("img2/Home/Drink/bouteille_eau.png",0),
+
     //DESSERTS
     COOKIE("img2/Home/Dessert/dessert_cookie.png",2.00f),
     DONUTS("img2/Home/Dessert/dessert_donuts.png",1.50f),
