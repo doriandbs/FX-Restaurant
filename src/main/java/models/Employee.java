@@ -8,123 +8,123 @@ import javafx.beans.property.*;
 
 public class Employee {
 
-    private StringProperty Name;
-    private StringProperty FirstName;
-    private StringProperty DateBirth;
-    private StringProperty Adresse;
-    private StringProperty NumTel;
-    private StringProperty DateEmbauche;
-    private StringProperty Badge;
-    private BooleanProperty IsAdmin;
-    private IntegerProperty id;
+    private final StringProperty name;
+    private final StringProperty firstName;
+    private final StringProperty dateBirth;
+    private final StringProperty adresse;
+    private final StringProperty numTel;
+    private final StringProperty dateEmbauche;
+    private final StringProperty badge;
+    private final BooleanProperty isAdmin;
+    private final IntegerProperty id;
 
-    public Employee(Integer Id, String Name, String FirstName, String Badge, String Adresse, String DateBirth, String NumTel, String DateEmbauche, Boolean IsAdmin) {
-        this.id = new SimpleIntegerProperty(Id);
-        this.Name = new SimpleStringProperty(Name);
-        this.FirstName = new SimpleStringProperty(FirstName);
-        this.DateBirth = new SimpleStringProperty(DateBirth);
-        this.Adresse = new SimpleStringProperty(Adresse);
-        this.DateEmbauche = new SimpleStringProperty(DateEmbauche);
-        this.Badge = new SimpleStringProperty(Badge);
-        this.IsAdmin = new SimpleBooleanProperty(IsAdmin);
-        this.NumTel = new SimpleStringProperty(NumTel);
+    public Employee(Integer id, String name, String firstName, String badge, String adresse, String dateBirth, String numTel, String dateEmbauche, Boolean isAdmin) {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.firstName = new SimpleStringProperty(firstName);
+        this.dateBirth = new SimpleStringProperty(dateBirth);
+        this.adresse = new SimpleStringProperty(adresse);
+        this.dateEmbauche = new SimpleStringProperty(dateEmbauche);
+        this.badge = new SimpleStringProperty(badge);
+        this.isAdmin = new SimpleBooleanProperty(isAdmin);
+        this.numTel = new SimpleStringProperty(numTel);
 
     }
 
     public String getName() {
-        return Name.get();
+        return name.get();
     }
 
     public void setName(String name) {
-        this.Name.set(name);
+        this.name.set(name);
     }
 
     public StringProperty nameProperty() {
-        return Name;
+        return name;
     }
 
     public String getFirstName() {
-        return FirstName.get();
+        return firstName.get();
     }
 
     public void setFirstName(String firstName) {
-        this.FirstName.set(firstName);
+        this.firstName.set(firstName);
     }
 
     public StringProperty firstNameProperty() {
-        return FirstName;
+        return firstName;
     }
 
     public String getDateBirth() {
-        return DateBirth.get();
+        return dateBirth.get();
     }
 
     public void setDateBirth(String dateBirth) {
-        this.DateBirth.set(dateBirth);
+        this.dateBirth.set(dateBirth);
     }
 
     public StringProperty dateBirthProperty() {
-        return DateBirth;
+        return dateBirth;
     }
 
     public String getAdresse() {
-        return Adresse.get();
+        return adresse.get();
     }
 
     public void setAdresse(String adresse) {
-        this.Adresse.set(adresse);
+        this.adresse.set(adresse);
     }
 
     public StringProperty adresseProperty() {
-        return Adresse;
+        return adresse;
     }
 
     public String getNumTel() {
-        return NumTel.get();
+        return numTel.get();
     }
 
     public void setNumTel(String numTel) {
-        this.NumTel.set(numTel);
+        this.numTel.set(numTel);
     }
 
     public StringProperty numTelProperty() {
-        return NumTel;
+        return numTel;
     }
 
     public String getDateEmbauche() {
-        return DateEmbauche.get();
+        return dateEmbauche.get();
     }
 
     public void setDateEmbauche(String dateEmbauche) {
-        this.DateEmbauche.set(dateEmbauche);
+        this.dateEmbauche.set(dateEmbauche);
     }
 
     public StringProperty dateEmbaucheProperty() {
-        return DateEmbauche;
+        return dateEmbauche;
     }
 
     public String getBadge() {
-        return Badge.get();
+        return badge.get();
     }
 
     public void setBadge(String badge) {
-        this.Badge.set(badge);
+        this.badge.set(badge);
     }
 
     public StringProperty badgeProperty() {
-        return Badge;
+        return badge;
     }
 
     public boolean getIsAdmin() {
-        return IsAdmin.get();
+        return isAdmin.get();
     }
 
     public void setIsAdmin(boolean isAdmin) {
-        this.IsAdmin.set(isAdmin);
+        this.isAdmin.set(isAdmin);
     }
 
     public BooleanProperty isAdminProperty() {
-        return IsAdmin;
+        return isAdmin;
     }
 
     public int getId() {

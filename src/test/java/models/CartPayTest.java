@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CartPayTest {
     private CartPay cartPay;
@@ -57,6 +58,15 @@ class CartPayTest {
         assertEquals(entries.get(0).getProduct(), product);
         assertEquals(1, entries.get(0).getQuantity());
     }
+
+
+    @Test
+    void testResetEntries() {
+        CartPay instance = CartPay.getInstance();
+        instance.resetEntries();
+        assertTrue(instance.getEntries().isEmpty());
+    }
+
     @Test
     void testGetQuantityOfNonexistentProduct() {
         assertEquals(0, cartPay.getQuantity("Nonexistent product"));
