@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-
 <AnchorPane prefHeight="601.0" prefWidth="1158.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
     <children>
         <AnchorPane fx:id="leftSide" layoutX="-2.0" prefHeight="600.0" prefWidth="205.0" styleClass="leftSide">
@@ -40,7 +29,7 @@
                         <Image url="@../img2/Admin/food.png" />
                     </image>
                 </ImageView>
-                <Hyperlink fx:id="input_logOut" layoutX="69.0" layoutY="523.0" onAction="#MappingLogout" prefHeight="27.0" prefWidth="70.0" styleClass="link" stylesheets="@../css/style.css" text="LogOut" textFill="#04048a" underline="true">
+                <Hyperlink fx:id="input_logOut" layoutX="69.0" layoutY="523.0" onAction="#mappingLogout" prefHeight="27.0" prefWidth="70.0" styleClass="link" stylesheets="@../css/style.css" text="LogOut" textFill="#04048a" underline="true">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                     </font>

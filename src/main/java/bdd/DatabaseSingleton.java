@@ -5,7 +5,6 @@ package bdd;
 
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -13,9 +12,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 
 public class DatabaseSingleton {
+
+    private static final Logger logger = Logger.getLogger(DatabaseSingleton.class.getName());
 
 
     //RECUPERATION DES DONNEES DE LA BDD
@@ -24,18 +26,14 @@ public class DatabaseSingleton {
     private static final DatabaseSingleton instance;
 
     static {
-        try {
-            instance = new DatabaseSingleton();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        instance = new DatabaseSingleton();
     }
 
     private Connection connection;
 
-    private DatabaseSingleton() throws FileNotFoundException {
-        System.out.println("Instanciation du Singleton");
-        System.out.println("Path executing => "+System.getProperty("user.dir"));
+    private DatabaseSingleton(){
+        logger.info("Instanciation du Singleton");
+        logger.info("Path executing => " + System.getProperty("user.dir"));
     }
 
     public static DatabaseSingleton getInstance() {
@@ -49,7 +47,7 @@ public class DatabaseSingleton {
             String url = prop.getProperty("db.url");
             String user = prop.getProperty("db.user");
             String password = prop.getProperty("db.password");
-            System.out.println("url : " + url +"user : " + user + "psw : " + password );
+            logger.info("url : " + url +"user : " + user + "psw : " + password );
             connection = DriverManager.getConnection(url,user, password);
 
         } catch (Exception e) {

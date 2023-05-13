@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2023. Créé par Dorian Dubois - Kevin Gac - Kevin Lompo
  */
-package Main;
+package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

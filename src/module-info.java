@@ -4,7 +4,7 @@ module FX.Restaurant {
     requires javafx.controls;
     requires java.sql;
     requires mysql.connector.j;
-    exports Main to javafx.graphics;
+    exports main to javafx.graphics;
     exports controller to javafx.fxml;
     opens controller to javafx.fxml;
     opens models to javafx.base;

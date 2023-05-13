@@ -4,6 +4,7 @@
 package controller;
 
 import bdd.DatabaseSingleton;
+import exception.CustomIOException;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -38,23 +39,57 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import static constantes.SQLConstants.*;
 import static models.Product.CANTALBURGER;
 
 public class HomeController {
-    public TextArea no_cmd;
+    private static final Logger logger = Logger.getLogger(HomeController.class.getName());
+
+
+    public static final String PADDING_5PX="-fx-padding:5px";
     @FXML
-    private Pane pnl_menu, pnl_burger, pnl_boisson, pnl_dessert, pnl_supp, pnl_cart;
+    public TextArea noCmd;
     @FXML
-    private ImageView img_menu, img_burger, img_drink, img_dessert, img_supp, img_cart;
+    private Pane pnlMenu;
+    @FXML
+    private Pane pnlBurger;
+    @FXML
+    private Pane pnlBoisson;
+    @FXML
+    private Pane pnlDessert;
+    @FXML
+    private Pane pnlSupp;
+    @FXML
+    private Pane pnlCart;
+    @FXML
+    private ImageView imgMenu;
+    @FXML
+    private ImageView imgBurger;
+    @FXML
+    private ImageView imgDrink;
+    @FXML
+    private ImageView imgDessert;
+    @FXML
+    private ImageView imgSupp;
+    @FXML
+    private ImageView imgCart;
 
     @FXML
-    private GridPane GridPaneSupp, GridPaneBurger, GridPaneMenu, GridPaneBoisson, GridPaneDessert;
+    private GridPane gridPaneSupp;
+    @FXML
+    private GridPane gridPaneBurger;
+    @FXML
+    private GridPane gridPaneMenu;
+    @FXML
+    private GridPane gridPaneBoisson;
+    @FXML
+    private GridPane gridPaneDessert;
 
     @FXML
     private VBox cartPane;
-
+    @FXML
     private Label totalPriceLabel;
 
     Scene scene;
@@ -65,7 +100,7 @@ public class HomeController {
         cleanPanels();
         ajoutItemMenu();
         majnumcommande();
-        pnl_menu.toFront();
+        pnlMenu.toFront();
 
     }
     private void majnumcommande() throws SQLException, IOException {
@@ -75,7 +110,7 @@ public class HomeController {
         ResultSet selectRes = selectIdCmd.executeQuery();
         if (selectRes.next()) {
             int id = selectRes.getInt("ID");
-            no_cmd.setText(String.valueOf(id+1));
+            noCmd.setText(String.valueOf(id+1));
         }
         db.close();
     }
@@ -113,15 +148,21 @@ public class HomeController {
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    try {
+                        throw new CustomIOException("Error loading menuChoose.fxml", e);
+                    } catch (CustomIOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
+
+
 
             }else {
                 popup.setScene(popupScene);
                 popup.show();
 
                 PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
-                wait.setOnFinished((e) -> {
+                wait.setOnFinished(e -> {
                     popup.close();
                     addButton.setStyle("-fx-background-color: #e3ecb4");
                 });
@@ -133,51 +174,51 @@ public class HomeController {
     }
 
     private void cleanPanels(){
-        GridPaneSupp.getChildren().clear();
-        GridPaneBurger.getChildren().clear();
-        GridPaneDessert.getChildren().clear();
-        GridPaneBoisson.getChildren().clear();
-        GridPaneMenu.getChildren().clear();
+        gridPaneSupp.getChildren().clear();
+        gridPaneBurger.getChildren().clear();
+        gridPaneDessert.getChildren().clear();
+        gridPaneBoisson.getChildren().clear();
+        gridPaneMenu.getChildren().clear();
     }
     @FXML
     private void handleButtonAction(MouseEvent mouseEvent) throws FileNotFoundException {
-        if (mouseEvent.getSource() == img_menu) {
+        if (mouseEvent.getSource() == imgMenu) {
             cleanPanels();
 
-            pnl_menu.toFront();
+            pnlMenu.toFront();
 
             ajoutItemMenu();
 
-        } else if (mouseEvent.getSource() == img_burger) {
+        } else if (mouseEvent.getSource() == imgBurger) {
             cleanPanels();
 
-            pnl_burger.toFront();
+            pnlBurger.toFront();
 
             ajoutItemBurger();
             
-        } else if (mouseEvent.getSource() == img_drink) {
+        } else if (mouseEvent.getSource() == imgDrink) {
             cleanPanels();
 
-            pnl_boisson.toFront();
+            pnlBoisson.toFront();
 
             ajoutItemBoisson();
-        } else if (mouseEvent.getSource() == img_dessert) {
+        } else if (mouseEvent.getSource() == imgDessert) {
             cleanPanels();
-            pnl_dessert.toFront();
+            pnlDessert.toFront();
             ajoutItemDessert();
-        } else if (mouseEvent.getSource() == img_supp) {
+        } else if (mouseEvent.getSource() == imgSupp) {
             cleanPanels();
-            pnl_supp.toFront();
+            pnlSupp.toFront();
             ajoutItemSupp();
-        }else if (mouseEvent.getSource() == img_cart){
+        }else if (mouseEvent.getSource() == imgCart){
             cleanPanels();
-            System.out.println("bien cliqué");
-            pnl_cart.toFront();
+            logger.info("bien cliqué");
+            pnlCart.toFront();
         }
     }
 
 
-    public void MappingLogout(ActionEvent event) {
+    public void mappingLogout(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -185,12 +226,12 @@ public class HomeController {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException("Error loading login_page.fxml", e);
         }
     }
 
     @FXML
-    public void Exit() {
+    public void exit() {
         Platform.exit();
     }
 
@@ -234,8 +275,18 @@ public class HomeController {
         sendCart.setOnAction(event -> {
             try {
                 envoyerCommande();
-            } catch (SQLException | IOException e) {
-                throw new RuntimeException(e);
+            } catch (SQLException e) {
+                try {
+                    throw new SQLException("Error sending the command", e);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } catch (IOException e) {
+                try {
+                    throw new IOException("Error sending the command", e);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
@@ -253,7 +304,6 @@ public class HomeController {
             String fromage="";
             String productName = cartEntry.getProduct().name();
             int quantity = cartEntry.getQuantity();
-            System.out.println(quantity + productName);
             if(productName.contains("BURGER")){
                 switch (productName) {
 
@@ -269,9 +319,8 @@ public class HomeController {
                         viande = "SteakVegan";
                         fromage = "FromageMoza";
                     }
-                    default -> {
-                        System.out.println("erreur");
-                    }
+                    default -> logger.info("erreur");
+                    
                 }
 
                 PreparedStatement updateStockIngredientBurger = db.prepareStatement(UPDATESTOCKINGREDIENTBURGER);
@@ -357,19 +406,19 @@ public class HomeController {
         //QUANTITY
 
         Label quantity = new Label(String.valueOf(cartEntry.getQuantity()));
-        quantity.setStyle("-fx-padding:5px");
+        quantity.setStyle(PADDING_5PX);
 
 
         //price
 
         Label price = new Label(String.valueOf(cartEntry.getProduct().getPrice())+"€");
-        price.setStyle("-fx-padding:5px");
+        price.setStyle(PADDING_5PX);
 
 
         //BUTTON MENUS
         //ImageView viewM = new ImageView(String.valueOf(getClass().getClassLoader().getResource("img2/Common/remove.png")));
         Button buttonM = new Button("-");
-        buttonM.setStyle("-fx-padding:5px");
+        buttonM.setStyle(PADDING_5PX);
         buttonM.setUserData(cartEntry.getProduct().name());
         buttonM.setOnAction(e -> {
             String name = (String) ((Node) e.getSource()).getUserData();
@@ -391,7 +440,7 @@ public class HomeController {
         //BUTTON PLUS
         //ImageView viewP = new ImageView(String.valueOf(getClass().getClassLoader().getResource("img2/Common/plus.png")));
         Button buttonP = new Button("+");
-        buttonP.setStyle("-fx-padding:5px");
+        buttonP.setStyle(PADDING_5PX);
         buttonP.setUserData(cartEntry.getProduct().name());
         buttonP.setOnAction(e -> {
             String name = (String) ((Node) e.getSource()).getUserData();
@@ -414,52 +463,52 @@ public class HomeController {
 
     private void ajoutItemBurger() throws FileNotFoundException {
         VBox productView3=productView(CANTALBURGER);
-        GridPaneBurger.add(productView3,0,0);
+        gridPaneBurger.add(productView3,0,0);
         VBox productView4=productView(Product.CHICKENBURGER);
-        GridPaneBurger.add(productView4,1,0);
+        gridPaneBurger.add(productView4,1,0);
         VBox productView5=productView(Product.VEGANBURGER);
-        GridPaneBurger.add(productView5,2,0);
+        gridPaneBurger.add(productView5,2,0);
     }
 
 
 
     private void ajoutItemBoisson() throws FileNotFoundException {
         VBox productView6=productView(Product.PEPSI);
-        GridPaneBoisson.add(productView6,0,0);
+        gridPaneBoisson.add(productView6,0,0);
         VBox productView7=productView(Product.SPRITE);
-        GridPaneBoisson.add(productView7,1,0);
+        gridPaneBoisson.add(productView7,1,0);
         VBox productView8=productView(Product.FANTA);
-        GridPaneBoisson.add(productView8,2,0);
+        gridPaneBoisson.add(productView8,2,0);
         VBox productView9=productView(Product.EAU);
-        GridPaneBoisson.add(productView9,3,0);
+        gridPaneBoisson.add(productView9,3,0);
     }
 
 
     private void ajoutItemMenu() throws FileNotFoundException {
         VBox productView10=productView(Product.MENU1);
-        GridPaneMenu.add(productView10,0,0);
+        gridPaneMenu.add(productView10,0,0);
         VBox productView11=productView(Product.MENU2);
-        GridPaneMenu.add(productView11,1,0);
+        gridPaneMenu.add(productView11,1,0);
     }
 
 
     private void ajoutItemDessert() throws FileNotFoundException {
         VBox productView12=productView(Product.DONUTS);
-        GridPaneDessert.add(productView12,0,0);
+        gridPaneDessert.add(productView12,0,0);
         VBox productView13=productView(Product.MACARON);
-        GridPaneDessert.add(productView13,1,0);
+        gridPaneDessert.add(productView13,1,0);
         VBox productView14=productView(Product.COOKIE);
-        GridPaneDessert.add(productView14,2,0);
+        gridPaneDessert.add(productView14,2,0);
         VBox productView15=productView(Product.CAKE);
-        GridPaneDessert.add(productView15,3,0);
+        gridPaneDessert.add(productView15,3,0);
     }
 
 
     private void ajoutItemSupp() throws FileNotFoundException {
         VBox productView16=productView(Product.CHIPS);
-        GridPaneSupp.add(productView16,0,0);
+        gridPaneSupp.add(productView16,0,0);
         VBox productView17=productView(Product.MAIS);
-        GridPaneSupp.add(productView17,1,0);
+        gridPaneSupp.add(productView17,1,0);
     }
 
 }

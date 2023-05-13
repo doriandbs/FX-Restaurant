@@ -53,10 +53,10 @@ public class LoginController {
         VerifBadge = ValidationInput.textFieldNull(utilisateur.getBadge());
         VerifPassword = ValidationInput.textFieldNull(utilisateur.getPassword());
 
-        if (VerifBadge && VerifPassword) errormsg.setText(Constants.verifCh);
-        else if (VerifBadge) errormsg.setText(Constants.badgeRec);
-        else if (VerifPassword) errormsg.setText(Constants.pswRec);
-        else errormsg.setText(Constants.userNotFound);
+        if (VerifBadge && VerifPassword) errormsg.setText(Constants.VERIF_CH);
+        else if (VerifBadge) errormsg.setText(Constants.BADGE_REC);
+        else if (VerifPassword) errormsg.setText(Constants.PSW_REC);
+        else errormsg.setText(Constants.USER_NOT_FOUND);
         if (!VerifBadge && !VerifPassword) {
 
             try {
@@ -74,7 +74,7 @@ public class LoginController {
                         //rajouter condition if si ISADMIN 1 ou 0
                         if (resultSet.getInt("ISADMIN") == 1) { // Utilisateur Admin
                             System.out.println(resultSet.getString("NOM") + "badge : " + resultSet.getString("BADGE") + " est connecté / IS ADMIN : " + resultSet.getInt("ISADMIN"));
-                            isConnected.setText(Constants.connSucc);
+                            isConnected.setText(Constants.CONN_SUCC);
                             isConnected.setTextFill(Color.GREEN);
                             errormsg.setText("");
                             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
@@ -89,7 +89,7 @@ public class LoginController {
 
                         } else { //si utilisateur pas admin
                             System.out.println(resultSet.getString("NOM") + "badge : " + resultSet.getString("BADGE") + " est connecté / IS ADMIN : " + resultSet.getInt("ISADMIN"));
-                            isConnected.setText(Constants.connSucc);
+                            isConnected.setText(Constants.CONN_SUCC);
                             isConnected.setTextFill(Color.GREEN);
                             errormsg.setText("");
                             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/home.fxml")));
@@ -103,7 +103,7 @@ public class LoginController {
                         }
 
                     } else {
-                        errormsg.setText(Constants.nomOrpswI);
+                        errormsg.setText(Constants.NOM_PSW_INCORRECT);
                     }
                 }
                 SelectUser.close();

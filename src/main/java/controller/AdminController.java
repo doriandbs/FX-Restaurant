@@ -97,7 +97,7 @@ public class AdminController implements Initializable {
     }
 
 
-    public void MappingLogout(ActionEvent event) {
+    public void mappingLogout(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -162,7 +162,7 @@ public class AdminController implements Initializable {
             if (rsc.next()) {
                 count = rsc.getInt("recordCount");
             }
-            dataTB.setPrefHeight(count * 29);
+            dataTB.setPrefHeight((double) count * 29);
             dataTB.setItems(data);
             rsc.close();
             SelectEmp2.close();

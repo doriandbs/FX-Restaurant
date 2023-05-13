@@ -7,6 +7,7 @@ package controller;
 
 import bdd.DatabaseSingleton;
 import constantes.Constants;
+import exception.CustomIOException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +28,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import static constantes.SQLConstants.INSERTUSER;
 import static constantes.SQLConstants.SELECTUSERS;
@@ -34,16 +36,29 @@ import static constantes.SQLConstants.SELECTUSERS;
 
 public class InscriptionPageController {
 
-    public TextField input_nameRegister;
-    public TextField input_badgeRegister;
-    public PasswordField input_pswRegister;
+    private static final Logger logger = Logger.getLogger(InscriptionPageController.class.getName());
 
-    public Label name_errorLabel;
-    public Label badge_ErrorLabel;
-    public Label psw_errorLabel;
+
+    @FXML
+    public TextField inputNameRegister;
+    @FXML
+    public TextField inputBadgeRegister;
+    @FXML
+    public PasswordField inputPswRegister;
+
+    @FXML
+    public Label nameErrorLabel;
+    @FXML
+    public Label badgeErrorLabel;
+    @FXML
+    public Label pswErrorLabel;
+    @FXML
     public Label userNotFound;
-    public Button button_inscription;
+    @FXML
+    public Button buttonInscription;
 
+
+    @FXML
     public CheckBox isAdmin;
     boolean nameError;
     boolean badgeError;
@@ -52,108 +67,130 @@ public class InscriptionPageController {
     Stage stage;
     Scene scene;
 
-    public void addUser(ActionEvent event) throws NoSuchAlgorithmException {
-        Users utilisateur = new Users();
-        utilisateur.setName(input_nameRegister.getText());
-        utilisateur.setBadge(input_badgeRegister.getText());
-        utilisateur.setPassword(input_pswRegister.getText());
-        utilisateur.setIsAdmin(isAdmin.isSelected());
-
-        nameError = ValidationInput.textFieldNull(utilisateur.getName());
-        badgeError = ValidationInput.textFieldNull(String.valueOf(utilisateur.getBadge()));
-        mdpError = ValidationInput.PasswordRegister(utilisateur.getPassword());
-        mdpNull = ValidationInput.textFieldNull(utilisateur.getPassword());
-
+    public void addUser(ActionEvent event) throws NoSuchAlgorithmException, CustomIOException {
+        Users utilisateur = createNewUser();
+        validateUserInputs(utilisateur);
         utilisateur.setPassword(Md5.generateHash(utilisateur.getPassword()));
 
         try {
             DatabaseSingleton db = DatabaseSingleton.getInstance();
             db.connect();
-            PreparedStatement SelectUsers = db.prepareStatement(SELECTUSERS);
-            SelectUsers.setString(1, utilisateur.getName());
-            SelectUsers.setString(2, utilisateur.getBadge());
-            SelectUsers.setString(3, utilisateur.getPassword());
-            SelectUsers.setBoolean(4, utilisateur.getIsAdmin());
 
-
-            if (SelectUsers.executeQuery().next()) {
-                userNotFound.setText(Constants.userExist);
+            if (isUserExistInDatabase(db, utilisateur)) {
+                userNotFound.setText(Constants.USER_EXIST);
                 userNotFound.setTextFill(Color.RED);
-                name_errorLabel.setText("");
-                badge_ErrorLabel.setText("");
-                psw_errorLabel.setText("");
-            } else if (nameError && badgeError && mdpNull) {
-                name_errorLabel.setText(Constants.nomRec);
-                badge_ErrorLabel.setText(Constants.badgeRec);
-                psw_errorLabel.setText(Constants.pswRec);
-            } else if (nameError && badgeError) {
-                name_errorLabel.setText(Constants.nomRec);
-                badge_ErrorLabel.setText(Constants.badgeRec);
-                psw_errorLabel.setText("");
-            } else if (badgeError && mdpNull) {
-                badge_ErrorLabel.setText(Constants.badgeRec);
-                psw_errorLabel.setText(Constants.pswRec);
-                name_errorLabel.setText("");
-            } else if (nameError && mdpNull) {
-                name_errorLabel.setText(Constants.nomRec);
-                psw_errorLabel.setText(Constants.pswRec);
-                badge_ErrorLabel.setText("");
-            } else if (nameError) {
-                userNotFound.setText("");
-                name_errorLabel.setText(Constants.nomRec);
-                badge_ErrorLabel.setText("");
-                psw_errorLabel.setText("");
-            } else if (badgeError) {
-                userNotFound.setText("");
-                name_errorLabel.setText("");
-                badge_ErrorLabel.setText(Constants.badgeRec);
-                psw_errorLabel.setText("");
-            } else if (mdpNull) {
-                userNotFound.setText("");
-                name_errorLabel.setText("");
-                badge_ErrorLabel.setText("");
-                psw_errorLabel.setText(Constants.pswRec);
-            } else if (mdpError) {
-                userNotFound.setText("");
-                name_errorLabel.setText("");
-                badge_ErrorLabel.setText("");
-                psw_errorLabel.setText(Constants.pswRegister);
+                resetErrorLabels();
+            } else {
+                handleUserInputsErrors(utilisateur,event);
             }
-            else {
-                userNotFound.setText(Constants.userCreat);
-                userNotFound.setTextFill(Color.GREEN);
-                psw_errorLabel.setText("");
-                PreparedStatement InsertUser = db.prepareStatement(INSERTUSER);
-                InsertUser.setString(1, utilisateur.getName());
-                InsertUser.setString(2, utilisateur.getBadge());
-                InsertUser.setString(3, utilisateur.getPassword());
-                InsertUser.setBoolean(4, utilisateur.getIsAdmin());
-                int n = InsertUser.executeUpdate();
-                if (n == 1) {
-                    System.out.println("Requête d'insertion de l'utilisateur bien effectuée, NOM : " + utilisateur.getName() +
-                            " BADGE : " + utilisateur.getBadge() + " ADMINISTRATEUR : " + utilisateur.getIsAdmin());
-                }
-                InsertUser.close();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-            SelectUsers.close();
-            db.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLIntegrityConstraintViolationException e) {
-            userNotFound.setText(Constants.userExist);
+        } catch (IOException | SQLIntegrityConstraintViolationException e) {
+            handleExceptions(e);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException("Problème relié à la BDD", e);
         }
     }
 
-    public void MappingLogging(ActionEvent event) {
+    private Users createNewUser() {
+        Users utilisateur = new Users();
+        utilisateur.setName(inputNameRegister.getText());
+        utilisateur.setBadge(inputBadgeRegister.getText());
+        utilisateur.setPassword(inputPswRegister.getText());
+        utilisateur.setIsAdmin(isAdmin.isSelected());
+        return utilisateur;
+    }
+
+    private void validateUserInputs(Users utilisateur) {
+        nameError = ValidationInput.textFieldNull(utilisateur.getName());
+        badgeError = ValidationInput.textFieldNull(String.valueOf(utilisateur.getBadge()));
+        mdpError = ValidationInput.PasswordRegister(utilisateur.getPassword());
+        mdpNull = ValidationInput.textFieldNull(utilisateur.getPassword());
+    }
+
+    private boolean isUserExistInDatabase(DatabaseSingleton db, Users utilisateur) throws SQLException {
+        PreparedStatement selectUsers = db.prepareStatement(SELECTUSERS);
+        selectUsers.setString(1, utilisateur.getName());
+        selectUsers.setString(2, utilisateur.getBadge());
+        selectUsers.setString(3, utilisateur.getPassword());
+        selectUsers.setBoolean(4, utilisateur.getIsAdmin());
+        boolean userExist = selectUsers.executeQuery().next();
+        selectUsers.close();
+        return userExist;
+    }
+
+    private void resetErrorLabels() {
+        nameErrorLabel.setText("");
+        badgeErrorLabel.setText("");
+        pswErrorLabel.setText("");
+    }
+
+    private void handleUserInputsErrors(Users utilisateur, ActionEvent event) throws IOException, SQLException {
+        if (nameError && badgeError && mdpNull) {
+            setErrorMessages(Constants.NOM_REC, Constants.BADGE_REC, Constants.PSW_REC);
+        } else if (nameError && badgeError) {
+            setErrorMessages(Constants.NOM_REC, Constants.BADGE_REC, "");
+        } else if (badgeError && mdpNull) {
+            setErrorMessages("", Constants.BADGE_REC, Constants.PSW_REC);
+        } else if (nameError && mdpNull) {
+            setErrorMessages(Constants.NOM_REC, "", Constants.PSW_REC);
+        } else if (nameError) {
+            setErrorMessages(Constants.NOM_REC, "", "");
+        } else if (badgeError) {
+            setErrorMessages("", Constants.BADGE_REC, "");
+        } else if (mdpNull) {
+            setErrorMessages("", "", Constants.PSW_REC);
+        } else if (mdpError) {
+            setErrorMessages("", "", Constants.PSW_REGISTER);
+        } else {
+            insertNewUserIntoDatabase(utilisateur,event);
+        }
+    }
+
+    private void setErrorMessages(String nameError, String badgeError, String passwordError) {
+        userNotFound.setText("");
+        nameErrorLabel.setText(nameError);
+        badgeErrorLabel.setText(badgeError);
+        pswErrorLabel.setText(passwordError);
+    }
+
+    private void insertNewUserIntoDatabase(Users utilisateur,ActionEvent event) throws IOException, SQLException {
+        userNotFound.setText(Constants.USER_CREA);
+        userNotFound.setTextFill(Color.GREEN);
+        pswErrorLabel.setText("");
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        PreparedStatement insertUser = db.prepareStatement(INSERTUSER);
+        insertUser.setString(1, utilisateur.getName());
+        insertUser.setString(2, utilisateur.getBadge());
+        insertUser.setString(3, utilisateur.getPassword());
+        insertUser.setBoolean(4, utilisateur.getIsAdmin());
+        int n = insertUser.executeUpdate();
+        if (n == 1) {
+            logger.info("Requête d'insertion de l'utilisateur bien effectuée, NOM : " + utilisateur.getName() +
+                    " BADGE : " + utilisateur.getBadge() + " ADMINISTRATEUR : " + utilisateur.getIsAdmin());
+        }
+        insertUser.close();
+        navigateToLoginPage(event);
+        db.close();
+    }
+
+    private void navigateToLoginPage(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void handleExceptions(Exception e) {
+        if (e instanceof IOException) {
+            e.printStackTrace();
+        } else if (e instanceof SQLIntegrityConstraintViolationException) {
+            userNotFound.setText(Constants.USER_EXIST);
+        }
+    }
+
+
+
+    public void mappingLogging(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -161,12 +198,12 @@ public class InscriptionPageController {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException("Erreur de mapping", e);
         }
     }
 
     @FXML
-    public void Exit(ActionEvent event) {
+    public void exit(ActionEvent event) {
         Platform.exit();
     }
 
