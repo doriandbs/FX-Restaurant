@@ -93,7 +93,7 @@ public class MenuChooseController {
         return layout;
 }
     @FXML
-    private void mappingBack(ActionEvent event) throws CustomIOException {
+    protected void mappingBack(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/home.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

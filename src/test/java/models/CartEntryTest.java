@@ -11,7 +11,7 @@ class CartEntryTest {
 
     @BeforeEach
     void setUp() {
-        product = Product.MENU1; // Using one of the Product enum constants
+        product = Product.MENU1;
         cartEntry = new CartEntry(product, 1);
     }
 
@@ -22,7 +22,7 @@ class CartEntryTest {
 
     @Test
     void testSetProduct() {
-        Product newProduct = Product.MENU2; // Using another Product enum constant
+        Product newProduct = Product.MENU2;
         cartEntry.setProduct(newProduct);
         assertEquals(newProduct, cartEntry.getProduct());
     }
