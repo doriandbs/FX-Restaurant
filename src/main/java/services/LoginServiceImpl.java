@@ -2,7 +2,7 @@ package services;
 
 import bdd.DatabaseSingleton;
 import services.interfaces.ILoginService;
-import utils.Md5;
+import utils.SHA;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -19,7 +19,7 @@ public class LoginServiceImpl implements ILoginService {
         db.connect();
         PreparedStatement selectUser = db.prepareStatement(SELECTUSER);
         selectUser.setString(1, badge);
-        selectUser.setString(2, Md5.generateHash(password));
+        selectUser.setString(2, SHA.generateHash(password));
         ResultSet resultSet = selectUser.executeQuery();
         boolean userExists = resultSet.next();
         resultSet.close();
@@ -34,7 +34,7 @@ public class LoginServiceImpl implements ILoginService {
         db.connect();
         PreparedStatement selectUser = db.prepareStatement(SELECTUSER);
         selectUser.setString(1, badge);
-        selectUser.setString(2, Md5.generateHash(password));
+        selectUser.setString(2, SHA.generateHash(password));
         ResultSet resultSet = selectUser.executeQuery();
         while(resultSet.next()) if (resultSet.getInt("ISADMIN") == 1)  isAdmin = true;
 

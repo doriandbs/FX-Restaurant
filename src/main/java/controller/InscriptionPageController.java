@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import models.Users;
 import services.InscriptionServiceImpl;
 import services.interfaces.IInscriptionService;
-import utils.Md5;
+import utils.SHA;
 import utils.ValidationInput;
 
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class InscriptionPageController {
     public void addUser(ActionEvent event) throws NoSuchAlgorithmException, CustomIOException {
         Users utilisateur = createNewUser();
         validateUserInputs(utilisateur);
-        utilisateur.setPassword(Md5.generateHash(utilisateur.getPassword()));
+        utilisateur.setPassword(SHA.generateHash(utilisateur.getPassword()));
         try {
             if (inscriptionService.isUserExistInDatabase(utilisateur)) {
                 userNotFound.setText(Constants.USER_EXIST);

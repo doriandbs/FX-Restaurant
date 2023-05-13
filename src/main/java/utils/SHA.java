@@ -3,8 +3,8 @@ package utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Md5 {
-        private Md5() {
+public class SHA {
+        private SHA() {
                 //doNothing
         }
 
