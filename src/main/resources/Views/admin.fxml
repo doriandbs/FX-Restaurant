@@ -9,22 +9,22 @@
     <children>
         <AnchorPane fx:id="leftSide" layoutX="-2.0" prefHeight="600.0" prefWidth="205.0" styleClass="leftSide">
             <children>
-                <ImageView fx:id="img_stock" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="230.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imgStock" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="230.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img2/Admin/stock.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="img_money" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="428.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imgMoney" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="428.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img2/Admin/euro.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="img_users" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="329.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imgUsers" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="329.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img2/Admin/employees.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="img_product" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="133.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="imgProduct" fitHeight="70.0" fitWidth="70.0" layoutX="69.0" layoutY="133.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img2/Admin/food.png" />
                     </image>
@@ -48,7 +48,7 @@
                   <Image url="@../img2/Admin/Admin.png" />
                </image>
             </ImageView>
-                <Pane fx:id="pnl_users" layoutX="5.0" layoutY="82.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
+                <Pane fx:id="pnlUsers" layoutX="5.0" layoutY="82.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
                     <children>
                   <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
                      <children>
@@ -66,25 +66,25 @@
                   </Pane>
                         <TableView fx:id="dataTB" layoutX="20.0" layoutY="99.0" prefHeight="331.0" prefWidth="826.0" stylesheets="@../css/style.css">
                             <columns>
-                                <TableColumn fx:id="ID_user" prefWidth="41.0" text="ID" />
-                                <TableColumn fx:id="NAME_user" prefWidth="96.0" text="NAME" />
-                                <TableColumn fx:id="FIRSTNAME_user" prefWidth="141.0" text="FIRSTNAME" />
-                                <TableColumn fx:id="BADGE_user" prefWidth="75.0" text="BADGE" />
-                                <TableColumn fx:id="ADRESSE_user" prefWidth="152.0" text="ADRESSE" />
-                                <TableColumn fx:id="DATEBIRTH_user" prefWidth="105.0" text="DATEBIRTH" />
-                                <TableColumn fx:id="DATEHIRING_user" prefWidth="75.0" text="DATEHIRING" />
-                                <TableColumn fx:id="NUMTEL_user" prefWidth="169.0" text="NUMTEL" />
-                                <TableColumn fx:id="ISADMIN_user" minWidth="1.0" prefWidth="137.0" text="ISADMIN" />
+                                <TableColumn fx:id="idUser" prefWidth="41.0" text="ID" />
+                                <TableColumn fx:id="nameUser" prefWidth="96.0" text="NAME" />
+                                <TableColumn fx:id="firstNameUser" prefWidth="141.0" text="FIRSTNAME" />
+                                <TableColumn fx:id="badgeUser" prefWidth="75.0" text="BADGE" />
+                                <TableColumn fx:id="adresseUser" prefWidth="152.0" text="ADRESSE" />
+                                <TableColumn fx:id="dateBirthUser" prefWidth="105.0" text="DATEBIRTH" />
+                                <TableColumn fx:id="dateHiringUser" prefWidth="75.0" text="DATEHIRING" />
+                                <TableColumn fx:id="numTelUser" prefWidth="169.0" text="NUMTEL" />
+                                <TableColumn fx:id="isAdminUser" minWidth="1.0" prefWidth="137.0" text="ISADMIN" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="btn_refresh" layoutX="250.0" layoutY="450.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="40.0" prefWidth="200.0" text="Refresh the board" />
-                        <Button fx:id="btn_add" layoutX="500.0" layoutY="450.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="40.0" prefWidth="200.0" text="Add an employee" />
+                        <Button fx:id="btnRefresh" layoutX="250.0" layoutY="450.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="40.0" prefWidth="200.0" text="Refresh the board" />
+                        <Button fx:id="btnAdd" layoutX="500.0" layoutY="450.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="40.0" prefWidth="200.0" text="Add an employee" />
                     </children>
                 </Pane>
-                <Pane fx:id="pnl_stocks" layoutX="3.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
+                <Pane fx:id="pnlStocks" layoutX="3.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
                     <children>
                         <GridPane layoutX="25.0" layoutY="107.0" prefHeight="312.0" prefWidth="693.0">
                             <columnConstraints>
@@ -126,7 +126,7 @@
                         </Pane>
                     </children>
                 </Pane>
-                <Pane fx:id="pnl_money" layoutX="2.0" layoutY="83.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
+                <Pane fx:id="pnlMoney" layoutX="2.0" layoutY="83.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
                     <children>
                   <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
                      <children>
@@ -144,7 +144,7 @@
                   </Pane>
                     </children>
                 </Pane>
-                <Pane fx:id="pnl_product" layoutX="4.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
+                <Pane fx:id="pnlProduct" layoutX="4.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
                     <children>
                   <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
                      <children>
@@ -160,7 +160,7 @@
                         </Label>
                      </children>
                   </Pane>
-                        <TextField fx:id="input_name_product" layoutX="255.0" layoutY="144.0" prefHeight="27.0" prefWidth="330.0" promptText="Name">
+                        <TextField fx:id="inputNameProduct" layoutX="255.0" layoutY="144.0" prefHeight="27.0" prefWidth="330.0" promptText="Name">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
@@ -195,39 +195,39 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="input_price" layoutX="255.0" layoutY="188.0" prefHeight="27.0" prefWidth="330.0" promptText="Price">
+                        <TextField fx:id="inputPrice" layoutX="255.0" layoutY="188.0" prefHeight="27.0" prefWidth="330.0" promptText="Price">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="input_quantity" layoutX="255.0" layoutY="230.0" prefHeight="27.0" prefWidth="330.0" promptText="Quantity">
+                        <TextField fx:id="inputQuantity" layoutX="255.0" layoutY="230.0" prefHeight="27.0" prefWidth="330.0" promptText="Quantity">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="input_min_quantity" layoutX="255.0" layoutY="272.0" prefHeight="27.0" prefWidth="330.0" promptText="Min Quantity">
+                        <TextField fx:id="inputMinQuantity" layoutX="255.0" layoutY="272.0" prefHeight="27.0" prefWidth="330.0" promptText="Min Quantity">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="input_dop" layoutX="255.0" layoutY="318.0" prefHeight="27.0" prefWidth="330.0" promptText="DOP">
+                        <TextField fx:id="inputDop" layoutX="255.0" layoutY="318.0" prefHeight="27.0" prefWidth="330.0" promptText="DOP">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="input_bbd" layoutX="255.0" layoutY="362.0" prefHeight="27.0" prefWidth="330.0" promptText="BBD">
+                        <TextField fx:id="inputBbd" layoutX="255.0" layoutY="362.0" prefHeight="27.0" prefWidth="330.0" promptText="BBD">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <Button fx:id="btn_add_product" layoutX="134.0" layoutY="452.0" mnemonicParsing="false" onAction="#add_product" prefHeight="25.0" prefWidth="470.0" text="ADD">
+                        <Button fx:id="btn_add_product" layoutX="134.0" layoutY="452.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="470.0" text="ADD">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Button>
                     </children>
                 </Pane>
-                <Button layoutX="890.0" layoutY="7.0" mnemonicParsing="false" onAction="#Exit" stylesheets="@../css/style_cancel.css" text="Exit" textFill="WHITE" />
+                <Button layoutX="890.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="exit" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>

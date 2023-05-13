@@ -184,7 +184,7 @@
                   </GridPane>
                     </children>
                 </Pane>
-             <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="Exit" textFill="WHITE" />
+             <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="exit" textFill="WHITE" />
             <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
 
                   <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="354.0" />

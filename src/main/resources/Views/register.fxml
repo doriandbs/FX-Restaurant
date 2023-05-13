@@ -68,7 +68,7 @@
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>
       </CheckBox>
-      <Button layoutX="629.0" layoutY="16.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="Exit" textFill="WHITE" />
+      <Button layoutX="629.0" layoutY="16.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="exit" textFill="WHITE" />
    </children>
    <stylesheets>
       <URL value="@../css/style.css" />

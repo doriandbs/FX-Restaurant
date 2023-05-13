@@ -3,6 +3,7 @@
  */
 package controller;
 
+import exception.CustomIOException;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,6 @@ import models.Product;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class MenuChooseController {
@@ -35,22 +35,22 @@ public class MenuChooseController {
     Scene scene;
 
     @FXML
-    GridPane GridPaneChoose;
+    GridPane gridPaneChoose;
 
     @FXML
-    public void initialize() throws IOException, SQLException {
+    public void initialize() throws IOException {
         ajoutItemMenu();
     }
 
     private void ajoutItemMenu() throws FileNotFoundException {
-        VBox productView10=productView(Product.PEPSIform);
-        GridPaneChoose.add(productView10,0,0);
-        VBox productView11=productView(Product.SPRITEform);
-        GridPaneChoose.add(productView11,1,0);
-        VBox productView12=productView(Product.EAUform);
-        GridPaneChoose.add(productView12,2,0);
-        VBox productView13=productView(Product.FANTAform);
-        GridPaneChoose.add(productView13,3,0);
+        VBox productView10=productView(Product.PEPSIFORM);
+        gridPaneChoose.add(productView10,0,0);
+        VBox productView11=productView(Product.SPRITEFORM);
+        gridPaneChoose.add(productView11,1,0);
+        VBox productView12=productView(Product.EAUFORM);
+        gridPaneChoose.add(productView12,2,0);
+        VBox productView13=productView(Product.FANTAFORM);
+        gridPaneChoose.add(productView13,3,0);
     }
 
     private VBox productView(Product product) throws FileNotFoundException {
@@ -82,7 +82,7 @@ public class MenuChooseController {
             popup.show();
 
             PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
-            wait.setOnFinished((e) -> {
+            wait.setOnFinished(e -> {
                 popup.close();
                 addButton.setStyle("-fx-background-color: #e3ecb4");
             });
@@ -93,7 +93,7 @@ public class MenuChooseController {
         return layout;
 }
     @FXML
-    private void MappingBack(ActionEvent event) {
+    private void mappingBack(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/home.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -101,7 +101,7 @@ public class MenuChooseController {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException("Erreur lors du chargement de la page", e);
         }
 
     }

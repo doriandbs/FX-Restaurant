@@ -23,10 +23,10 @@ public enum Product {
     EAU("img2/Home/Drink/bouteille_eau.png",1.50f),
 
 
-    PEPSIform("img2/Home/Drink/soda_pepsi.png",0),
-    FANTAform("img2/Home/Drink/soda_fanta.png",0),
-    SPRITEform("img2/Home/Drink/soda_sprite.png",0),
-    EAUform("img2/Home/Drink/bouteille_eau.png",0),
+    PEPSIFORM("img2/Home/Drink/soda_pepsi.png",0),
+    FANTAFORM("img2/Home/Drink/soda_fanta.png",0),
+    SPRITEFORM("img2/Home/Drink/soda_sprite.png",0),
+    EAUFORM("img2/Home/Drink/bouteille_eau.png",0),
 
     //DESSERTS
     COOKIE("img2/Home/Dessert/dessert_cookie.png",2.00f),
@@ -39,8 +39,9 @@ public enum Product {
 
 
 
-    private String imageFile;
-    private float price;
+
+    final private String imageFile;
+    final private float price;
 
     Product(String imageFile, float price) {
         this.imageFile = imageFile;
@@ -51,15 +52,10 @@ public enum Product {
         return imageFile;
     }
 
-    public void setImageFile(String imageFile) {
-        this.imageFile = imageFile;
-    }
+
 
     public float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
 }

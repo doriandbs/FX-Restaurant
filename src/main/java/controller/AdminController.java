@@ -4,6 +4,7 @@
 package controller;
 
 import bdd.DatabaseSingleton;
+import exception.CustomIOException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,74 +31,89 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import static constantes.SQLConstants.*;
 
 public class AdminController implements Initializable {
+
+    private static final Logger logger = Logger.getLogger(AdminController.class.getName());
+
     @FXML
-    public TableColumn<Object, Object> NAME_user;
+    public TableColumn<Object, Object> nameUser;
     @FXML
-    public TableColumn<Object, Object> FIRSTNAME_user;
+    public TableColumn<Object, Object> firstNameUser;
     @FXML
-    public TableColumn<Object, Object> BADGE_user;
+    public TableColumn<Object, Object> badgeUser;
     @FXML
-    public TableColumn<Object, Object> ADRESSE_user;
+    public TableColumn<Object, Object> adresseUser;
     @FXML
-    public TableColumn<Object, Object> DATEBIRTH_user;
+    public TableColumn<Object, Object> dateBirthUser;
     @FXML
-    public TableColumn<Object, Object> DATEHIRING_user;
+    public TableColumn<Object, Object> dateHiringUser;
     @FXML
-    public TableColumn<Object, Object> NUMTEL_user;
+    public TableColumn<Object, Object> numTelUser;
     @FXML
-    public TableColumn<Object, Object> ID_user;
+    public TableColumn<Object, Object> idUser;
     @FXML
-    public TableColumn<Object, Object> ISADMIN_user;
+    public TableColumn<Object, Object> isAdminUser;
     Stage stage;
     Scene scene;
     @FXML
-    private Pane pnl_stocks, pnl_users, pnl_money, pnl_product;
+    private Pane pnlStocks;
     @FXML
-    private ImageView img_stock, img_users, img_money, img_product;
+    private Pane pnlUsers;
     @FXML
-    public Button btn_refresh;
+    private Pane pnlMoney;
     @FXML
-    public Button btn_add;
+    private Pane pnlProduct;
+    @FXML
+    private ImageView imgStock;
+    @FXML
+    private ImageView imgUsers;
+    @FXML
+    private ImageView imgMoney;
+    @FXML
+    private ImageView imgProduct;
+    @FXML
+    public Button btnRefresh;
+    @FXML
+    public Button btnAdd;
     @FXML
     private TableView<Employee> dataTB;
     private ObservableList<Employee> data = FXCollections.observableArrayList();
     private int count;
 
     @FXML
-    private TextField input_name_product;
+    private TextField inputNameProduct;
     @FXML
-    private TextField input_price;
+    private TextField inputPrice;
     @FXML
-    private TextField input_quantity;
+    private TextField inputQuantity;
     @FXML
-    private TextField input_min_quantity;
+    private TextField inputMinQuantity;
     @FXML
-    private TextField input_dop;
+    private TextField inputDop;
     @FXML
-    private TextField input_bbd;
-    @FXML
-    private Button btn_add_product;
+    private TextField inputBbd;
+
 
     @FXML
     private void handleButtonAction(MouseEvent mouseDragEvent) {
-        if (mouseDragEvent.getSource() == img_stock) {
-            pnl_stocks.toFront();
-            System.out.println("Test bien appuyé");
-        } else if (mouseDragEvent.getSource() == img_money) {
-            pnl_money.toFront();
-        } else if (mouseDragEvent.getSource() == img_users) {
-            pnl_users.toFront();
-        } else if (mouseDragEvent.getSource() == img_product) {
-            pnl_product.toFront();
+        if (mouseDragEvent.getSource() == imgStock) {
+            pnlStocks.toFront();
+            logger.info("Test bien appuyé");
+        } else if (mouseDragEvent.getSource() == imgMoney) {
+            pnlMoney.toFront();
+        } else if (mouseDragEvent.getSource() == imgUsers) {
+            pnlUsers.toFront();
+        } else if (mouseDragEvent.getSource() == imgProduct) {
+            pnlProduct.toFront();
         }
     }
 
 
-    public void mappingLogout(ActionEvent event) {
+    public void mappingLogout(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -105,7 +121,7 @@ public class AdminController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException("Erreur lors du chargement de la page", e);
         }
     }
 
@@ -126,22 +142,26 @@ public class AdminController implements Initializable {
             setDataCell();
             loadData();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            try {
+                throw new CustomIOException("Erreur lors du chargement de la page",e);
+            } catch (CustomIOException ex) {
+                ex.printStackTrace();
+            }
         }
 
     }
 
 
     public void setDataCell() {
-        ID_user.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        NAME_user.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        FIRSTNAME_user.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        BADGE_user.setCellValueFactory(new PropertyValueFactory<>("Badge"));
-        ADRESSE_user.setCellValueFactory(new PropertyValueFactory<>("Adresse"));
-        DATEBIRTH_user.setCellValueFactory(new PropertyValueFactory<>("DateBirth"));
-        DATEHIRING_user.setCellValueFactory(new PropertyValueFactory<>("DateEmbauche"));
-        NUMTEL_user.setCellValueFactory(new PropertyValueFactory<>("NumTel"));
-        ISADMIN_user.setCellValueFactory(new PropertyValueFactory<>("IsAdmin"));
+        idUser.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        nameUser.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        firstNameUser.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        badgeUser.setCellValueFactory(new PropertyValueFactory<>("Badge"));
+        adresseUser.setCellValueFactory(new PropertyValueFactory<>("Adresse"));
+        dateBirthUser.setCellValueFactory(new PropertyValueFactory<>("DateBirth"));
+        dateHiringUser.setCellValueFactory(new PropertyValueFactory<>("DateEmbauche"));
+        numTelUser.setCellValueFactory(new PropertyValueFactory<>("NumTel"));
+        isAdminUser.setCellValueFactory(new PropertyValueFactory<>("IsAdmin"));
     }
 
 
@@ -149,8 +169,8 @@ public class AdminController implements Initializable {
         try {
             DatabaseSingleton db = DatabaseSingleton.getInstance();
             db.connect();
-            PreparedStatement SelectEmp2 = db.prepareStatement(SELECTEMPLOYEE);
-            ResultSet resultSet = SelectEmp2.executeQuery();
+            PreparedStatement selectEmp2 = db.prepareStatement(SELECTEMPLOYEE);
+            ResultSet resultSet = selectEmp2.executeQuery();
             while (resultSet.next()) {
                 data.add(new Employee(resultSet.getInt("ID"), resultSet.getString("NAME"), resultSet.getString("FIRSTNAME"), resultSet.getString("BADGE"),
                         resultSet.getString("ADRESSE"), resultSet.getString("DATEBIRTH"), resultSet.getString("NUMTEL"), resultSet.getString("DATEHIRING"),
@@ -165,7 +185,7 @@ public class AdminController implements Initializable {
             dataTB.setPrefHeight((double) count * 29);
             dataTB.setItems(data);
             rsc.close();
-            SelectEmp2.close();
+            selectEmp2.close();
             db.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -183,16 +203,16 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void Exit(ActionEvent event) {
+    public void exit(ActionEvent event) {
         Platform.exit();
     }
 
 
     @FXML
-    private void add_product(ActionEvent event) throws IOException {
+    private void addProduct(ActionEvent event) throws IOException, CustomIOException {
         try {
-            AddProducts addProducts = new AddProducts(0, input_name_product.getText(), input_price.getText(), input_quantity.getText(), input_min_quantity.getText(), input_dop.getText(), input_bbd.getText());
-            if (input_name_product.getText().isEmpty() || input_price.getText().isEmpty()) {
+            AddProducts addProducts = new AddProducts(0, inputNameProduct.getText(), inputPrice.getText(), inputQuantity.getText(), inputMinQuantity.getText(), inputDop.getText(), inputBbd.getText());
+            if (inputNameProduct.getText().isEmpty() || inputPrice.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setContentText("veuillez rentrer des valeurs");
@@ -213,7 +233,7 @@ public class AdminController implements Initializable {
                 db.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error");
+            throw new CustomIOException("Erreur SQL", e);
         }
 
 

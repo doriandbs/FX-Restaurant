@@ -4,6 +4,7 @@
 package controller;
 
 import bdd.DatabaseSingleton;
+import exception.CustomIOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,37 +24,40 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import static constantes.SQLConstants.INSERTEMPLOYEE;
 
 
 public class AddEmployeeController implements Initializable {
+    private static final Logger logger = Logger.getLogger(AddEmployeeController.class.getName());
+
 
     Stage stage;
     Scene scene;
     @FXML
-    private TextField input_name;
+    private TextField inputName;
     @FXML
-    private TextField input_firstname;
+    private TextField inputFirstname;
     @FXML
-    private TextField input_badge;
+    private TextField inputBadge;
     @FXML
-    private TextField input_adresse;
+    private TextField inputAdresse;
     @FXML
-    private TextField input_datebirth;
+    private TextField inputDatebirth;
     @FXML
-    private TextField input_datehiring;
+    private TextField inputDatehiring;
     @FXML
-    private TextField input_numtel;
+    private TextField inputNumtel;
     @FXML
-    private CheckBox check_isadmin;
+    private CheckBox checkIsAdmin;
 
 
     @FXML
     private void save(ActionEvent event) throws IOException {
         try {
-            Employee employee = new Employee(0, input_name.getText(), input_firstname.getText(), input_badge.getText(), input_adresse.getText(), input_datebirth.getText(), input_numtel.getText(), input_datehiring.getText(), check_isadmin.isSelected());
-            if (input_name.getText().isEmpty() || input_firstname.getText().isEmpty()) {
+            Employee employee = new Employee(0, inputName.getText(), inputFirstname.getText(), inputBadge.getText(), inputAdresse.getText(), inputDatebirth.getText(), inputNumtel.getText(), inputDatehiring.getText(), checkIsAdmin.isSelected());
+            if (inputName.getText().isEmpty() || inputFirstname.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setContentText("veuillez rentrer des valeurs");
@@ -82,7 +86,7 @@ public class AddEmployeeController implements Initializable {
 
             }
         } catch (SQLException e) {
-            System.out.println("Error");
+            logger.info("Error");
         }
 
 
@@ -90,18 +94,18 @@ public class AddEmployeeController implements Initializable {
 
     @FXML
     private void clean(ActionEvent event) {
-        input_adresse.clear();
-        input_badge.clear();
-        input_datebirth.clear();
-        input_name.clear();
-        input_datehiring.clear();
-        input_numtel.clear();
-        input_firstname.clear();
+        inputAdresse.clear();
+        inputBadge.clear();
+        inputDatebirth.clear();
+        inputName.clear();
+        inputDatehiring.clear();
+        inputNumtel.clear();
+        inputFirstname.clear();
 
     }
 
     @FXML
-    private void MappingBack(ActionEvent event) {
+    private void mappingBack(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -109,7 +113,7 @@ public class AddEmployeeController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException("Erreur lors du chargement de la page",e);
         }
 
     }

@@ -47,7 +47,6 @@ public class DatabaseSingleton {
             String url = prop.getProperty("db.url");
             String user = prop.getProperty("db.user");
             String password = prop.getProperty("db.password");
-            logger.info("url : " + url +"user : " + user + "psw : " + password );
             connection = DriverManager.getConnection(url,user, password);
 
         } catch (Exception e) {

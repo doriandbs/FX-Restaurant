@@ -6,6 +6,7 @@ package controller;
 
 import bdd.DatabaseSingleton;
 import constantes.Constants;
+import exception.CustomIOException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,20 +25,35 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import static constantes.SQLConstants.SELECTUSER;
 import static utils.Md5.generateHash;
 
 
 public class LoginController {
-    public TextField input_badge;
-    public PasswordField input_psw;
+
+    private static final Logger logger = Logger.getLogger(LoginController.class.getName());
+
+
+    private static final String BADGE="BADGE";
+    private static final String ISADMIN="ISADMIN";
+    @FXML
+    public TextField inputBadge;
+    @FXML
+    public PasswordField inputPsw;
+    @FXML
     public Label isConnected;
+    @FXML
     public Label errormsg;
-    public Button button_connexion;
-    public Hyperlink button_register;
-    boolean VerifBadge;
-    boolean VerifPassword;
+    @FXML
+    public Button buttonConnexion;
+    @FXML
+    public Hyperlink buttonRegister;
+    @FXML
+    boolean verifBadge;
+    @FXML
+    boolean verifPassword;
 
 
     Stage stage;
@@ -46,34 +62,34 @@ public class LoginController {
     public void login(ActionEvent event) throws NoSuchAlgorithmException {
 
         Users utilisateur = new Users();
-        utilisateur.setBadge(input_badge.getText());
-        String pswHash = generateHash(input_psw.getText());
+        utilisateur.setBadge(inputBadge.getText());
+        String pswHash = generateHash(inputPsw.getText());
         utilisateur.setPassword(pswHash);
 
-        VerifBadge = ValidationInput.textFieldNull(utilisateur.getBadge());
-        VerifPassword = ValidationInput.textFieldNull(utilisateur.getPassword());
+        verifBadge = ValidationInput.textFieldNull(utilisateur.getBadge());
+        verifPassword = ValidationInput.textFieldNull(utilisateur.getPassword());
 
-        if (VerifBadge && VerifPassword) errormsg.setText(Constants.VERIF_CH);
-        else if (VerifBadge) errormsg.setText(Constants.BADGE_REC);
-        else if (VerifPassword) errormsg.setText(Constants.PSW_REC);
+        if (verifBadge && verifPassword) errormsg.setText(Constants.VERIF_CH);
+        else if (verifBadge) errormsg.setText(Constants.BADGE_REC);
+        else if (verifPassword) errormsg.setText(Constants.PSW_REC);
         else errormsg.setText(Constants.USER_NOT_FOUND);
-        if (!VerifBadge && !VerifPassword) {
+        if (!verifBadge && !verifPassword) {
 
             try {
                 DatabaseSingleton db = DatabaseSingleton.getInstance();
                 db.connect();
-                PreparedStatement SelectUser = db.prepareStatement(SELECTUSER);
+                PreparedStatement selectUser = db.prepareStatement(SELECTUSER);
 
-                SelectUser.setString(1, utilisateur.getBadge());
-                SelectUser.setString(2, utilisateur.getPassword());
-                ResultSet resultSet = SelectUser.executeQuery();
+                selectUser.setString(1, utilisateur.getBadge());
+                selectUser.setString(2, utilisateur.getPassword());
+                ResultSet resultSet = selectUser.executeQuery();
 
                 while (resultSet.next()) {
-                    if (Objects.equals(resultSet.getString("BADGE"), utilisateur.getBadge())
+                    if (Objects.equals(resultSet.getString(BADGE), utilisateur.getBadge())
                             && Objects.equals(resultSet.getString("PASSWORD"), utilisateur.getPassword())) {
                         //rajouter condition if si ISADMIN 1 ou 0
-                        if (resultSet.getInt("ISADMIN") == 1) { // Utilisateur Admin
-                            System.out.println(resultSet.getString("NOM") + "badge : " + resultSet.getString("BADGE") + " est connecté / IS ADMIN : " + resultSet.getInt("ISADMIN"));
+                        if (resultSet.getInt(ISADMIN) == 1) { // Utilisateur Admin
+                            logger.info(resultSet.getString("NOM") + "badge : " + resultSet.getString(BADGE) + " est connecté / IS ADMIN : " + resultSet.getInt(ISADMIN));
                             isConnected.setText(Constants.CONN_SUCC);
                             isConnected.setTextFill(Color.GREEN);
                             errormsg.setText("");
@@ -88,7 +104,7 @@ public class LoginController {
 
 
                         } else { //si utilisateur pas admin
-                            System.out.println(resultSet.getString("NOM") + "badge : " + resultSet.getString("BADGE") + " est connecté / IS ADMIN : " + resultSet.getInt("ISADMIN"));
+                            logger.info(resultSet.getString("NOM") + "badge : " + resultSet.getString(BADGE) + " est connecté / IS ADMIN : " + resultSet.getInt(ISADMIN));
                             isConnected.setText(Constants.CONN_SUCC);
                             isConnected.setTextFill(Color.GREEN);
                             errormsg.setText("");
@@ -106,7 +122,7 @@ public class LoginController {
                         errormsg.setText(Constants.NOM_PSW_INCORRECT);
                     }
                 }
-                SelectUser.close();
+                selectUser.close();
                 db.close();
 
             } catch (Exception e) {
@@ -115,7 +131,7 @@ public class LoginController {
         }
     }
 
-    public void MappingInscription(ActionEvent event) {
+    public void mappingInscription(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/register.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -123,12 +139,12 @@ public class LoginController {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException("Erreur lors du chargement de la page", e);
         }
 
     }
     @FXML
-    public void Exit(ActionEvent event) {
+    public void exit(ActionEvent event) {
         Platform.exit();
     }
 
