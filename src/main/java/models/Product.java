@@ -40,8 +40,8 @@ public enum Product {
 
 
 
-    final private String imageFile;
-    final private float price;
+    private final String imageFile;
+    private final float price;
 
     Product(String imageFile, float price) {
         this.imageFile = imageFile;
