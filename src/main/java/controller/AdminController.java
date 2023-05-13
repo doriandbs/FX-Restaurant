@@ -81,7 +81,7 @@ public class AdminController implements Initializable {
     public Button btnAdd;
     @FXML
     private TableView<Employee> dataTB;
-    private ObservableList<Employee> data = FXCollections.observableArrayList();
+    private final ObservableList<Employee> data = FXCollections.observableArrayList();
     private int count;
 
     @FXML
@@ -203,13 +203,13 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    public void exit(ActionEvent event) {
+    public void exit() {
         Platform.exit();
     }
 
 
     @FXML
-    private void addProduct(ActionEvent event) throws IOException, CustomIOException {
+    private void addProduct() throws IOException, CustomIOException {
         try {
             AddProducts addProducts = new AddProducts(0, inputNameProduct.getText(), inputPrice.getText(), inputQuantity.getText(), inputMinQuantity.getText(), inputDop.getText(), inputBbd.getText());
             if (inputNameProduct.getText().isEmpty() || inputPrice.getText().isEmpty()) {
@@ -221,7 +221,7 @@ public class AdminController implements Initializable {
                 DatabaseSingleton db = DatabaseSingleton.getInstance();
                 db.connect();
                 PreparedStatement insertEmp = db.prepareStatement(INSERTEMPLOYEE);
-                insertEmp.setString(1, addProducts.getName_products());
+                insertEmp.setString(1, addProducts.getNameProducts());
                 insertEmp.setString(2, addProducts.getPrice());
                 insertEmp.setString(3, addProducts.getQuantity());
                 insertEmp.setString(4, addProducts.getMinQuantity());

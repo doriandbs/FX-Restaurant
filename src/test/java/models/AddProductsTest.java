@@ -16,7 +16,7 @@ class AddProductsTest {
     @Test
     void testConstructor() {
         assertEquals(1, product.getId());
-        assertEquals("TestProduct", product.getName_products());
+        assertEquals("TestProduct", product.getNameProducts());
         assertEquals("100", product.getPrice());
         assertEquals("50", product.getQuantity());
         assertEquals("10", product.getMinQuantity());
@@ -27,18 +27,18 @@ class AddProductsTest {
     @Test
     void testPropertyAccessors() {
         assertEquals(1, product.idProperty().get());
-        assertEquals("TestProduct", product.name_productsProperty().get());
+        assertEquals("TestProduct", product.nameProductsProperty().get());
         assertEquals("100", product.priceProperty().get());
         assertEquals("50", product.quantityProperty().get());
         assertEquals("10", product.minQuantityProperty().get());
-        assertEquals("2023-01-01", product.DOPProperty().get());
-        assertEquals("2023-12-31", product.BBDProperty().get());
+        assertEquals("2023-01-01", product.dopProperty().get());
+        assertEquals("2023-12-31", product.bbdProperty().get());
     }
 
     @Test
     void testSetters() {
         product.setId(2);
-        product.setName_products("NewProduct");
+        product.setNameProducts("NewProduct");
         product.setPrice("200");
         product.setQuantity("100");
         product.setMinQuantity("20");
@@ -46,7 +46,7 @@ class AddProductsTest {
         product.setBBD("2023-12-30");
 
         assertEquals(2, product.getId());
-        assertEquals("NewProduct", product.getName_products());
+        assertEquals("NewProduct", product.getNameProducts());
         assertEquals("200", product.getPrice());
         assertEquals("100", product.getQuantity());
         assertEquals("20", product.getMinQuantity());

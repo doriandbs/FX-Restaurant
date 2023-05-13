@@ -7,96 +7,96 @@ import javafx.beans.property.*;
 
 public class AddProducts {
 
-    private StringProperty Name_products;
-    private StringProperty Price;
-    private StringProperty Quantity;
-    private StringProperty MinQuantity;
-    private ObjectProperty<Object> DOP;
-    private ObjectProperty<Object> BBD;
+    private final StringProperty nameProducts;
+    private final StringProperty price;
+    private final StringProperty quantity;
+    private final StringProperty minQuantity;
+    private final ObjectProperty<Object> dop;
+    private final ObjectProperty<Object> bbd;
 
-    private IntegerProperty id;
+    private final IntegerProperty id;
 
 
-    public AddProducts(Integer Id, String Name_products, String Price, String Quantity, String MinQuantity, Object DOP, Object BBD) {
-        this.id = new SimpleIntegerProperty(Id);
-        this.Name_products = new SimpleStringProperty(Name_products);
-        this.Price = new SimpleStringProperty(Price);
-        this.Quantity = new SimpleStringProperty(Quantity);
-        this.MinQuantity = new SimpleStringProperty(MinQuantity);
-        this.DOP = new SimpleObjectProperty<>(DOP);
-        this.BBD = new SimpleObjectProperty<>(BBD);
+    public AddProducts(Integer id, String nameProducts, String price, String quantity, String minQuantity, Object dop, Object bbd) {
+        this.id = new SimpleIntegerProperty(id);
+        this.nameProducts = new SimpleStringProperty(nameProducts);
+        this.price = new SimpleStringProperty(price);
+        this.quantity = new SimpleStringProperty(quantity);
+        this.minQuantity = new SimpleStringProperty(minQuantity);
+        this.dop = new SimpleObjectProperty<>(dop);
+        this.bbd = new SimpleObjectProperty<>(bbd);
     }
 
-    public String getName_products() {
-        return Name_products.get();
+    public String getNameProducts() {
+        return nameProducts.get();
     }
 
-    public StringProperty name_productsProperty() {
-        return Name_products;
+    public StringProperty nameProductsProperty() {
+        return nameProducts;
     }
 
-    public void setName_products(String name_products) {
-        this.Name_products.set(name_products);
+    public void setNameProducts(String nameProducts) {
+        this.nameProducts.set(nameProducts);
     }
 
     public String getPrice() {
-        return Price.get();
+        return price.get();
     }
 
     public StringProperty priceProperty() {
-        return Price;
+        return price;
     }
 
     public void setPrice(String price) {
-        this.Price.set(price);
+        this.price.set(price);
     }
 
     public String getQuantity() {
-        return Quantity.get();
+        return quantity.get();
     }
 
     public StringProperty quantityProperty() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(String quantity) {
-        this.Quantity.set(quantity);
+        this.quantity.set(quantity);
     }
 
     public String getMinQuantity() {
-        return MinQuantity.get();
+        return minQuantity.get();
     }
 
     public StringProperty minQuantityProperty() {
-        return MinQuantity;
+        return minQuantity;
     }
 
     public void setMinQuantity(String minQuantity) {
-        this.MinQuantity.set(minQuantity);
+        this.minQuantity.set(minQuantity);
     }
 
     public Object getDOP() {
-        return DOP.get();
+        return dop.get();
     }
 
-    public ObjectProperty<Object> DOPProperty() {
-        return DOP;
+    public ObjectProperty<Object> dopProperty() {
+        return dop;
     }
 
-    public void setDOP(Object DOP) {
-        this.DOP.set(DOP);
+    public void setDOP(Object dop) {
+        this.dop.set(dop);
     }
 
     public Object getBBD() {
-        return BBD.get();
+        return bbd.get();
     }
 
-    public ObjectProperty<Object> BBDProperty() {
-        return BBD;
+    public ObjectProperty<Object> bbdProperty() {
+        return bbd;
     }
 
-    public void setBBD(Object BBD) {
-        this.BBD.set(BBD);
+    public void setBBD(Object bbd) {
+        this.bbd.set(bbd);
     }
 
     public int getId() {
