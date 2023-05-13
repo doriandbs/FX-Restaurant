@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2023. Créé par Dorian Dubois - Kevin Gac - Kevin Lompo
+ */
 package controller;
 
 import bdd.DatabaseSingleton;
@@ -9,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -45,12 +47,7 @@ public class AddEmployeeController implements Initializable {
     private TextField input_numtel;
     @FXML
     private CheckBox check_isadmin;
-    @FXML
-    private Button btn_save;
-    @FXML
-    private Button btn_back;
-    @FXML
-    private Button btn_clean;
+
 
     @FXML
     private void save(ActionEvent event) throws IOException {

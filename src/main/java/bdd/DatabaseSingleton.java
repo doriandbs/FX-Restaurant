@@ -1,11 +1,17 @@
+/*
+ * Copyright (c) 2023. Créé par Dorian Dubois - Kevin Gac - Kevin Lompo
+ */
 package bdd;
 
 
-import constantes.Constants;
-
-import java.io.*;
-import java.nio.file.Path;
-import java.sql.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Properties;
 
 
@@ -49,13 +55,6 @@ public class DatabaseSingleton {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-    }
-
-    public ResultSet query(String sql) throws SQLException {
-        Statement statement = connection.createStatement();
-        return statement.executeQuery(sql);
     }
 
     public PreparedStatement prepareStatement(String sql) throws SQLException {

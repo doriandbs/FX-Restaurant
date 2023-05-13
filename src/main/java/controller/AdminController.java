@@ -1,4 +1,8 @@
+/*
+ * Copyright (c) 2023. Créé par Dorian Dubois - Kevin Gac - Kevin Lompo
+ */
 package controller;
+
 import bdd.DatabaseSingleton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,7 +22,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.AddProducts;
 import models.Employee;
-import models.Product;
 
 import java.io.IOException;
 import java.net.URL;

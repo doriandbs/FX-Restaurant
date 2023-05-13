@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2023. Créé par Dorian Dubois - Kevin Gac - Kevin Lompo
+ */
 package controller;
 
 import bdd.DatabaseSingleton;
@@ -36,7 +39,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import static constantes.SQLConstants.INSERTCOMMANDE;
+import static constantes.SQLConstants.*;
+import static models.Product.CANTALBURGER;
 
 public class HomeController {
     public TextArea no_cmd;
@@ -245,12 +249,39 @@ public class HomeController {
 
         // Effectuer les mises à jour de la base de données pour chaque CartEntry
         for (CartEntry cartEntry : cartEntries) {
+            String viande="";
+            String fromage="";
             String productName = cartEntry.getProduct().name();
             int quantity = cartEntry.getQuantity();
             System.out.println(quantity + productName);
-            // REQUETE D'UPDATE DU PRODUIT ET DE LA QUANTITE
-/*
-            if (cartEntry.getProduct() == Product.MENU1) {
+            if(productName.contains("BURGER")){
+                switch (productName) {
+
+                    case "CANTALBURGER" -> {
+                        viande = "Steak";
+                        fromage = "FromageCantal";
+                    }
+                    case "CHICKENBURGER" -> {
+                        viande = "Poulet";
+                        fromage = "FromageChevre";
+                    }
+                    case "VEGANBURGER" -> {
+                        viande = "SteakVegan";
+                        fromage = "FromageMoza";
+                    }
+                    default -> {
+                        System.out.println("erreur");
+                    }
+                }
+
+                PreparedStatement updateStockIngredientBurger = db.prepareStatement(UPDATESTOCKINGREDIENTBURGER);
+                updateStockIngredientBurger.setString(1, viande);
+                updateStockIngredientBurger.setString(2, fromage);
+                updateStockIngredientBurger.setString(3, viande);
+                updateStockIngredientBurger.setString(4, fromage);
+                updateStockIngredientBurger.executeUpdate();
+                updateStockIngredientBurger.close();
+            /*} else if (cartEntry.getProduct() == Product.MENU1) {
                 // Mise à jour des ingrédients pour le MENU1
                 int burgerIngredientID1 = 1; // Remplacer par l'ID réel de l'ingrédient 1 du burger pour le MENU1
                 int burgerIngredientID2 = 2; // Remplacer par l'ID réel de l'ingrédient 2 du burger pour le MENU1
@@ -270,8 +301,7 @@ public class HomeController {
                 PreparedStatement updateBurgerIngredientStmt3 = db.prepareStatement(updateBurgerIngredientQuery3);
                 updateBurgerIngredientStmt3.setInt(1, burgerIngredientID3);
                 updateBurgerIngredientStmt3.executeUpdate();
-            }
-            else if (cartEntry.getProduct() == Product.MENU2) {
+            } else if (cartEntry.getProduct() == Product.MENU2) {
                 // Mise à jour des ingrédients pour le MENU2
                 int burgerIngredientID1 = 4; // Remplacer par l'ID réel de l'ingrédient 1 du burger pour le MENU2
                 int burgerIngredientID2 = 5; // Remplacer par l'ID réel de l'ingrédient 2 du burger pour le MENU2
@@ -285,18 +315,23 @@ public class HomeController {
                 String updateBurgerIngredientQuery3 = "UPDATE INGREDIENTS SET stock_ingredient = stock_ingredient - 1 WHERE id_ingredient = ?";
                 PreparedStatement updateBurgerIngredientStmt3 = db.prepareStatement(updateBurgerIngredientQuery3);
                 updateBurgerIngredientStmt3.setInt(1, burgerIngredientID3);
-                updateBurgerIngredientStmt3.executeUpdate();
+                updateBurgerIngredientStmt3.executeUpdate();*/
+            } else{
+                PreparedStatement updateStock = db.prepareStatement(UPDATESTOCK);
+                updateStock.setInt(1, quantity);
+                updateStock.setString(2, productName);
+                updateStock.executeUpdate();
+                updateStock.close();
             }
-
- */
         }
 
-        PreparedStatement insertEmp = db.prepareStatement(INSERTCOMMANDE);
-        insertEmp.setString(1, String.valueOf(LocalDateTime. now()));
-        insertEmp.setString(2, String.valueOf(CartPay.getInstance().calculateTotal()));
-        insertEmp.executeUpdate();
-        insertEmp.close();
+        PreparedStatement insertCmd = db.prepareStatement(INSERTCOMMANDE);
+        insertCmd.setString(1, String.valueOf(LocalDateTime. now()));
+        insertCmd.setString(2, String.valueOf(CartPay.getInstance().calculateTotal()));
+        insertCmd.executeUpdate();
+        insertCmd.close();
         db.close();
+        CartPay.getInstance().resetEntries();
         majnumcommande();
         cartPane.getChildren().clear();
     }
@@ -378,7 +413,7 @@ public class HomeController {
 
 
     private void ajoutItemBurger() throws FileNotFoundException {
-        VBox productView3=productView(Product.CANTALBURGER);
+        VBox productView3=productView(CANTALBURGER);
         GridPaneBurger.add(productView3,0,0);
         VBox productView4=productView(Product.CHICKENBURGER);
         GridPaneBurger.add(productView4,1,0);

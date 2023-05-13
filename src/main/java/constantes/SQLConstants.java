@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2023. Créé par Dorian Dubois - Kevin Gac - Kevin Lompo
+ */
 package constantes;
 
 public class SQLConstants {
@@ -11,5 +14,19 @@ public class SQLConstants {
     public static final String INSERTEMPLOYEE = "INSERT INTO employee(NAME,BADGE,ISADMIN,FIRSTNAME,ADRESSE,DATEBIRTH, DATEHIRING, NUMTEL) VALUES(?,?,?,?,?,?,?,?)";
     public static final String INSERTCOMMANDE ="INSERT INTO COMMANDES(DATE,TOTAL) VALUES(?,?)";
 
+    public static final String UPDATESTOCK ="UPDATE STOCKS SET QUANTITY = QUANTITY - ? WHERE NAME = ? ";
+    public static final String UPDATESTOCKINGREDIENTBURGER ="UPDATE INGREDIENTS SET STOCK_INGREDIENT = "
+            + "CASE "
+            + "WHEN nom_ingredient = 'Pains' THEN STOCK_INGREDIENT - 2 "
+            + "WHEN nom_ingredient = 'Salade' THEN STOCK_INGREDIENT - 1 "
+            +"WHEN nom_ingredient = 'Tomate' THEN STOCK_INGREDIENT - 1 "
+            +"WHEN nom_ingredient = 'Oignons' THEN STOCK_INGREDIENT - 1 "
+            +"WHEN nom_ingredient = ? THEN STOCK_INGREDIENT - 1 "
+            +"WHEN nom_ingredient = ? THEN STOCK_INGREDIENT - 1 "
+            + "ELSE STOCK_INGREDIENT "
+            + "END "
+            + "WHERE nom_ingredient IN ('Pains', 'Salade','Tomate','Oignons',?,?)";
 
+    private SQLConstants() {
+    }
 }

@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2023. Créé par Dorian Dubois - Kevin Gac - Kevin Lompo
+ */
 package constantes;
 public class Constants {
     public static final String nomRec = "Nom requis";
