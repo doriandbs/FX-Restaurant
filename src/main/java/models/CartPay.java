@@ -13,15 +13,15 @@ public class CartPay {
 
 
 
-    private static CartPay INSTANCE;
+    private static CartPay instance;
     public static CartPay getInstance(){
-        if(INSTANCE==null){
-            INSTANCE = new CartPay();
+        if(instance==null){
+            instance = new CartPay();
         }
-        return INSTANCE;
+        return instance;
     }
 
-    private Map<String,CartEntry> entries;
+    private final Map<String,CartEntry> entries;
     
      public CartPay(){
          this.entries= new HashMap<>();

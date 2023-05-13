@@ -95,7 +95,7 @@ public class InscriptionPageController {
     private void validateUserInputs(Users utilisateur) {
         nameError = ValidationInput.textFieldNull(utilisateur.getName());
         badgeError = ValidationInput.textFieldNull(String.valueOf(utilisateur.getBadge()));
-        mdpError = ValidationInput.PasswordRegister(utilisateur.getPassword());
+        mdpError = ValidationInput.passwordRegister(utilisateur.getPassword());
         mdpNull = ValidationInput.textFieldNull(utilisateur.getPassword());
     }
 

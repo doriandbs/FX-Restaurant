@@ -15,7 +15,7 @@ class ValidationInputTest {
 
     @Test
     void testPasswordRegister() {
-        assertTrue(ValidationInput.PasswordRegister("Field"));
+        assertTrue(ValidationInput.passwordRegister("Field"));
     }
 }
 

@@ -5,17 +5,19 @@ package utils;
 
 public class ValidationInput {
 
+    private ValidationInput() {
+        //doNothing
+    }
+
     public static boolean textFieldNull(String field) {
         return field.isBlank();
     }
 
 
-    public static boolean PasswordRegister(String field) {
-        boolean DataLenght = false;
-        if (!field.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}")) {
-            DataLenght = true;
-        }
-        return DataLenght;
+    public static boolean passwordRegister(String field) {
+        boolean dataLenght;
+        dataLenght= !field.matches("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}");
+        return dataLenght;
     }
 
 }
