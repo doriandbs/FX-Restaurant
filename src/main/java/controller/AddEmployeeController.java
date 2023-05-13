@@ -57,7 +57,9 @@ public class AddEmployeeController implements Initializable {
     private void save(ActionEvent event) throws IOException {
         try {
             Employee employee = new Employee(0, inputName.getText(), inputFirstname.getText(), inputBadge.getText(), inputAdresse.getText(), inputDatebirth.getText(), inputNumtel.getText(), inputDatehiring.getText(), checkIsAdmin.isSelected());
-            if (inputName.getText().isEmpty() || inputFirstname.getText().isEmpty()) {
+            if (inputName.getText().isEmpty() || inputFirstname.getText().isEmpty()
+                || inputBadge.getText().isEmpty() || inputAdresse.getText().isEmpty()||
+                    inputDatebirth.getText().isEmpty() || inputNumtel.getText().isEmpty() || inputDatehiring.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setContentText("veuillez rentrer des valeurs");
