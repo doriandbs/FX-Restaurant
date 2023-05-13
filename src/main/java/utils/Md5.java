@@ -4,11 +4,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Md5 {
+        private Md5() {
+                //doNothing
+        }
 
-        private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+        private static final  char[] hexArray = "0123456789ABCDEF".toCharArray();
 
         public static String generateHash(String pass) throws NoSuchAlgorithmException {
-                MessageDigest algorithm = MessageDigest.getInstance("MD5");
+                MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
                 algorithm.reset();
                 byte[] hash = algorithm.digest(pass.getBytes());
                 return bytestoStringHex(hash);

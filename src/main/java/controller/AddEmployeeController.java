@@ -3,7 +3,6 @@
  */
 package controller;
 
-import bdd.DatabaseSingleton;
 import exception.CustomIOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,20 +16,16 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Employee;
+import services.EmployeeServiceImpl;
+import services.interfaces.IEmployeeService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
-
-import static constantes.SQLConstants.INSERTEMPLOYEE;
 
 
 public class AddEmployeeController implements Initializable {
-    private static final Logger logger = Logger.getLogger(AddEmployeeController.class.getName());
 
 
     Stage stage;
@@ -52,50 +47,28 @@ public class AddEmployeeController implements Initializable {
     @FXML
     private CheckBox checkIsAdmin;
 
+    private final IEmployeeService employeeService;
 
+    public AddEmployeeController() {
+        this.employeeService = new EmployeeServiceImpl();
+    }
     @FXML
-    private void save(ActionEvent event) throws IOException {
-        try {
-            Employee employee = new Employee(0, inputName.getText(), inputFirstname.getText(), inputBadge.getText(), inputAdresse.getText(), inputDatebirth.getText(), inputNumtel.getText(), inputDatehiring.getText(), checkIsAdmin.isSelected());
-            if (inputName.getText().isEmpty() || inputFirstname.getText().isEmpty()
+    protected void save() {
+        Employee employee = new Employee(0, inputName.getText(), inputFirstname.getText(), inputBadge.getText(), inputAdresse.getText(), inputDatebirth.getText(), inputNumtel.getText(), inputDatehiring.getText(), checkIsAdmin.isSelected());
+        if (inputName.getText().isEmpty() || inputFirstname.getText().isEmpty()
                 || inputBadge.getText().isEmpty() || inputAdresse.getText().isEmpty()||
-                    inputDatebirth.getText().isEmpty() || inputNumtel.getText().isEmpty() || inputDatehiring.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setContentText("veuillez rentrer des valeurs");
-                alert.showAndWait();
-            } else {
-                DatabaseSingleton db = DatabaseSingleton.getInstance();
-                db.connect();
-                PreparedStatement insertEmp = db.prepareStatement(INSERTEMPLOYEE);
-                insertEmp.setString(1, employee.getName());
-                insertEmp.setString(2, employee.getBadge());
-                insertEmp.setBoolean(3, employee.getIsAdmin());
-                insertEmp.setString(4, employee.getFirstName());
-                insertEmp.setString(5, employee.getAdresse());
-                insertEmp.setString(6, employee.getDateBirth());
-                insertEmp.setString(7, employee.getDateEmbauche());
-                insertEmp.setString(8, employee.getNumTel());
-
-                insertEmp.executeUpdate();
-                insertEmp.close();
-                db.close();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
-            }
-        } catch (SQLException e) {
-            logger.info("Error");
+                inputDatebirth.getText().isEmpty() || inputNumtel.getText().isEmpty() || inputDatehiring.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("veuillez rentrer des valeurs");
+            alert.showAndWait();
+        } else {
+            employeeService.saveEmployee(employee);
         }
-
-
     }
 
     @FXML
-    private void clean(ActionEvent event) {
+    protected void clean() {
         inputAdresse.clear();
         inputBadge.clear();
         inputDatebirth.clear();
@@ -107,7 +80,7 @@ public class AddEmployeeController implements Initializable {
     }
 
     @FXML
-    private void mappingBack(ActionEvent event) throws CustomIOException {
+    protected void mappingBack(ActionEvent event) throws CustomIOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

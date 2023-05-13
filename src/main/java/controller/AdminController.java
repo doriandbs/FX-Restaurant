@@ -3,7 +3,6 @@
  */
 package controller;
 
-import bdd.DatabaseSingleton;
 import exception.CustomIOException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -23,21 +22,20 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.AddProducts;
 import models.Employee;
+import services.AdminServiceImpl;
+import services.interfaces.IAdminService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import static constantes.SQLConstants.*;
-
 public class AdminController implements Initializable {
 
     private static final Logger logger = Logger.getLogger(AdminController.class.getName());
+
+    private final IAdminService adminService;
 
     @FXML
     public TableColumn<Object, Object> nameUser;
@@ -82,7 +80,6 @@ public class AdminController implements Initializable {
     @FXML
     private TableView<Employee> dataTB;
     private final ObservableList<Employee> data = FXCollections.observableArrayList();
-    private int count;
 
     @FXML
     private TextField inputNameProduct;
@@ -98,6 +95,9 @@ public class AdminController implements Initializable {
     private TextField inputBbd;
 
 
+    public AdminController() {
+        this.adminService = new AdminServiceImpl();
+    }
     @FXML
     private void handleButtonAction(MouseEvent mouseDragEvent) {
         if (mouseDragEvent.getSource() == imgStock) {
@@ -131,7 +131,7 @@ public class AdminController implements Initializable {
             data.clear();
             loadData();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(String.valueOf(e));
         }
     }
 
@@ -145,7 +145,7 @@ public class AdminController implements Initializable {
             try {
                 throw new CustomIOException("Erreur lors du chargement de la page",e);
             } catch (CustomIOException ex) {
-                ex.printStackTrace();
+                logger.info(String.valueOf(e));
             }
         }
 
@@ -166,31 +166,13 @@ public class AdminController implements Initializable {
 
 
     private void loadData() {
-        try {
-            DatabaseSingleton db = DatabaseSingleton.getInstance();
-            db.connect();
-            PreparedStatement selectEmp2 = db.prepareStatement(SELECTEMPLOYEE);
-            ResultSet resultSet = selectEmp2.executeQuery();
-            while (resultSet.next()) {
-                data.add(new Employee(resultSet.getInt("ID"), resultSet.getString("NAME"), resultSet.getString("FIRSTNAME"), resultSet.getString("BADGE"),
-                        resultSet.getString("ADRESSE"), resultSet.getString("DATEBIRTH"), resultSet.getString("NUMTEL"), resultSet.getString("DATEHIRING"),
-                        resultSet.getBoolean("ISADMIN")));
-            }
-            dataTB.setId("my-table");
-            PreparedStatement psc = db.prepareStatement(COUNTEMPLOYEE);
-            ResultSet rsc = psc.executeQuery();
-            if (rsc.next()) {
-                count = rsc.getInt("recordCount");
-            }
-            dataTB.setPrefHeight((double) count * 29);
-            dataTB.setItems(data);
-            rsc.close();
-            selectEmp2.close();
-            db.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        ObservableList<Employee> employees = FXCollections.observableArrayList(adminService.getAllEmployees());
 
-        }
+        dataTB.setItems(employees);
+        dataTB.setId("my-table");
+
+        double count = employees.size();
+        dataTB.setPrefHeight(count * 29);
     }
 
 
@@ -209,8 +191,7 @@ public class AdminController implements Initializable {
 
 
     @FXML
-    private void addProduct() throws IOException, CustomIOException {
-        try {
+    private void addProduct() throws CustomIOException {
             AddProducts addProducts = new AddProducts(0, inputNameProduct.getText(), inputPrice.getText(), inputQuantity.getText(), inputMinQuantity.getText(), inputDop.getText(), inputBbd.getText());
             if (inputNameProduct.getText().isEmpty() || inputPrice.getText().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -218,24 +199,11 @@ public class AdminController implements Initializable {
                 alert.setContentText("veuillez rentrer des valeurs");
                 alert.showAndWait();
             } else {
-                DatabaseSingleton db = DatabaseSingleton.getInstance();
-                db.connect();
-                PreparedStatement insertEmp = db.prepareStatement(INSERTEMPLOYEE);
-                insertEmp.setString(1, addProducts.getNameProducts());
-                insertEmp.setString(2, addProducts.getPrice());
-                insertEmp.setString(3, addProducts.getQuantity());
-                insertEmp.setString(4, addProducts.getMinQuantity());
-                insertEmp.setObject(5, addProducts.getDOP());
-                insertEmp.setObject(6, addProducts.getBBD());
-
-                insertEmp.executeUpdate();
-                insertEmp.close();
-                db.close();
+                adminService.addProduct(addProducts);
             }
-        } catch (SQLException e) {
-            throw new CustomIOException("Erreur SQL", e);
-        }
 
 
     }
+
+
 }

@@ -4,8 +4,6 @@
 package controller;
 
 
-
-import bdd.DatabaseSingleton;
 import constantes.Constants;
 import exception.CustomIOException;
 import javafx.application.Platform;
@@ -19,25 +17,24 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.Users;
+import services.InscriptionServiceImpl;
+import services.interfaces.IInscriptionService;
 import utils.Md5;
 import utils.ValidationInput;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Objects;
 import java.util.logging.Logger;
-
-import static constantes.SQLConstants.INSERTUSER;
-import static constantes.SQLConstants.SELECTUSERS;
 
 
 public class InscriptionPageController {
 
     private static final Logger logger = Logger.getLogger(InscriptionPageController.class.getName());
 
+    private final IInscriptionService inscriptionService = new InscriptionServiceImpl();
 
     @FXML
     public TextField inputNameRegister;
@@ -71,17 +68,13 @@ public class InscriptionPageController {
         Users utilisateur = createNewUser();
         validateUserInputs(utilisateur);
         utilisateur.setPassword(Md5.generateHash(utilisateur.getPassword()));
-
         try {
-            DatabaseSingleton db = DatabaseSingleton.getInstance();
-            db.connect();
-
-            if (isUserExistInDatabase(db, utilisateur)) {
+            if (inscriptionService.isUserExistInDatabase(utilisateur)) {
                 userNotFound.setText(Constants.USER_EXIST);
                 userNotFound.setTextFill(Color.RED);
                 resetErrorLabels();
             } else {
-                handleUserInputsErrors(utilisateur,event);
+                handleUserInputsErrors(utilisateur, event);
             }
         } catch (IOException | SQLIntegrityConstraintViolationException e) {
             handleExceptions(e);
@@ -104,17 +97,6 @@ public class InscriptionPageController {
         badgeError = ValidationInput.textFieldNull(String.valueOf(utilisateur.getBadge()));
         mdpError = ValidationInput.PasswordRegister(utilisateur.getPassword());
         mdpNull = ValidationInput.textFieldNull(utilisateur.getPassword());
-    }
-
-    private boolean isUserExistInDatabase(DatabaseSingleton db, Users utilisateur) throws SQLException {
-        PreparedStatement selectUsers = db.prepareStatement(SELECTUSERS);
-        selectUsers.setString(1, utilisateur.getName());
-        selectUsers.setString(2, utilisateur.getBadge());
-        selectUsers.setString(3, utilisateur.getPassword());
-        selectUsers.setBoolean(4, utilisateur.getIsAdmin());
-        boolean userExist = selectUsers.executeQuery().next();
-        selectUsers.close();
-        return userExist;
     }
 
     private void resetErrorLabels() {
@@ -140,8 +122,9 @@ public class InscriptionPageController {
             setErrorMessages("", "", Constants.PSW_REC);
         } else if (mdpError) {
             setErrorMessages("", "", Constants.PSW_REGISTER);
-        } else {
-            insertNewUserIntoDatabase(utilisateur,event);
+        }  else {
+            inscriptionService.insertNewUserIntoDatabase(utilisateur);
+            navigateToLoginPage(event);
         }
     }
 
@@ -152,25 +135,6 @@ public class InscriptionPageController {
         pswErrorLabel.setText(passwordError);
     }
 
-    private void insertNewUserIntoDatabase(Users utilisateur,ActionEvent event) throws IOException, SQLException {
-        userNotFound.setText(Constants.USER_CREA);
-        userNotFound.setTextFill(Color.GREEN);
-        pswErrorLabel.setText("");
-        DatabaseSingleton db = DatabaseSingleton.getInstance();
-        PreparedStatement insertUser = db.prepareStatement(INSERTUSER);
-        insertUser.setString(1, utilisateur.getName());
-        insertUser.setString(2, utilisateur.getBadge());
-        insertUser.setString(3, utilisateur.getPassword());
-        insertUser.setBoolean(4, utilisateur.getIsAdmin());
-        int n = insertUser.executeUpdate();
-        if (n == 1) {
-            logger.info("Requête d'insertion de l'utilisateur bien effectuée, NOM : " + utilisateur.getName() +
-                    " BADGE : " + utilisateur.getBadge() + " ADMINISTRATEUR : " + utilisateur.getIsAdmin());
-        }
-        insertUser.close();
-        navigateToLoginPage(event);
-        db.close();
-    }
 
     private void navigateToLoginPage(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
@@ -182,7 +146,7 @@ public class InscriptionPageController {
 
     private void handleExceptions(Exception e) {
         if (e instanceof IOException) {
-            e.printStackTrace();
+            logger.info("Erreur");
         } else if (e instanceof SQLIntegrityConstraintViolationException) {
             userNotFound.setText(Constants.USER_EXIST);
         }
@@ -203,7 +167,7 @@ public class InscriptionPageController {
     }
 
     @FXML
-    public void exit(ActionEvent event) {
+    public void exit() {
         Platform.exit();
     }
 

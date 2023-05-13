@@ -50,7 +50,7 @@ public class DatabaseSingleton {
             connection = DriverManager.getConnection(url,user, password);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(String.valueOf(e));
         }
     }
 
@@ -62,7 +62,12 @@ public class DatabaseSingleton {
         try {
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info(String.valueOf(e));
         }
     }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
 }

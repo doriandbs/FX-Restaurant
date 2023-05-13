@@ -4,27 +4,28 @@
 package models;
 
 public class Users {
-    public String Name;
+    private String name;
 
-    public String Password;
-    public Boolean isAdmin;
+    private String password;
+    private Boolean isAdmin;
 
-    public String Badge;
+    private String badge;
+
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setName(String setName) {
+        name = setName;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setPassword(String setPassword) {
+        password = setPassword;
     }
 
     public Boolean getIsAdmin() {
@@ -36,11 +37,11 @@ public class Users {
     }
 
     public String getBadge() {
-        return Badge;
+        return badge;
     }
 
-    public void setBadge(String badge) {
-        Badge = badge;
+    public void setBadge(String setBadge) {
+        badge = setBadge;
     }
 
 
