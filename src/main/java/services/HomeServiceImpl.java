@@ -20,7 +20,7 @@ public class HomeServiceImpl implements IHomeService {
     public int getLastCommandId() throws SQLException, IOException {
         DatabaseSingleton db = DatabaseSingleton.getInstance();
         db.connect();
-        PreparedStatement selectIdCmd = db.prepareStatement("SELECT ID FROM COMMANDES ORDER BY id DESC LIMIT 1");
+        PreparedStatement selectIdCmd = db.prepareStatement(SELECTLASTIDORDERS);
         ResultSet selectRes = selectIdCmd.executeQuery();
         int id = -1;
         if (selectRes.next()) {

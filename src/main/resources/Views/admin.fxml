@@ -153,78 +153,121 @@
                               <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="20.0" layoutY="30.0" text="Add products" textFill="WHITE">
+                        <Label layoutX="20.0" layoutY="30.0" text="Add stocks" textFill="WHITE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                        <TextField fx:id="inputNameProduct" layoutX="255.0" layoutY="144.0" prefHeight="27.0" prefWidth="330.0" promptText="Name">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <Label layoutX="128.0" layoutY="149.0" prefHeight="17.0" prefWidth="86.0" text="Name">
+                        <Label layoutX="34.0" layoutY="160.0" prefHeight="20.0" prefWidth="47.0" text="Name">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <Label layoutX="128.0" layoutY="193.0" prefHeight="17.0" prefWidth="86.0" text="price">
+                        <Label layoutX="34.0" layoutY="203.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <Label layoutX="128.0" layoutY="235.0" prefHeight="17.0" prefWidth="86.0" text="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="128.0" layoutY="277.0" prefHeight="17.0" prefWidth="86.0" text="Min quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="128.0" layoutY="323.0" prefHeight="17.0" prefWidth="86.0" text="DOP">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="128.0" layoutY="367.0" prefHeight="17.0" prefWidth="86.0" text="BBD">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="inputPrice" layoutX="255.0" layoutY="188.0" prefHeight="27.0" prefWidth="330.0" promptText="price">
+                        <TextField fx:id="inputQuantity" layoutX="110.0" layoutY="198.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="inputQuantity" layoutX="255.0" layoutY="230.0" prefHeight="27.0" prefWidth="330.0" promptText="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="inputMinQuantity" layoutX="255.0" layoutY="272.0" prefHeight="27.0" prefWidth="330.0" promptText="Min quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="inputDop" layoutX="255.0" layoutY="318.0" prefHeight="27.0" prefWidth="330.0" promptText="dop">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <TextField fx:id="inputBbd" layoutX="255.0" layoutY="362.0" prefHeight="27.0" prefWidth="330.0" promptText="bbd">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <Button fx:id="btn_add_product" layoutX="134.0" layoutY="452.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="470.0" text="ADD">
+                        <Button fx:id="btn_add_product" layoutX="95.0" layoutY="441.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="247.0" text="ADD">
                             <font>
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Button>
+                  <ComboBox fx:id="inputNameProduct" layoutX="111.0" layoutY="158.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                  <Text layoutX="144.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accompagnents et boissons" />
+                  <Text layoutX="688.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burgers" wrappingWidth="56.447265625" />
+                  <Label layoutX="544.0" layoutY="160.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="544.0" layoutY="203.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputQuantityBurger" layoutX="620.0" layoutY="198.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="inputNameProductBurger" layoutX="621.0" layoutY="158.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                  <Button fx:id="btn_add_product1" layoutX="621.0" layoutY="441.0" mnemonicParsing="false" onAction="#addProductBurg" prefHeight="30.0" prefWidth="247.0" text="ADD">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="34.0" layoutY="248.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="34.0" layoutY="291.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputQuantity1" layoutX="110.0" layoutY="286.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="inputNameProduct1" layoutX="111.0" layoutY="246.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                  <Label layoutX="34.0" layoutY="326.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="34.0" layoutY="369.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputQuantity2" layoutX="110.0" layoutY="364.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="inputNameProduct2" layoutX="111.0" layoutY="324.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                  <Label layoutX="544.0" layoutY="258.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="544.0" layoutY="301.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputQuantityBurger1" layoutX="620.0" layoutY="296.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="inputNameProductBurger1" layoutX="621.0" layoutY="256.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                  <Label layoutX="544.0" layoutY="346.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="544.0" layoutY="389.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputQuantityBurger2" layoutX="620.0" layoutY="384.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="inputNameProductBurger2" layoutX="621.0" layoutY="344.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
                     </children>
                 </Pane>
                 <Button layoutX="890.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="exit" textFill="WHITE" />

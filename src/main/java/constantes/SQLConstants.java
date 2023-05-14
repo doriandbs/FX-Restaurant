@@ -25,7 +25,13 @@ public class SQLConstants {
             +"WHEN nom_ingredient = ? THEN STOCK_INGREDIENT - 1 "
             + "ELSE STOCK_INGREDIENT "
             + "END "
-            + "WHERE nom_ingredient IN ('Pains', 'Salade','Tomate','Oignons',?,?)";
+            + "WHERE nom_ingredient IN ('Pains', 'Salade','Tomates','Oignons',?,?)";
+
+    public static final String SELECTLASTIDORDERS="SELECT ID FROM COMMANDES ORDER BY id DESC LIMIT 1";
+
+    public static final String UPDATEINGBURG="UPDATE INGREDIENTS SET STOCK_INGREDIENT=STOCK_INGREDIENT + ?  WHERE NOM_INGREDIENT = ?";
+
+    public static final String UPDATESTOCKADMIN ="UPDATE STOCKS SET QUANTITY = QUANTITY + ? WHERE NAME = ? ";
 
     private SQLConstants() {
     }

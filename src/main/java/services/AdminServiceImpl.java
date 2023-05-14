@@ -1,8 +1,8 @@
 package services;
 
 import bdd.DatabaseSingleton;
-import exception.CustomIOException;
-import models.AddProducts;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Employee;
 import services.interfaces.IAdminService;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static constantes.SQLConstants.SELECTEMPLOYEE;
+import static constantes.SQLConstants.*;
 
 public class AdminServiceImpl implements IAdminService {
     private static final Logger logger = Logger.getLogger(AdminServiceImpl.class.getName());
@@ -47,27 +47,102 @@ public class AdminServiceImpl implements IAdminService {
         }
         return employees;
     }
+    @Override
+    public int countEmpl() throws SQLException {
+        int count= 0;
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        PreparedStatement psc = db.prepareStatement(COUNTEMPLOYEE);
+        ResultSet rsc = psc.executeQuery();
+        if (rsc.next()) {
+            count = rsc.getInt("recordCount");
+        }
+
+        rsc.close();
+        db.close();
+        return count;
+    }
+    @Override
+    public void addProductBurg(String inputNameProductBurgGet,String inputNameProductBurgGet1, String inputNameProductBurgGet2
+                               ,String quantityNameProdBurg, String quantityNameProdBurg1, String quantityNameProdBurg2) throws  SQLException, IOException {
+
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        db.connect();
+        PreparedStatement updateStockBurg = db.prepareStatement(UPDATEINGBURG);
+        updateStockBurg.setString(1, quantityNameProdBurg);
+        updateStockBurg.setString(2, inputNameProductBurgGet);
+        updateStockBurg.executeUpdate();
+        updateStockBurg.close();
+        PreparedStatement updateStockBurg1 = db.prepareStatement(UPDATEINGBURG);
+        updateStockBurg1.setString(1, quantityNameProdBurg1);
+        updateStockBurg1.setString(2, inputNameProductBurgGet1);
+        updateStockBurg1.executeUpdate();
+        updateStockBurg1.close();
+        PreparedStatement updateStockBurg2 = db.prepareStatement(UPDATEINGBURG);
+        updateStockBurg2.setString(1, quantityNameProdBurg2);
+        updateStockBurg2.setString(2, inputNameProductBurgGet2);
+        updateStockBurg2.executeUpdate();
+        updateStockBurg2.close();
+        db.close();
+    }
+
 
     @Override
-    public void addProduct(AddProducts addProducts) throws CustomIOException {
-        try {
-            DatabaseSingleton db = DatabaseSingleton.getInstance();
-            db.connect();
-            PreparedStatement addProd = db.prepareStatement("");//TODO add request for insertProduct
-            addProd.setString(1, addProducts.getNameProducts());
-            addProd.setString(2, addProducts.getPrice());
-            addProd.setString(3, addProducts.getQuantity());
-            addProd.setString(4, addProducts.getMinQuantity());
-            addProd.setObject(5, addProducts.getDOP());
-            addProd.setObject(6, addProducts.getBBD());
+    public void addProduct(String inputNameProductGet, String inputNameProduct1Get,String inputNameProduct2Get,
+                           String quantityNameProd, String quantityNameProd1, String quantityNameProd2) throws  SQLException, IOException {
 
-            addProd.executeUpdate();
-            addProd.close();
-            db.close();
-        } catch (SQLException | IOException e) {
-            throw new CustomIOException("Erreur SQL", e);
-        }
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        db.connect();
+        PreparedStatement updateStockBurg = db.prepareStatement(UPDATESTOCKADMIN);
+        updateStockBurg.setString(1, quantityNameProd);
+        updateStockBurg.setString(2,inputNameProductGet );
+        updateStockBurg.executeUpdate();
+        updateStockBurg.close();
+        PreparedStatement updateStockBurg1 = db.prepareStatement(UPDATESTOCKADMIN);
+        updateStockBurg1.setString(1, quantityNameProd1);
+        updateStockBurg1.setString(2,inputNameProduct1Get );
+        updateStockBurg1.executeUpdate();
+        updateStockBurg1.close();
+        PreparedStatement updateStockBurg2 = db.prepareStatement(UPDATESTOCKADMIN);
+        updateStockBurg2.setString(1, quantityNameProd2);
+        updateStockBurg2.setString(2, inputNameProduct2Get);
+        updateStockBurg2.executeUpdate();
+        updateStockBurg2.close();
+        db.close();
     }
+
+    @Override
+    public ObservableList<String> loadDataListProduct() throws SQLException, IOException {
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        db.connect();
+        PreparedStatement selectProdName = db.prepareStatement("SELECT NAME FROM STOCKS;");
+        ResultSet resultSet = selectProdName.executeQuery();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        while (resultSet.next()) {
+            String donnees = resultSet.getString("NAME");
+            items.add(donnees);
+        }
+
+        selectProdName.close();
+        db.close();
+        return items;
+    }
+
+    @Override
+    public ObservableList<String> loadDataListProductBurg() throws SQLException, IOException {
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
+        db.connect();
+        PreparedStatement selectProdName = db.prepareStatement("SELECT NOM_INGREDIENT FROM INGREDIENTS");
+        ResultSet resultSet = selectProdName.executeQuery();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        while (resultSet.next()) {
+            String donnees = resultSet.getString("NOM_INGREDIENT");
+            items.add(donnees);
+        }
+        selectProdName.close();
+        db.close();
+        return items;
+    }
+
 
 
 }

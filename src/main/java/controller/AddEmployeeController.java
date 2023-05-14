@@ -53,7 +53,7 @@ public class AddEmployeeController implements Initializable {
         this.employeeService = new EmployeeServiceImpl();
     }
     @FXML
-    protected void save() {
+    protected void save(ActionEvent event) throws IOException {
         Employee employee = new Employee(0, inputName.getText(), inputFirstname.getText(), inputBadge.getText(), inputAdresse.getText(), inputDatebirth.getText(), inputNumtel.getText(), inputDatehiring.getText(), checkIsAdmin.isSelected());
         if (inputName.getText().isEmpty() || inputFirstname.getText().isEmpty()
                 || inputBadge.getText().isEmpty() || inputAdresse.getText().isEmpty()||
@@ -65,6 +65,11 @@ public class AddEmployeeController implements Initializable {
         } else {
             employeeService.saveEmployee(employee);
         }
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/admin.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
