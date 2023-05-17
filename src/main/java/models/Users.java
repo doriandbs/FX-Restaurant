@@ -3,6 +3,13 @@
  */
 package models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Users {
     private String name;
 
@@ -12,37 +19,6 @@ public class Users {
     private String badge;
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String setName) {
-        name = setName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String setPassword) {
-        password = setPassword;
-    }
-
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
-
-    public String getBadge() {
-        return badge;
-    }
-
-    public void setBadge(String setBadge) {
-        badge = setBadge;
-    }
 
 
 
