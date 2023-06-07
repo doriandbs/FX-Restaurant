@@ -4,7 +4,6 @@
 package controller;
 
 import exception.CustomIOException;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import models.CartPay;
 import models.Product;
 
@@ -38,11 +34,12 @@ public class MenuChooseController {
     GridPane gridPaneChoose;
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() throws IOException, CustomIOException {
         ajoutItemMenu();
+        CartPay.getInstance().setCptFormule(0);
     }
 
-    private void ajoutItemMenu() throws FileNotFoundException {
+    private void ajoutItemMenu() throws FileNotFoundException, CustomIOException {
         VBox productView10=productView(Product.PEPSIFORM);
         gridPaneChoose.add(productView10,0,0);
         VBox productView11=productView(Product.SPRITEFORM);
@@ -53,7 +50,9 @@ public class MenuChooseController {
         gridPaneChoose.add(productView13,3,0);
     }
 
-    private VBox productView(Product product) throws FileNotFoundException {
+    protected VBox productView(Product product) throws FileNotFoundException{
+        System.out.println(CartPay.getInstance().getCptFormule());
+        int compteur=0;
         VBox layout= new VBox();
         layout.setAlignment(Pos.CENTER);
         FileInputStream input = new FileInputStream("src/main/resources/"+product.getImageFile());
@@ -72,23 +71,36 @@ public class MenuChooseController {
             String productName1 = (String)  source.getUserData();
             CartPay cart = CartPay.getInstance();
             cart.addProduct(productName1);
-            addButton.setStyle("-fx-background-color: #00ff00");
-            StackPane stackPane = new StackPane(new Label("added"));
-            Scene popupScene = new Scene(stackPane, 50, 50);
-            Stage popup = new Stage();
-            popup.initStyle(StageStyle.UNDECORATED);
-            stackPane.setAlignment(Pos.BOTTOM_CENTER);
-            popup.setScene(popupScene);
-            popup.show();
 
-            PauseTransition wait = new PauseTransition(Duration.seconds(0.5));
-            wait.setOnFinished(e -> {
-                popup.close();
-                addButton.setStyle("-fx-background-color: #e3ecb4");
-            });
-            wait.play();
+            Parent root;
+            try {
+                    if(CartPay.getInstance().getCptFormule()==0) {
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChooseBurger.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }
+                    else if(CartPay.getInstance().getCptFormule()==1){
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChooseAccompagnement.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }else if(CartPay.getInstance().getCptFormule()==2 ){
+                        System.out.println(productName1);
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChooseBoisson.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }
 
-    });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
         layout.getChildren().addAll(imageView,productName,price,addButton);
         return layout;
 }

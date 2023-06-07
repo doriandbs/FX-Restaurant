@@ -21,6 +21,8 @@ public class CartPay {
 
     private String typeCartFinal;
 
+    private int cptFormule;
+
     private static CartPay instance;
     public static CartPay getInstance(){
         if(instance==null){
@@ -70,6 +72,7 @@ public class CartPay {
              float entryCost = entry.getProduct().getPrice()*entry.getQuantity();
              total += entryCost;
          }
+         total = (float)(Math.ceil(total * 100.0) / 100.0);
          return total;
      }
 

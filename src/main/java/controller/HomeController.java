@@ -137,14 +137,14 @@ public class HomeController {
             if("MENU1".equals(productName1) || "MENU2".equals(productName1)){
                 Parent root;
                 try {
-                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChoose.fxml")));
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChooseBurger.fxml")));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
                     try {
-                        throw new CustomIOException("Error loading menuChoose.fxml", e);
+                        throw new CustomIOException("Error loading menuChooseBurger.fxml", e);
                     } catch (CustomIOException ex) {
                         logger.info(String.valueOf(e));
                     }

@@ -192,7 +192,7 @@ public class AdminController implements Initializable {
 
 
     @FXML
-    private void loadDataListProduct(MouseEvent event) {
+    private void loadDataListProduct(MouseEvent event) throws CustomIOException {
 
         try {
             if(inputNameProduct.getItems().isEmpty()|| inputNameProduct1.getItems().isEmpty() || inputNameProduct2.getItems().isEmpty()
@@ -216,7 +216,7 @@ public class AdminController implements Initializable {
                 logger.info("Erreur d'instanciation de données");
             }
         } catch(SQLException | IOException e){
-        throw new RuntimeException(e);
+        throw new CustomIOException(e.getMessage(),e);
         }
 
         }
@@ -256,7 +256,7 @@ public class AdminController implements Initializable {
 
 
     @FXML
-    private void addProduct() {
+    private void addProduct() throws CustomIOException {
         String inputNameProductGet= inputNameProduct.getValue();
         String inputNameProduct1Get = inputNameProduct1.getValue();
         String inputNameProduct2Get = inputNameProduct2.getValue();
@@ -274,7 +274,7 @@ public class AdminController implements Initializable {
 
 
         } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException(e.getMessage(), e);
         }
 
         //       if(isCheck){
@@ -298,7 +298,7 @@ public class AdminController implements Initializable {
 
     }
     @FXML
-    private void addProductBurg() {
+    private void addProductBurg() throws CustomIOException {
 
         String inputNameProductBurgGet= inputNameProductBurger.getValue();
         String inputNameProductBurgGet1 = inputNameProductBurger1.getValue();
@@ -317,7 +317,7 @@ public class AdminController implements Initializable {
 
 
         } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomIOException(e.getMessage(),e);
         }
 //
 
