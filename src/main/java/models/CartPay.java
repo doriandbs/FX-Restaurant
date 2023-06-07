@@ -16,7 +16,10 @@ import java.util.Map;
 @AllArgsConstructor
 public class CartPay {
 
+    private boolean typeCartTakeAway;
+    private boolean typeCartEatIn;
 
+    private String typeCartFinal;
 
     private static CartPay instance;
     public static CartPay getInstance(){
@@ -76,6 +79,8 @@ public class CartPay {
     public void resetEntries() {
         entries.clear();
     }
+
+
 
 
 }

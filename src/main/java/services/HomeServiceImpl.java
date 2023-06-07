@@ -84,6 +84,7 @@ public class HomeServiceImpl implements IHomeService {
         PreparedStatement insertCmd = db.prepareStatement(INSERTCOMMANDE);
         insertCmd.setString(1, String.valueOf(LocalDateTime. now()));
         insertCmd.setString(2, String.valueOf(CartPay.getInstance().calculateTotal()));
+        insertCmd.setString(3,String.valueOf(CartPay.getInstance().getTypeCartFinal()));
         insertCmd.executeUpdate();
         insertCmd.close();
         db.close();

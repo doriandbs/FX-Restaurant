@@ -14,10 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -49,6 +46,11 @@ public class HomeController {
 
 
     public static final String PADDING_5PX="-fx-padding:5px";
+
+    @FXML
+    public CheckBox checkEatIn;
+    @FXML
+    public CheckBox checkTakeAway;
     @FXML
     public TextArea noCmd;
     @FXML
@@ -300,11 +302,28 @@ public class HomeController {
                 homeService.updateStock(productName, quantity);
             }
         }
+        if (CartPay.getInstance().isTypeCartEatIn()) CartPay.getInstance().setTypeCartFinal("ON PLACE");
+        else if(CartPay.getInstance().isTypeCartTakeAway()) CartPay.getInstance().setTypeCartFinal("TAKE AWAY");
+        else CartPay.getInstance().setTypeCartFinal("NON RENSEIGNE");
 
         homeService.insertCommand();
         CartPay.getInstance().resetEntries();
         majnumcommande();
         cartPane.getChildren().clear();
+    }
+
+    @FXML
+    private void changeCartType(ActionEvent event){
+        if(event.getSource() == checkEatIn){
+            checkTakeAway.setSelected(false);
+            CartPay.getInstance().setTypeCartEatIn(checkEatIn.isSelected());
+            CartPay.getInstance().setTypeCartTakeAway(checkTakeAway.isSelected());
+        }else if(event.getSource() == checkTakeAway){
+            checkEatIn.setSelected(false);
+            CartPay.getInstance().setTypeCartEatIn(checkEatIn.isSelected());
+            CartPay.getInstance().setTypeCartTakeAway(checkTakeAway.isSelected());
+        }
+
     }
 
 

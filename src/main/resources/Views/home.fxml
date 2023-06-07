@@ -14,7 +14,7 @@
                         <Image url="@../img2/Home/chariot.png" />
                     </image>
                 </ImageView>-->
-                <CheckBox fx:id="check_eat_in" alignment="CENTER" layoutX="235.0" layoutY="24.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="104.0" text="Eat In">
+                <CheckBox fx:id="checkEatIn" alignment="CENTER" layoutX="235.0" layoutY="24.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="104.0" text="Eat In" onAction="#changeCartType">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                     </font>
@@ -22,7 +22,7 @@
                         <Glow />
                     </effect>
                 </CheckBox>
-                <CheckBox fx:id="check_take_away" alignment="CENTER" layoutX="381.0" layoutY="25.0" mnemonicParsing="false" text="Take Away">
+                <CheckBox fx:id="checkTakeAway" alignment="CENTER" layoutX="381.0" layoutY="25.0" mnemonicParsing="false" text="Take Away" onAction="#changeCartType">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                     </font>
