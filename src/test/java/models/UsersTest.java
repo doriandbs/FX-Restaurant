@@ -13,6 +13,20 @@ class UsersTest {
         user = new Users();
     }
 
+
+    @Test
+    void testConstructor() {
+        Users actualUsers = new Users();
+        actualUsers.setBadge("Set Badge");
+        actualUsers.setIsAdmin(true);
+        actualUsers.setName("Set Name");
+        actualUsers.setPassword("iloveyou");
+        assertEquals("Set Badge", actualUsers.getBadge());
+        assertTrue(actualUsers.getIsAdmin());
+        assertEquals("Set Name", actualUsers.getName());
+        assertEquals("iloveyou", actualUsers.getPassword());
+    }
+
     @Test
     void testName() {
         String testName = "John Doe";
