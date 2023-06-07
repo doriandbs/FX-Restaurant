@@ -32,6 +32,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -230,6 +232,18 @@ public class HomeController {
         Platform.exit();
     }
 
+    public void sortByType(List<CartEntry> cartEntry) {
+        Comparator<CartEntry> cartEntryComparator = new Comparator<CartEntry>() {
+            @Override
+            public int compare(CartEntry entry1, CartEntry entry2) {
+                // Comparez les types des entrées de panier
+                return entry1.getProduct().getType().compareTo(entry2.getProduct().getType());
+            }
+        };
+
+        Collections.sort(cartEntry, cartEntryComparator);
+    }
+
 
 
 
@@ -238,6 +252,7 @@ public class HomeController {
     public void opencart() throws FileNotFoundException {
         List<CartEntry> entries = CartPay.getInstance().getEntries();
         cartPane.getChildren().clear();
+        cartPane.setMaxHeight(1);
         if(entries.isEmpty()){
             Label empty = new Label("Cart Empty");
             cartPane.getChildren().add(empty);
@@ -246,7 +261,9 @@ public class HomeController {
             cartPane.getChildren().add(notEmpty);
             for (CartEntry cartEntry : entries) {
                 HBox productView = cartEntry(cartEntry);
+                productView.getChildren().get(1).setStyle("-fx-font-size: 13px");
                 cartPane.getChildren().add(productView);
+
             }
             Separator separator = new Separator();
             separator.setOrientation(Orientation.HORIZONTAL);
@@ -254,7 +271,10 @@ public class HomeController {
 
             HBox totalView = totalView(CartPay.getInstance().calculateTotal());
             cartPane.getChildren().add(totalView);
+
         }
+        sortByType(entries);
+
     }
 
 
@@ -332,6 +352,7 @@ public class HomeController {
     private HBox cartEntry(CartEntry cartEntry) throws FileNotFoundException {
         HBox layout = new HBox();
         layout.setAlignment(Pos.CENTER_LEFT);
+        layout.setMaxHeight(5);
         FileInputStream input = new FileInputStream("src/main/resources/"+cartEntry.getProduct().getImageFile());
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
@@ -376,6 +397,7 @@ public class HomeController {
             }
 
         });
+
         //buttonM.setGraphic(viewM);
 
         //BUTTON PLUS

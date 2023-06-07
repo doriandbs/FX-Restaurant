@@ -35,24 +35,11 @@ public class MenuChooseController {
 
     @FXML
     public void initialize() throws IOException, CustomIOException {
-        ajoutItemMenu();
         CartPay.getInstance().setCptFormule(0);
     }
 
-    private void ajoutItemMenu() throws FileNotFoundException, CustomIOException {
-        VBox productView10=productView(Product.PEPSIFORM);
-        gridPaneChoose.add(productView10,0,0);
-        VBox productView11=productView(Product.SPRITEFORM);
-        gridPaneChoose.add(productView11,1,0);
-        VBox productView12=productView(Product.EAUFORM);
-        gridPaneChoose.add(productView12,2,0);
-        VBox productView13=productView(Product.FANTAFORM);
-        gridPaneChoose.add(productView13,3,0);
-    }
 
     protected VBox productView(Product product) throws FileNotFoundException{
-        System.out.println(CartPay.getInstance().getCptFormule());
-        int compteur=0;
         VBox layout= new VBox();
         layout.setAlignment(Pos.CENTER);
         FileInputStream input = new FileInputStream("src/main/resources/"+product.getImageFile());
@@ -90,6 +77,21 @@ public class MenuChooseController {
                     }else if(CartPay.getInstance().getCptFormule()==2 ){
                         System.out.println(productName1);
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChooseBoisson.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }else if(CartPay.getInstance().getCptFormule()==3 ){
+                        System.out.println(productName1);
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menu.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }
+                    else if(CartPay.getInstance().getCptFormule()==4 ){
+                        System.out.println(productName1);
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/home.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
                         stage.setScene(scene);

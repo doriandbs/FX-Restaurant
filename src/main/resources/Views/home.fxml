@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="946.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="946.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
     <children>
         <AnchorPane layoutX="107.0" layoutY="1.0" prefHeight="406.0" prefWidth="493.0" styleClass="HomeColor">
             <children>
@@ -114,11 +127,6 @@
                     </children>
                 </Pane>
              <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="exit" textFill="WHITE" />
-            <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
-
-                              <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="354.0" />
-             
-                        </Pane>
                 <Pane fx:id="pnlBurger" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
                     <children>
                         <Label layoutX="26.0" layoutY="22.0" text="Our Burgers">
@@ -193,6 +201,12 @@
                   <Text layoutX="566.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOMPAGNEMENT" wrappingWidth="126.05859375" />
                     </children>
                 </Pane>
+            <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
+                <ScrollPane layoutX="6.0" prefHeight="427.0" prefWidth="840.0">
+
+                <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="834.0" />
+                    </ScrollPane>
+                        </Pane>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="leftSide" prefHeight="495.0" prefWidth="111.0" styleClass="leftSide" stylesheets="@../css/style.css">

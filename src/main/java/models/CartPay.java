@@ -7,10 +7,7 @@ package models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -32,11 +29,24 @@ public class CartPay {
     }
 
     private final Map<String,CartEntry> entries;
-    
-     public CartPay(){
-         this.entries= new HashMap<>();
-     }
 
+    public CartPay(){
+        this.entries = new TreeMap<>(new Comparator<String>() {
+            @Override
+            public int compare(String productName1, String productName2) {
+                Product product1 = Product.valueOf(productName1);
+                Product product2 = Product.valueOf(productName2);
+
+                // comparer d'abord par type, puis par nom si les types sont égaux
+                int typeCompare = product1.getType().compareTo(product2.getType());
+                if (typeCompare != 0) {
+                    return typeCompare;
+                } else {
+                    return productName1.compareTo(productName2);
+                }
+            }
+        });
+    }
      public void addProduct(String productName){
          CartEntry productEntry= entries.get(productName.toUpperCase());
          if(productEntry!=null){

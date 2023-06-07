@@ -19,7 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-public class MenuChooseAccompagnementController {
+public class MenuChooseDessertController {
     public Button btn_back;
     Stage stage;
     Scene scene;
@@ -30,15 +30,20 @@ public class MenuChooseAccompagnementController {
     @FXML
     public void initialize() throws IOException {
         ajoutItemMenu();
-        CartPay.getInstance().setCptFormule(2);
+        CartPay.getInstance().setCptFormule(4);
     }
 
     private void ajoutItemMenu() throws FileNotFoundException {
         menuChooseController = new MenuChooseController();
-        VBox productView10=menuChooseController.productView(Product.MAISFORM);
+        VBox productView10=menuChooseController.productView(Product.COOKIEFORM);
         gridPaneChoose.add(productView10,0,0);
-        VBox productView11=menuChooseController.productView(Product.CHIPSFORM);
+        VBox productView11=menuChooseController.productView(Product.CAKEFORM);
         gridPaneChoose.add(productView11,1,0);
+        VBox productView12=menuChooseController.productView(Product.MACARONFORM);
+        gridPaneChoose.add(productView12,2,0);
+        VBox productView13=menuChooseController.productView(Product.DONUTSFORM);
+        gridPaneChoose.add(productView13,3,0);
+
     }
 
 
