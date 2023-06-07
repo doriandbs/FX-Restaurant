@@ -16,7 +16,7 @@ import java.util.Objects;
 public class App extends Application {
     public void start(Stage stage) {
         try {
-            AnchorPane pan = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/login_page.fxml")));
+            AnchorPane pan = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/home.fxml")));
             Scene scene = new Scene(pan);
             stage.setTitle("Frusty's App");
             stage.getIcons().add(new Image("img2/icon.png"));
