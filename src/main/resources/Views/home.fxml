@@ -127,6 +127,12 @@
                     </children>
                 </Pane>
              <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../css/style_cancel.css" text="exit" textFill="WHITE" />
+            <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
+                <ScrollPane layoutX="6.0" prefHeight="427.0" prefWidth="840.0">
+
+                <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="834.0" />
+                    </ScrollPane>
+                        </Pane>
                 <Pane fx:id="pnlBurger" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
                     <children>
                         <Label layoutX="26.0" layoutY="22.0" text="Our Burgers">
@@ -181,13 +187,12 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <Text layoutX="196.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BURGER" wrappingWidth="126.05859375" />
-                  <Text layoutX="195.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOISSON" wrappingWidth="129.0" />
-                  <Text layoutX="196.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DESSERTS" wrappingWidth="88.0" />
-                        <GridPane fx:id="gridPaneMenu" layoutX="69.0" layoutY="142.0" prefHeight="261.0" prefWidth="702.0">
+                        <Text layoutX="389.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BURGER" wrappingWidth="126.05859375" />
+                  <Text layoutX="388.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOISSON" wrappingWidth="129.0" />
+                  <Text layoutX="389.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DESSERTS" wrappingWidth="88.0" />
+                        <GridPane fx:id="gridPaneMenu" layoutX="69.0" layoutY="150.0" prefHeight="261.0" prefWidth="702.0">
 
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <rowConstraints>
@@ -195,18 +200,9 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                  <Text layoutX="196.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOMPAGNEMENT" wrappingWidth="126.05859375" />
-                  <Text layoutX="566.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BURGER" wrappingWidth="126.05859375" />
-                  <Text layoutX="565.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOISSON OU DESSERT" wrappingWidth="129.0" />
-                  <Text layoutX="566.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOMPAGNEMENT" wrappingWidth="126.05859375" />
+                  <Text layoutX="352.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOMPAGNEMENT" wrappingWidth="186.9999893605709" />
                     </children>
                 </Pane>
-            <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
-                <ScrollPane layoutX="6.0" prefHeight="427.0" prefWidth="840.0">
-
-                <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="834.0" />
-                    </ScrollPane>
-                        </Pane>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="leftSide" prefHeight="495.0" prefWidth="111.0" styleClass="leftSide" stylesheets="@../css/style.css">

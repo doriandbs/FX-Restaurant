@@ -34,11 +34,14 @@ public class HomeServiceImpl implements IHomeService {
 
     @Override
     public void updateStock(String productName, int quantity) throws SQLException, IOException {
+        System.out.println(productName);
+        String productForm = productName.replace("FORM","");
+        System.out.println(productForm);
         DatabaseSingleton db = DatabaseSingleton.getInstance();
         db.connect();
         PreparedStatement updateStock = db.prepareStatement(UPDATESTOCK);
         updateStock.setInt(1, quantity);
-        updateStock.setString(2, productName);
+        updateStock.setString(2, productForm);
         updateStock.executeUpdate();
         updateStock.close();
         db.close();
@@ -50,15 +53,15 @@ public class HomeServiceImpl implements IHomeService {
         String fromage="";
         if(productName.contains("BURGER")){
             switch (productName) {
-                case "CANTALBURGER" -> {
+                case "CANTALBURGER", "CANTALBURGERFORM" -> {
                     viande = "Steak";
                     fromage = "FromageCantal";
                 }
-                case "CHICKENBURGER" -> {
+                case "CHICKENBURGER", "CHICKENBURGERFORM" -> {
                     viande = "Poulet";
                     fromage = "FromageChevre";
                 }
-                case "VEGANBURGER" -> {
+                case "VEGANBURGER", "VEGANBURGERFORM" -> {
                     viande = "SteakVegan";
                     fromage = "FromageMoza";
                 }

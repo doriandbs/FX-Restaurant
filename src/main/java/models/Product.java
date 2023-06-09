@@ -6,8 +6,8 @@ package models;
 
 public enum Product {
     //MENUS
-    MENU1("img2/Home/Menu/menu_burger.png",8.90f,"MENU"),
-    MENU2("img2/Home/Menu/menu_burger_1.png",7.90f,"MENU"),
+    MENU("img2/Home/Menu/menu_burger.png",8.90f,"MENU"),
+    //MENU2("img2/Home/Menu/menu_burger_1.png",7.90f,"MENU"),
 
    //BURGERS
     CANTALBURGER("img2/Home/Burger/burger_steack.png",6.50f,"BURGER"),
@@ -34,10 +34,10 @@ public enum Product {
     CHICKENBURGERFORM("img2/Home/Burger/burger_poulet.png",0,"BURGER_FORMULE"),
     VEGANBURGERFORM("img2/Home/Burger/burger_vegetalien.png",0,"BURGER_FORMULE"),
 
-    COOKIEFORM("img2/Home/Dessert/dessert_cookie.png",2.00f,"DESSERT_FORMULE"),
-    DONUTSFORM("img2/Home/Dessert/dessert_donuts.png",1.50f,"DESSERT_FORMULE"),
-    CAKEFORM("img2/Home/Dessert/dessert_gateau.png",1.50f,"DESSERT_FORMULE"),
-    MACARONFORM("img2/Home/Dessert/dessert_macaron.png",2.50f,"DESSERT_FORMULE"),
+    COOKIEFORM("img2/Home/Dessert/dessert_cookie.png",0,"DESSERT_FORMULE"),
+    DONUTSFORM("img2/Home/Dessert/dessert_donuts.png",0,"DESSERT_FORMULE"),
+    CAKEFORM("img2/Home/Dessert/dessert_gateau.png",0,"DESSERT_FORMULE"),
+    MACARONFORM("img2/Home/Dessert/dessert_macaron.png",0,"DESSERT_FORMULE"),
 
     //DESSERTS
     COOKIE("img2/Home/Dessert/dessert_cookie.png",2.00f,"DESSERT"),

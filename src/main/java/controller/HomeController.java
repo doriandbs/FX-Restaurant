@@ -136,7 +136,7 @@ public class HomeController {
             Stage popup = new Stage();
             popup.initStyle(StageStyle.UNDECORATED);
             stackPane.setAlignment(Pos.BOTTOM_CENTER);
-            if("MENU1".equals(productName1) || "MENU2".equals(productName1)){
+            if("MENU".equals(productName1)){
                 Parent root;
                 try {
                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChooseBurger.fxml")));
@@ -233,7 +233,7 @@ public class HomeController {
     }
 
     public void sortByType(List<CartEntry> cartEntry) {
-        Comparator<CartEntry> cartEntryComparator = new Comparator<CartEntry>() {
+        Comparator<CartEntry> cartEntryComparator = new Comparator<>() {
             @Override
             public int compare(CartEntry entry1, CartEntry entry2) {
                 // Comparez les types des entrées de panier
@@ -448,10 +448,10 @@ public class HomeController {
 
 
     private void ajoutItemMenu() throws FileNotFoundException {
-        VBox productView10=productView(Product.MENU1);
+        VBox productView10=productView(Product.MENU);
         gridPaneMenu.add(productView10,0,0);
-        VBox productView11=productView(Product.MENU2);
-        gridPaneMenu.add(productView11,1,0);
+        /*VBox productView11=productView(Product.MENU2);
+        gridPaneMenu.add(productView11,1,0);*/
     }
 
 
@@ -476,11 +476,11 @@ public class HomeController {
 
 }
 
-/*} else if (cartEntry.getProduct() == Product.MENU1) {
-                // Mise à jour des ingrédients pour le MENU1
-                int burgerIngredientID1 = 1; // Remplacer par l'ID réel de l'ingrédient 1 du burger pour le MENU1
-                int burgerIngredientID2 = 2; // Remplacer par l'ID réel de l'ingrédient 2 du burger pour le MENU1
-                int burgerIngredientID3 = 3; // Remplacer par l'ID réel de l'ingrédient 3 du burger pour le MENU1
+/*} else if (cartEntry.getProduct() == Product.MENU) {
+                // Mise à jour des ingrédients pour le MENU
+                int burgerIngredientID1 = 1; // Remplacer par l'ID réel de l'ingrédient 1 du burger pour le MENU
+                int burgerIngredientID2 = 2; // Remplacer par l'ID réel de l'ingrédient 2 du burger pour le MENU
+                int burgerIngredientID3 = 3; // Remplacer par l'ID réel de l'ingrédient 3 du burger pour le MENU
 
                 String updateBurgerIngredientQuery1 = "UPDATE INGREDIENTS SET stock_ingredient = stock_ingredient - 1 WHERE id_ingredient = ?";
                 PreparedStatement updateBurgerIngredientStmt1 = db.prepareStatement(updateBurgerIngredientQuery1);

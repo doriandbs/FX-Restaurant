@@ -55,6 +55,6 @@ class CartPayTest {
     }
     @Test
     void testValueOf() {
-        assertEquals("img2/Home/Menu/menu_burger.png", Product.valueOf("MENU1").getImageFile());
+        assertEquals("img2/Home/Menu/menu_burger.png", Product.valueOf("MENU").getImageFile());
     }
 }

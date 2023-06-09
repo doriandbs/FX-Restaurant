@@ -83,7 +83,7 @@ public class MenuChooseController {
                         stage.show();
                     }else if(CartPay.getInstance().getCptFormule()==3 ){
                         System.out.println(productName1);
-                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menu.fxml")));
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/menuChooseDessert.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
                         stage.setScene(scene);
