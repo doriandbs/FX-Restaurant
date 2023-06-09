@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.forms.LoginController">
+   <children>
+      <AnchorPane id="leftSide" prefHeight="605.0" prefWidth="232.0" styleClass="leftSide">
+         <children>
+            <ImageView fitHeight="54.0" fitWidth="194.0" layoutX="19.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/Common/Logo2-2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/Common/ensitechlogo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="84.0" fitWidth="82.0" layoutX="76.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/Common/Logo2-4.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="buttonConnexion" layoutX="333.0" layoutY="446.0" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="239.0" text="Login">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Button>
+      <Hyperlink fx:id="buttonRegister" layoutX="439.0" layoutY="534.0" onAction="#mappingInscription" prefHeight="34.0" prefWidth="150.0" styleClass="link" text="Create account" underline="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Hyperlink>
+      <TextField fx:id="inputBadge" layoutX="282.0" layoutY="224.0" prefHeight="50.0" prefWidth="353.0" promptText="Badge number" styleClass="input_border_color">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="inputPsw" layoutX="282.0" layoutY="299.0" prefHeight="50.0" prefWidth="353.0" promptText="Password" styleClass="input_border_color">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font></PasswordField>
+      <ImageView fitHeight="105.0" fitWidth="102.0" layoutX="416.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/Login/connexion.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="errormsg" layoutX="356.0" layoutY="414.0" prefHeight="17.0" prefWidth="194.0" textAlignment="CENTER" textFill="RED" />
+      <Label layoutX="333.0" layoutY="543.0" prefHeight="20.0" prefWidth="136.0" text="Not a member :">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="isConnected" layoutX="385.0" layoutY="486.0" prefHeight="20.0" prefWidth="136.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="629.0" layoutY="16.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="exit" textFill="WHITE" />
+   </children>
+   <stylesheets>
+      <URL value="@../../css/style.css" />
+   </stylesheets>
+</AnchorPane>

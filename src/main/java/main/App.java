@@ -16,10 +16,10 @@ import java.util.Objects;
 public class App extends Application {
     public void start(Stage stage) {
         try {
-            AnchorPane pan = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/home.fxml")));
+            AnchorPane pan = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/orders/home.fxml")));
             Scene scene = new Scene(pan);
             stage.setTitle("Frusty's App");
-            stage.getIcons().add(new Image("img2/icon.png"));
+            stage.getIcons().add(new Image("assets/icon.png"));
             stage.initStyle(StageStyle.UTILITY);// Enleve la croix de l'écran
             stage.setResizable(false);
             stage.setScene(scene);

@@ -1,5 +1,6 @@
 package models;
 
+import models.administration.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

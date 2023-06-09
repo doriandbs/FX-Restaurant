@@ -1,5 +1,7 @@
 package models;
 
+import models.cart.CartEntry;
+import models.products.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

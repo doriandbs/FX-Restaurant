@@ -1,5 +1,7 @@
 package models;
 
+import models.cart.CartPay;
+import models.products.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -55,6 +57,6 @@ class CartPayTest {
     }
     @Test
     void testValueOf() {
-        assertEquals("img2/Home/Menu/menu_burger.png", Product.valueOf("MENU").getImageFile());
+        assertEquals("assets/Home/Menu/menu_burger.png", Product.valueOf("MENU").getImageFile());
     }
 }
