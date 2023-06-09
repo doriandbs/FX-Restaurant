@@ -22,6 +22,7 @@ public class App extends Application {
             stage.getIcons().add(new Image("assets/icon.png"));
             stage.initStyle(StageStyle.UTILITY);// Enleve la croix de l'écran
             stage.setResizable(false);
+            stage.centerOnScreen();
             stage.setScene(scene);
             stage.show();
         }catch(Exception e){

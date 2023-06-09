@@ -65,6 +65,7 @@ public class MenuChooseController {
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/orders/menus/menuChooseBurger.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
+                        stage.centerOnScreen();
                         stage.setScene(scene);
                         stage.show();
                     }
@@ -72,6 +73,7 @@ public class MenuChooseController {
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/orders/menus/menuChooseAccompagnement.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
+                        stage.centerOnScreen();
                         stage.setScene(scene);
                         stage.show();
                     }else if(CartPay.getInstance().getCptFormule()==2 ){
@@ -79,6 +81,7 @@ public class MenuChooseController {
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/orders/menus/menuChooseBoisson.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
+                        stage.centerOnScreen();
                         stage.setScene(scene);
                         stage.show();
                     }else if(CartPay.getInstance().getCptFormule()==3 ){
@@ -86,6 +89,7 @@ public class MenuChooseController {
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/orders/menus/menuChooseDessert.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
+                        stage.centerOnScreen();
                         stage.setScene(scene);
                         stage.show();
                     }
@@ -94,6 +98,7 @@ public class MenuChooseController {
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/orders/home.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         scene = new Scene(root);
+                        stage.centerOnScreen();
                         stage.setScene(scene);
                         stage.show();
                     }
@@ -113,6 +118,7 @@ public class MenuChooseController {
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
+            stage.centerOnScreen();
             stage.show();
         } catch (IOException e) {
             throw new CustomIOException("Erreur lors du chargement de la page", e);

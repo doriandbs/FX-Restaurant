@@ -228,6 +228,8 @@ public class AdminController implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Views/administration/addEmployee.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.centerOnScreen();
+
         stage.setScene(scene);
         stage.show();
     }
