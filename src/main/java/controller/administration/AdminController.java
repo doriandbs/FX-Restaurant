@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.administration.ChiffreAffaire;
 import models.administration.Employee;
 import services.administration.AdminServiceImpl;
 import services.interfaces.administration.IAdminService;
@@ -55,6 +56,10 @@ public class AdminController implements Initializable {
     public TableColumn<Object, Object> idUser;
     @FXML
     public TableColumn<Object, Object> isAdminUser;
+    @FXML
+    public TableColumn<Object, Object> month;
+    @FXML
+    public TableColumn<Object, Object> montant;
     Stage stage;
     Scene scene;
     @FXML
@@ -79,6 +84,8 @@ public class AdminController implements Initializable {
     public Button btnAdd;
     @FXML
     private TableView<Employee> dataTB;
+    @FXML
+    private TableView<ChiffreAffaire> dataCA;
     private final ObservableList<Employee> data = FXCollections.observableArrayList();
 
     @FXML
@@ -108,7 +115,6 @@ public class AdminController implements Initializable {
     @FXML
     private ComboBox<String> inputNameProductBurger2;
 
-    private int count;
 
 
     public AdminController() {
@@ -157,6 +163,7 @@ public class AdminController implements Initializable {
         try {
             setDataCell();
             loadDataEmpl();
+            loadDataCa();
         } catch (Exception e) {
             try {
                 throw new CustomIOException("Erreur lors du chargement de la page",e);
@@ -178,6 +185,8 @@ public class AdminController implements Initializable {
         dateHiringUser.setCellValueFactory(new PropertyValueFactory<>("DateEmbauche"));
         numTelUser.setCellValueFactory(new PropertyValueFactory<>("NumTel"));
         isAdminUser.setCellValueFactory(new PropertyValueFactory<>("IsAdmin"));
+        month.setCellValueFactory(new PropertyValueFactory<>("Month"));
+        montant.setCellValueFactory(new PropertyValueFactory<>("TotalMontant"));
     }
 
     private void loadDataEmpl() throws SQLException {
@@ -185,9 +194,15 @@ public class AdminController implements Initializable {
 
         dataTB.setItems(employees);
         dataTB.setId("my-table");
-        count=adminService.countEmpl();
-        dataTB.setPrefHeight(count * 29);
-        dataTB.setItems(data);
+        int count=adminService.countEmpl();
+        dataTB.setPrefHeight(count * 18);
+    }
+
+    private void loadDataCa() {
+        ObservableList<ChiffreAffaire> ca = FXCollections.observableArrayList(adminService.getAllChiffreAffaire());
+        dataCA.setItems(ca);
+        dataCA.setId("table-ca");
+
     }
 
 

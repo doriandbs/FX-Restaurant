@@ -3,6 +3,7 @@ package services.administration;
 import bdd.DatabaseSingleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.administration.ChiffreAffaire;
 import models.administration.Employee;
 import services.interfaces.administration.IAdminService;
 
@@ -41,11 +42,34 @@ public class AdminServiceImpl implements IAdminService {
                 ));
             }
             selectEmp.close();
-            db.close();
+            
         } catch (SQLException | IOException e) {
             logger.info(String.valueOf(e));
         }
         return employees;
+    }
+
+    @Override
+    public List<ChiffreAffaire> getAllChiffreAffaire() {
+        List<ChiffreAffaire> ca = new ArrayList<>();
+        try {
+            DatabaseSingleton db = DatabaseSingleton.getInstance();
+            db.connect();
+            PreparedStatement selectCA = db.prepareStatement("SELECT MONTH, TOTALMONTANT FROM ChiffreAffaire");
+            ResultSet resultSet = selectCA.executeQuery();
+            while (resultSet.next()) {
+                ca.add(new ChiffreAffaire(
+                        resultSet.getString("MONTH"),
+                        resultSet.getDouble("TotalMontant")
+                ));
+
+            }
+            selectCA.close();
+            //
+        } catch (SQLException | IOException e) {
+            logger.info(String.valueOf(e));
+        }
+        return ca;
     }
     @Override
     public int countEmpl() throws SQLException {
@@ -58,7 +82,7 @@ public class AdminServiceImpl implements IAdminService {
         }
 
         rsc.close();
-        db.close();
+        
         return count;
     }
     @Override
@@ -82,7 +106,7 @@ public class AdminServiceImpl implements IAdminService {
         updateStockBurg2.setString(2, inputNameProductBurgGet2);
         updateStockBurg2.executeUpdate();
         updateStockBurg2.close();
-        db.close();
+        
     }
 
 
@@ -107,7 +131,7 @@ public class AdminServiceImpl implements IAdminService {
         updateStockBurg2.setString(2, inputNameProduct2Get);
         updateStockBurg2.executeUpdate();
         updateStockBurg2.close();
-        db.close();
+        
     }
 
     @Override
@@ -123,7 +147,7 @@ public class AdminServiceImpl implements IAdminService {
         }
 
         selectProdName.close();
-        db.close();
+        
         return items;
     }
 
@@ -139,7 +163,7 @@ public class AdminServiceImpl implements IAdminService {
             items.add(donnees);
         }
         selectProdName.close();
-        db.close();
+        
         return items;
     }
 

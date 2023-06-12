@@ -1,6 +1,7 @@
 package services.interfaces.administration;
 
 import javafx.collections.ObservableList;
+import models.administration.ChiffreAffaire;
 import models.administration.Employee;
 
 import java.io.IOException;
@@ -18,4 +19,6 @@ public interface IAdminService {
     ObservableList<String> loadDataListProduct() throws SQLException, IOException;
     ObservableList<String> loadDataListProductBurg() throws SQLException, IOException;
     int countEmpl() throws SQLException;
+    List<ChiffreAffaire> getAllChiffreAffaire();
+
 }
