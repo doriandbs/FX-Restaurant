@@ -1,8 +1,10 @@
 package services.administration;
 
 import bdd.DatabaseSingleton;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.administration.ChiffreAffaire;
 import models.administration.Employee;
 import services.interfaces.administration.IAdminService;
 
@@ -46,6 +48,29 @@ public class AdminServiceImpl implements IAdminService {
             logger.info(String.valueOf(e));
         }
         return employees;
+    }
+
+    @Override
+    public List<ChiffreAffaire> getAllChiffreAffaire() {
+        List<ChiffreAffaire> ca = new ArrayList<>();
+        StringProperty month = null;
+        try {
+            DatabaseSingleton db = DatabaseSingleton.getInstance();
+            PreparedStatement selectCA = db.prepareStatement("SELECT MONTH, TOTALMONTANT FROM CHIFFREAFFAIRE");
+            ResultSet resultSet = selectCA.executeQuery();
+            while (resultSet.next()) {
+                ca.add(new ChiffreAffaire(
+                        // month1, month2, month3, month4, month5, month6, month7, month8, month9, month10, month11, month12, resultSet.getDouble("TOTALMONTANT")
+                        month, resultSet.getDouble("TOTALMONTANT")
+                ));
+            }
+
+            selectCA.close();
+            db.close();
+        } catch (SQLException e) {
+            logger.info(String.valueOf(e));
+        }
+        return ca;
     }
     @Override
     public int countEmpl() throws SQLException {
