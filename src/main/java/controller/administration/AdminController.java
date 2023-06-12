@@ -165,6 +165,7 @@ public class AdminController implements Initializable {
         try {
             setDataCell();
             loadDataEmpl();
+            loadDataCa();
         } catch (Exception e) {
             try {
                 throw new CustomIOException("Erreur lors du chargement de la page",e);
@@ -197,7 +198,7 @@ public class AdminController implements Initializable {
         dataTB.setItems(employees);
         dataTB.setId("my-table");
         count=adminService.countEmpl();
-        dataTB.setPrefHeight(count * 29);
+        dataTB.setPrefHeight(count * 18);
         dataTB.setItems(data);
     }
 
@@ -206,7 +207,7 @@ public class AdminController implements Initializable {
         dataCA.setItems(ca);
         dataCA.setId("table-ca");
         count=adminService.countEmpl();
-        dataCA.setPrefHeight(count * 29);
+        dataCA.setPrefHeight(count * 18);
         for(ChiffreAffaire affaire : ca){
             System.out.println(affaire.getTotalMontant());
         }
@@ -241,7 +242,7 @@ public class AdminController implements Initializable {
         throw new CustomIOException(e.getMessage(),e);
         }
 
-        }
+    }
 
 
 
@@ -343,7 +344,6 @@ public class AdminController implements Initializable {
         } catch (SQLException | IOException e) {
             throw new CustomIOException(e.getMessage(),e);
         }
-//
 
     }
 

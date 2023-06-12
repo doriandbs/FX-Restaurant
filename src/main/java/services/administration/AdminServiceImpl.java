@@ -43,17 +43,18 @@ public class AdminServiceImpl implements IAdminService {
                 ));
             }
             selectEmp.close();
-            db.close();
+            //db.close();
         } catch (SQLException | IOException e) {
             logger.info(String.valueOf(e));
         }
         return employees;
     }
-
+/**
     @Override
     public List<ChiffreAffaire> getAllChiffreAffaire() {
         List<ChiffreAffaire> ca = new ArrayList<>();
         StringProperty month = null;
+        StringProperty totalMontant = null;
         try {
             DatabaseSingleton db = DatabaseSingleton.getInstance();
             PreparedStatement selectCA = db.prepareStatement("SELECT MONTH, TOTALMONTANT FROM CHIFFREAFFAIRE");
@@ -72,6 +73,29 @@ public class AdminServiceImpl implements IAdminService {
         }
         return ca;
     }
+ */
+    @Override
+    public List<ChiffreAffaire> getAllChiffreAffaire() {
+        List<ChiffreAffaire> ca = new ArrayList<>();
+        try {
+            DatabaseSingleton db = DatabaseSingleton.getInstance();
+            db.connect();
+            PreparedStatement selectCA = db.prepareStatement("SELECT MONTH, TOTALMONTANT FROM ChiffreAffaire");
+            ResultSet resultSet = selectCA.executeQuery();
+            while (resultSet.next()) {
+                ca.add(new ChiffreAffaire(
+                        resultSet.getString("MONTH"),
+                        resultSet.getDouble("TotalMontant")
+                ));
+
+            }
+            selectCA.close();
+            //db.close();
+        } catch (SQLException | IOException e) {
+            logger.info(String.valueOf(e));
+        }
+        return ca;
+    }
     @Override
     public int countEmpl() throws SQLException {
         int count= 0;
@@ -83,7 +107,7 @@ public class AdminServiceImpl implements IAdminService {
         }
 
         rsc.close();
-        db.close();
+        //db.close();
         return count;
     }
     @Override
@@ -107,7 +131,7 @@ public class AdminServiceImpl implements IAdminService {
         updateStockBurg2.setString(2, inputNameProductBurgGet2);
         updateStockBurg2.executeUpdate();
         updateStockBurg2.close();
-        db.close();
+        //db.close();
     }
 
 
@@ -132,7 +156,7 @@ public class AdminServiceImpl implements IAdminService {
         updateStockBurg2.setString(2, inputNameProduct2Get);
         updateStockBurg2.executeUpdate();
         updateStockBurg2.close();
-        db.close();
+        //db.close();
     }
 
     @Override
@@ -148,7 +172,7 @@ public class AdminServiceImpl implements IAdminService {
         }
 
         selectProdName.close();
-        db.close();
+        //db.close();
         return items;
     }
 
@@ -164,7 +188,7 @@ public class AdminServiceImpl implements IAdminService {
             items.add(donnees);
         }
         selectProdName.close();
-        db.close();
+        //db.close();
         return items;
     }
 
