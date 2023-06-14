@@ -1,8 +1,15 @@
+@font-face {
+    font-family: 'Elephant Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Elephant Regular'), url('Elephant-PersonalUse.woff') format('woff');
+}
+
+
 .root{
     -fx-background-color: white;
     -fx-background-size:cover;
 }
-
 .button{
      -fx-background-color: #E1ECB5;
      -fx-background-radius: 30;
@@ -59,4 +66,16 @@
     -fx-background-color: #FFFFFF;
 }
 
-
+/* Style texte */
+.checkbox{
+   -fx-font-family: 'Helvetica', Arial, sans-serif;
+   -fx-font-size: 20px;
+   -fx-font-weight: 700;
+}
+.label,test {
+    -fx-text-fill: black;
+    -fx-font-family: Elephant,'Helvetica', Arial, sans-serif;
+}
+.TextField{
+    -fx-font-family: Elephant;
+}

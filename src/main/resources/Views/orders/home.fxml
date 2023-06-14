@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="946.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orders.HomeController">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="946.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orders.HomeController">
     <children>
         <AnchorPane layoutX="107.0" layoutY="1.0" prefHeight="406.0" prefWidth="493.0" styleClass="HomeColor">
             <children>
@@ -14,7 +27,7 @@
                         <Image url="@../img2/Home/chariot.png" />
                     </image>
                 </ImageView>-->
-                <CheckBox fx:id="checkEatIn" alignment="CENTER" layoutX="235.0" layoutY="24.0" mnemonicParsing="false" onAction="#changeCartType" prefHeight="17.0" prefWidth="104.0" text="Eat In">
+                <CheckBox fx:id="checkEatIn" alignment="CENTER" layoutX="206.0" layoutY="25.0" mnemonicParsing="false" onAction="#changeCartType" prefHeight="17.0" prefWidth="104.0" styleClass="checkbox" text="Eat In">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                     </font>
@@ -22,13 +35,14 @@
                         <Glow />
                     </effect>
                 </CheckBox>
-                <CheckBox fx:id="checkTakeAway" alignment="CENTER" layoutX="381.0" layoutY="25.0" mnemonicParsing="false" onAction="#changeCartType" text="Take Away">
+                <CheckBox fx:id="checkTakeAway" alignment="CENTER" layoutX="354.0" layoutY="25.0" mnemonicParsing="false" onAction="#changeCartType" styleClass="checkbox" text="Take Away">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                     </font>
                 </CheckBox>
                 <Text layoutX="536.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N°Commande :" />
                 <TextArea fx:id="noCmd" disable="true" layoutX="643.0" layoutY="10.0" prefHeight="17.0" prefWidth="23.0" />
+             <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="EXIT" textFill="WHITE" />
                 <Pane fx:id="pnlBoisson" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
                     <children>
                         <Label layoutX="26.0" layoutY="22.0" text="Our Drinks">
@@ -113,11 +127,10 @@
 
                     </children>
                 </Pane>
-             <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="exit" textFill="WHITE" />
             <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
                 <ScrollPane layoutX="6.0" prefHeight="427.0" prefWidth="840.0">
 
-                <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="834.0" />
+                <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="840.0" />
                     </ScrollPane>
                         </Pane>
                 <Pane fx:id="pnlBurger" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
@@ -132,18 +145,18 @@
                                 <Font name="Arial Rounded MT Bold" size="14.0" />
                             </font>
                         </Label>
-                        <TextArea disable="true" layoutX="90.0" layoutY="299.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" styleClass="tac" text="Cantal Burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak">
+                        <TextArea disable="true" layoutX="90.0" layoutY="299.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1; -fx-font-family: 'Helvetica', Arial, sans-serif;" styleClass="tac" text="Cantal Burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak">
                             <effect>
                                 <Glow level="0.0" />
                             </effect>
                         </TextArea>
 
-                        <TextArea disable="true" layoutX="327.0" layoutY="300.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" text="Goat cheese burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak&#10;">
+                        <TextArea disable="true" layoutX="327.0" layoutY="299.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" styleClass="tac" text="Goat cheese burger&#10;Salad / tomato / onion&#10;Mustard&#10;Steak&#10;">
                             <effect>
                                 <Glow level="0.0" />
                             </effect>
                         </TextArea>
-                        <TextArea disable="true" layoutX="562.0" layoutY="299.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" text="Chickpea Burger&#10;Salad / tomato / onion&#10;Vegetable cheese&#10;Mayonnaise&#10;">
+                        <TextArea disable="true" layoutX="562.0" layoutY="299.0" prefHeight="93.0" prefWidth="187.0" style="-fx-opacity: 1;" styleClass="tac" text="Chickpea Burger&#10;Salad / tomato / onion&#10;Vegetable cheese&#10;Mayonnaise&#10;">
                             <effect>
                                 <Glow level="0.0" />
                             </effect>
@@ -177,7 +190,7 @@
                         <Text layoutX="389.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BURGER" wrappingWidth="126.05859375" />
                   <Text layoutX="388.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOISSON" wrappingWidth="129.0" />
                   <Text layoutX="389.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DESSERTS" wrappingWidth="88.0" />
-                        <GridPane fx:id="gridPaneMenu" layoutX="69.0" layoutY="150.0" prefHeight="261.0" prefWidth="702.0">
+                        <GridPane fx:id="gridPaneMenu" layoutX="69.0" layoutY="133.0" prefHeight="278.0" prefWidth="702.0" styleClass="texte">
 
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -187,7 +200,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                  <Text layoutX="352.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOMPAGNEMENT" wrappingWidth="186.9999893605709" />
+                  <Text layoutX="388.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOMPAGNEMENT" wrappingWidth="186.9999893605709" />
                     </children>
                 </Pane>
             </children>
@@ -211,7 +224,7 @@
                 </ImageView>
                 <Hyperlink fx:id="input_logOut" layoutX="22.0" layoutY="455.0" onAction="#mappingLogout" styleClass="link" text="Log Out" textFill="#0e0eb5" underline="true">
                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                        <Font name="Elephant" size="14.0" />
                     </font>
                 </Hyperlink>
                 <ImageView fx:id="imgDrink" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="265.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">

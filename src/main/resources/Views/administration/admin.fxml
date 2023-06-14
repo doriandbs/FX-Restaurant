@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
 <AnchorPane prefHeight="601.0" prefWidth="1158.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.administration.AdminController">
     <children>
         <AnchorPane fx:id="leftSide" layoutX="-2.0" prefHeight="600.0" prefWidth="205.0" styleClass="leftSide">
@@ -29,9 +42,9 @@
                         <Image url="@../../assets/Admin/food.png" />
                     </image>
                 </ImageView>
-                <Hyperlink fx:id="input_logOut" layoutX="69.0" layoutY="523.0" onAction="#mappingLogout" prefHeight="27.0" prefWidth="70.0" styleClass="link" stylesheets="@../../css/style.css" text="LogOut" textFill="#04048a" underline="true">
+                <Hyperlink fx:id="input_logOut" layoutX="69.0" layoutY="523.0" onAction="#mappingLogout" prefHeight="27.0" prefWidth="70.0" styleClass="link" stylesheets="@../../css/style.css" text="Log Out" textFill="#04048a" underline="true">
                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                        <Font name="Elephant" size="14.0" />
                     </font>
                 </Hyperlink>
                 <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="67.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -48,175 +61,7 @@
                         <Image url="@../../assets/Admin/Admin.png" />
                     </image>
                 </ImageView>
-                <Pane fx:id="pnlStocks" layoutX="3.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
-                    <children>
-                        <GridPane layoutX="25.0" layoutY="107.0" prefHeight="312.0" prefWidth="693.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <TableView prefHeight="258.0" prefWidth="642.0" stylesheets="@../../css/style.css">
-                                    <columns>
-                                        <TableColumn prefWidth="33.0" text="ID" />
-                                        <TableColumn prefWidth="76.0" text="Name" />
-                                        <TableColumn prefWidth="94.0" text="price" />
-                                        <TableColumn prefWidth="75.0" text="dop" />
-                                        <TableColumn prefWidth="75.0" text="bbd" />
-                                        <TableColumn prefWidth="75.0" text="quantity" />
-                                        <TableColumn prefWidth="75.0" text="Min quantity" />
-                                    </columns>
-                                    <columnResizePolicy>
-                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                    </columnResizePolicy>
-                                </TableView>
-                            </children>
-                        </GridPane>
-                        <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
-                            <children>
-                                <Label layoutX="20.0" layoutY="6.0" text="------------" textFill="WHITE">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label layoutX="20.0" layoutY="30.0" text="List of remaining products" textFill="WHITE">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-                    </children>
-                </Pane>
-                <Pane fx:id="pnlProduct" layoutX="4.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
-                    <children>
-                        <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
-                            <children>
-                                <Label layoutX="20.0" layoutY="6.0" text="------------" textFill="WHITE">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label layoutX="20.0" layoutY="30.0" text="Add stocks" textFill="WHITE">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-                        <Label layoutX="34.0" layoutY="160.0" prefHeight="20.0" prefWidth="47.0" text="Name">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="34.0" layoutY="203.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="inputQuantity" layoutX="110.0" layoutY="198.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <Button fx:id="btn_add_product" layoutX="95.0" layoutY="441.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="247.0" text="ADD">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Button>
-                        <ComboBox fx:id="inputNameProduct" layoutX="111.0" layoutY="158.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
-                        <Text layoutX="144.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accompagnents et boissons" />
-                        <Text layoutX="688.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burgers" wrappingWidth="56.447265625" />
-                        <Label layoutX="544.0" layoutY="160.0" prefHeight="20.0" prefWidth="47.0" text="Name">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="544.0" layoutY="203.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="inputQuantityBurger" layoutX="620.0" layoutY="198.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <ComboBox fx:id="inputNameProductBurger" layoutX="621.0" layoutY="158.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
-                        <Button fx:id="btn_add_product1" layoutX="621.0" layoutY="441.0" mnemonicParsing="false" onAction="#addProductBurg" prefHeight="30.0" prefWidth="247.0" text="ADD">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Button>
-                        <Label layoutX="34.0" layoutY="248.0" prefHeight="20.0" prefWidth="47.0" text="Name">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="34.0" layoutY="291.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="inputQuantity1" layoutX="110.0" layoutY="286.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <ComboBox fx:id="inputNameProduct1" layoutX="111.0" layoutY="246.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
-                        <Label layoutX="34.0" layoutY="326.0" prefHeight="20.0" prefWidth="47.0" text="Name">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="34.0" layoutY="369.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="inputQuantity2" layoutX="110.0" layoutY="364.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <ComboBox fx:id="inputNameProduct2" layoutX="111.0" layoutY="324.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
-                        <Label layoutX="544.0" layoutY="258.0" prefHeight="20.0" prefWidth="47.0" text="Name">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="544.0" layoutY="301.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="inputQuantityBurger1" layoutX="620.0" layoutY="296.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <ComboBox fx:id="inputNameProductBurger1" layoutX="621.0" layoutY="256.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
-                        <Label layoutX="544.0" layoutY="346.0" prefHeight="20.0" prefWidth="47.0" text="Name">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="544.0" layoutY="389.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="inputQuantityBurger2" layoutX="620.0" layoutY="384.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="14.0" />
-                            </font>
-                        </TextField>
-                        <ComboBox fx:id="inputNameProductBurger2" layoutX="621.0" layoutY="344.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
-                    </children>
-                </Pane>
-                <Button layoutX="890.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="exit" textFill="WHITE" />
+                <Button layoutX="890.0" layoutY="7.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="EXIT" textFill="WHITE" />
                 <Pane fx:id="pnlUsers" layoutX="5.0" layoutY="82.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
                     <children>
                         <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
@@ -228,7 +73,7 @@
                                 </Label>
                                 <Label layoutX="20.0" layoutY="30.0" text="List of employee + Add" textFill="WHITE">
                                     <font>
-                                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                                        <Font name="Elephant" size="15.0" />
                                     </font>
                                 </Label>
                             </children>
@@ -264,21 +109,187 @@
                                 </Label>
                                 <Label layoutX="20.0" layoutY="30.0" text="Recipe of the month" textFill="WHITE">
                                     <font>
-                                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                                        <Font name="Elephant" size="15.0" />
                                     </font>
                                 </Label>
                             </children>
                         </Pane>
                         <Button fx:id="btnRefresh1" layoutX="375.0" layoutY="449.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="40.0" prefWidth="200.0" text="Refresh the board" />
-                        <TableView fx:id="dataCA" layoutX="20.0" layoutY="99.0" prefHeight="331.0" prefWidth="826.0">
+                        <TableView fx:id="dataCA" layoutX="20.0" layoutY="99.0" prefHeight="338.0" prefWidth="826.0">
                             <columns>
-                                <TableColumn fx:id="month" prefWidth="204.0" sortType="DESCENDING" text="MONTH" />
-                                <TableColumn fx:id="montant" prefWidth="163.0" text="TotalMontant" />
+                                <TableColumn fx:id="month" prefWidth="204.0" sortType="DESCENDING" text="Month" />
+                                <TableColumn fx:id="montant" prefWidth="163.0" text="Total amount" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
+                    </children>
+                </Pane>
+                <Pane fx:id="pnlStocks" layoutX="3.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
+                    <children>
+                        <GridPane layoutX="25.0" layoutY="107.0" prefHeight="312.0" prefWidth="693.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="258.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <TableView prefHeight="258.0" prefWidth="642.0" stylesheets="@../../css/style.css">
+                                    <columns>
+                                        <TableColumn prefWidth="33.0" text="ID" />
+                                        <TableColumn prefWidth="76.0" text="Name" />
+                                        <TableColumn prefWidth="94.0" text="price" />
+                                        <TableColumn prefWidth="75.0" text="dop" />
+                                        <TableColumn prefWidth="75.0" text="bbd" />
+                                        <TableColumn prefWidth="75.0" text="quantity" />
+                                        <TableColumn prefWidth="75.0" text="Min quantity" />
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                    </columnResizePolicy>
+                                </TableView>
+                            </children>
+                        </GridPane>
+                        <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
+                            <children>
+                                <Label layoutX="20.0" layoutY="6.0" text="------------" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="20.0" layoutY="30.0" text="List of remaining products" textFill="WHITE">
+                                    <font>
+                                        <Font name="Elephant" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                    </children>
+                </Pane>
+                <Pane fx:id="pnlProduct" layoutX="4.0" layoutY="84.0" prefHeight="515.0" prefWidth="950.0" styleClass="bg_white">
+                    <children>
+                        <Pane layoutX="4.0" layoutY="22.0" prefHeight="59.0" prefWidth="493.0" style="-fx-background-color: #91A348;">
+                            <children>
+                                <Label layoutX="20.0" layoutY="6.0" text="------------" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="20.0" layoutY="30.0" text="Add stocks" textFill="WHITE">
+                                    <font>
+                                        <Font name="Elephant" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                        <Label layoutX="34.0" layoutY="160.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="203.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="inputQuantity" layoutX="110.0" layoutY="198.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                            <font>
+                                <Font name="Elephant" size="15.0" />
+                            </font>
+                        </TextField>
+                        <Button fx:id="btn_add_product" layoutX="95.0" layoutY="441.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="247.0" text="ADD" />
+                        <ComboBox fx:id="inputNameProduct" layoutX="111.0" layoutY="158.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                        <Text layoutX="118.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accompaniments and drinks">
+                     <font>
+                        <Font name="Elephant" size="14.0" />
+                     </font></Text>
+                        <Text layoutX="703.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Burgers" wrappingWidth="83.447265625">
+                     <font>
+                        <Font name="Elephant" size="14.0" />
+                     </font></Text>
+                        <Label layoutX="544.0" layoutY="160.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="544.0" layoutY="203.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="inputQuantityBurger" layoutX="620.0" layoutY="198.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                            <font>
+                                <Font name="Elephant" size="15.0" />
+                            </font>
+                        </TextField>
+                        <ComboBox fx:id="inputNameProductBurger" layoutX="621.0" layoutY="158.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                        <Button fx:id="btn_add_product1" layoutX="621.0" layoutY="441.0" mnemonicParsing="false" onAction="#addProductBurg" prefHeight="30.0" prefWidth="247.0" text="ADD" />
+                        <Label layoutX="34.0" layoutY="248.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="291.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="inputQuantity1" layoutX="110.0" layoutY="286.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                            <font>
+                                <Font name="Elephant" size="15.0" />
+                            </font>
+                        </TextField>
+                        <ComboBox fx:id="inputNameProduct1" layoutX="111.0" layoutY="246.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                        <Label layoutX="34.0" layoutY="326.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="369.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="inputQuantity2" layoutX="110.0" layoutY="364.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                            <font>
+                                <Font name="Elephant" size="15.0" />
+                            </font>
+                        </TextField>
+                        <ComboBox fx:id="inputNameProduct2" layoutX="111.0" layoutY="324.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                        <Label layoutX="544.0" layoutY="258.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="544.0" layoutY="301.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="inputQuantityBurger1" layoutX="620.0" layoutY="296.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                            <font>
+                                <Font name="Elephant" size="15.0" />
+                            </font>
+                        </TextField>
+                        <ComboBox fx:id="inputNameProductBurger1" layoutX="621.0" layoutY="256.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
+                        <Label layoutX="544.0" layoutY="346.0" prefHeight="20.0" prefWidth="47.0" text="Name">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="544.0" layoutY="389.0" prefHeight="20.0" prefWidth="67.0" text="Quantity">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="inputQuantityBurger2" layoutX="620.0" layoutY="384.0" prefHeight="30.0" prefWidth="107.0" promptText="quantity">
+                            <font>
+                                <Font name="Elephant" size="15.0" />
+                            </font>
+                        </TextField>
+                        <ComboBox fx:id="inputNameProductBurger2" layoutX="621.0" layoutY="344.0" onMouseClicked="#loadDataListProduct" prefHeight="25.0" prefWidth="212.0" />
                     </children>
                 </Pane>
             </children>

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.forms.InscriptionPageController">
    <children>
       <AnchorPane prefHeight="605.0" prefWidth="233.0" styleClass="leftSide" stylesheets="@../../css/style.css">
@@ -26,36 +33,41 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="buttonInscription" layoutX="350.0" layoutY="450.0" mnemonicParsing="false" onAction="#addUser" prefHeight="34.0" prefWidth="239.0" stylesheets="@../../css/style.css" text="Register">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
-         </font>
-      </Button>
+      <Button fx:id="buttonInscription" layoutX="350.0" layoutY="450.0" mnemonicParsing="false" onAction="#addUser" prefHeight="34.0" prefWidth="239.0" stylesheets="@../../css/style.css" text="Register" />
       <Hyperlink layoutX="456.0" layoutY="541.0" onAction="#mappingLogging" styleClass="link" text="Login" underline="true">
          <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
+            <Font name="Elephant" size="14.0" />
          </font></Hyperlink>
       <TextField fx:id="inputNameRegister" layoutX="292.0" layoutY="123.0" prefHeight="50.0" prefWidth="353.0" promptText="Name" styleClass="input_border_color">
          <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
+            <Font name="Elephant" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="nameErrorLabel" layoutX="292.0" layoutY="173.0" prefHeight="34.0" prefWidth="353.0" />
+      <Label fx:id="nameErrorLabel" layoutX="292.0" layoutY="173.0" prefHeight="34.0" prefWidth="353.0">
+         <font>
+            <Font name="Elephant" size="12.0" />
+         </font></Label>
       <TextField fx:id="inputBadgeRegister" layoutX="292.0" layoutY="207.0" prefHeight="50.0" prefWidth="353.0" promptText="Badge number" styleClass="input_border_color">
          <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
+            <Font name="Elephant" size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="badgeErrorLabel" layoutX="293.0" layoutY="257.0" prefHeight="34.0" prefWidth="353.0" />
-      <PasswordField fx:id="inputPswRegister" layoutX="292.0" layoutY="291.0" prefHeight="50.0" prefWidth="353.0" promptText="password" styleClass="input_border_color">
+      <Label fx:id="badgeErrorLabel" layoutX="293.0" layoutY="257.0" prefHeight="34.0" prefWidth="353.0">
          <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
+            <Font name="Elephant" size="12.0" />
+         </font></Label>
+      <PasswordField fx:id="inputPswRegister" layoutX="292.0" layoutY="291.0" prefHeight="50.0" prefWidth="353.0" promptText="Password" styleClass="input_border_color">
+         <font>
+            <Font name="Elephant" size="14.0" />
          </font></PasswordField>
       <Label fx:id="userNotFound" layoutX="276.0" layoutY="28.0" prefHeight="34.0" prefWidth="353.0" />
-      <Label fx:id="pswErrorLabel" layoutX="292.0" layoutY="341.0" prefHeight="34.0" prefWidth="353.0" />
+      <Label fx:id="pswErrorLabel" layoutX="292.0" layoutY="341.0" prefHeight="34.0" prefWidth="353.0">
+         <font>
+            <Font name="Elephant" size="12.0" />
+         </font></Label>
       <Label contentDisplay="CENTER" layoutX="406.0" layoutY="68.0" prefHeight="22.0" prefWidth="124.0" text="Register" textAlignment="CENTER" underline="true">
          <font>
-            <Font name="Arial Rounded MT Bold" size="18.0" />
+            <Font name="Elephant" size="18.0" />
          </font>
       </Label>
       <Label contentDisplay="CENTER" layoutX="333.0" layoutY="543.0" prefHeight="20.0" prefWidth="136.0" text="Already member :" textAlignment="CENTER">
@@ -65,10 +77,10 @@
       </Label>
       <CheckBox fx:id="isAdmin" layoutX="409.0" layoutY="399.0" mnemonicParsing="false" text="Administrator">
          <font>
-            <Font name="Arial Rounded MT Bold" size="14.0" />
+            <Font name="Elephant" size="14.0" />
          </font>
       </CheckBox>
-      <Button layoutX="629.0" layoutY="16.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="exit" textFill="WHITE" />
+      <Button layoutX="629.0" layoutY="16.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="EXIT" textFill="WHITE" />
    </children>
    <stylesheets>
       <URL value="@../../css/style.css" />
