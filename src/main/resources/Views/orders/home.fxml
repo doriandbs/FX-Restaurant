@@ -209,7 +209,7 @@
             <children>
                 <ImageView fx:id="imgMenu" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="25.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../assets/Home/menu.png" />
+                        <Image url="@../../assets/Home/menu2.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="imgBurger" fitHeight="45.0" fitWidth="47.0" layoutX="30.0" layoutY="112.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
@@ -219,7 +219,7 @@
                 </ImageView>
                 <ImageView fx:id="imgDessert" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="339.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../assets/Home/dessert.png" />
+                        <Image url="@../../assets/Home/cupcake.png" />
                     </image>
                 </ImageView>
                 <Hyperlink fx:id="input_logOut" layoutX="22.0" layoutY="455.0" onAction="#mappingLogout" styleClass="link" text="Log Out" textFill="#0e0eb5" underline="true">
@@ -229,7 +229,7 @@
                 </Hyperlink>
                 <ImageView fx:id="imgDrink" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="265.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../assets/Home/boisson.png" />
+                        <Image url="@../../assets/Home/softdrink.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="imgSupp" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="190.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
@@ -239,7 +239,7 @@
                 </ImageView>
             <ImageView fx:id="imgCart" fitHeight="45.0" fitWidth="45.0" layoutX="30.0" layoutY="402.0" onMouseClicked="#handleButtonAction" onMousePressed="#opencart" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../assets/Home/chariot.png" />
+                  <Image url="@../../assets/Home/add-to-cart.png" />
                </image>
             </ImageView>
             </children>
