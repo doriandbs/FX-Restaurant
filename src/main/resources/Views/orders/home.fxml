@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="946.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orders.HomeController">
+<AnchorPane fx:id="AnchorPaneMenu" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="946.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orders.HomeController">
     <children>
         <AnchorPane layoutX="107.0" layoutY="1.0" prefHeight="406.0" prefWidth="493.0" styleClass="HomeColor">
             <children>
@@ -114,12 +114,6 @@
                     </children>
                 </Pane>
              <Button layoutX="778.0" layoutY="12.0" mnemonicParsing="false" onAction="#exit" stylesheets="@../../css/style_cancel.css" text="exit" textFill="WHITE" />
-            <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
-                <ScrollPane layoutX="6.0" prefHeight="427.0" prefWidth="840.0">
-
-                <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="834.0" />
-                    </ScrollPane>
-                        </Pane>
                 <Pane fx:id="pnlBurger" layoutY="69.0" prefHeight="425.0" prefWidth="840.0" styleClass="bg_white">
                     <children>
                         <Label layoutX="26.0" layoutY="22.0" text="Our Burgers">
@@ -190,6 +184,13 @@
                   <Text layoutX="352.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOMPAGNEMENT" wrappingWidth="186.9999893605709" />
                     </children>
                 </Pane>
+            <Pane fx:id="pnlCart" layoutY="70.0" prefHeight="425.0" prefWidth="846.0" styleClass="bg_white">
+                <ScrollPane layoutX="6.0" prefHeight="427.0" prefWidth="840.0">
+
+                <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="834.0" />
+                    </ScrollPane>
+               <TextArea fx:id="commentary" layoutX="653.0" layoutY="47.0" prefHeight="178.0" prefWidth="187.0" style="-fx-background-color: #FFD24D;" />
+                        </Pane>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="leftSide" prefHeight="495.0" prefWidth="111.0" styleClass="leftSide" stylesheets="@../../css/style.css">

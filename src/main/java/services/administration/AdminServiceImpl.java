@@ -55,7 +55,7 @@ public class AdminServiceImpl implements IAdminService {
         try {
             DatabaseSingleton db = DatabaseSingleton.getInstance();
             db.connect();
-            PreparedStatement selectCA = db.prepareStatement("SELECT MONTH, TOTALMONTANT FROM ChiffreAffaire");
+            PreparedStatement selectCA = db.prepareStatement(GETALLCA);
             ResultSet resultSet = selectCA.executeQuery();
             while (resultSet.next()) {
                 ca.add(new ChiffreAffaire(
@@ -138,7 +138,7 @@ public class AdminServiceImpl implements IAdminService {
     public ObservableList<String> loadDataListProduct() throws SQLException, IOException {
         DatabaseSingleton db = DatabaseSingleton.getInstance();
         db.connect();
-        PreparedStatement selectProdName = db.prepareStatement("SELECT NAME FROM STOCKS;");
+        PreparedStatement selectProdName = db.prepareStatement(DATALISTPRODUCT);
         ResultSet resultSet = selectProdName.executeQuery();
         ObservableList<String> items = FXCollections.observableArrayList();
         while (resultSet.next()) {
@@ -155,7 +155,7 @@ public class AdminServiceImpl implements IAdminService {
     public ObservableList<String> loadDataListProductBurg() throws SQLException, IOException {
         DatabaseSingleton db = DatabaseSingleton.getInstance();
         db.connect();
-        PreparedStatement selectProdName = db.prepareStatement("SELECT NOM_INGREDIENT FROM INGREDIENTS");
+        PreparedStatement selectProdName = db.prepareStatement(DATALISTBURGER);
         ResultSet resultSet = selectProdName.executeQuery();
         ObservableList<String> items = FXCollections.observableArrayList();
         while (resultSet.next()) {

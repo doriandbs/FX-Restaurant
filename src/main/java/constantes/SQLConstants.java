@@ -33,6 +33,12 @@ public class SQLConstants {
 
     public static final String UPDATESTOCKADMIN ="UPDATE STOCKS SET QUANTITY = QUANTITY + ? WHERE NAME = ? ";
 
+    public static final String GETALLCA ="SELECT MONTH, TOTALMONTANT FROM ChiffreAffaire";
+
+    public static final String DATALISTPRODUCT = "SELECT NAME FROM STOCKS";
+    public static final String DATALISTBURGER = "SELECT NOM_INGREDIENT FROM INGREDIENTS";
+
+
     private SQLConstants() {
     }
 }
