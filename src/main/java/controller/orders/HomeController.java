@@ -42,6 +42,7 @@ import static models.products.Product.CANTALBURGER;
 
 public class HomeController {
     private static final Logger logger = Logger.getLogger(HomeController.class.getName());
+    public TextArea commentary;
 
     IHomeService homeService = new HomeServiceImpl();
 
@@ -153,8 +154,6 @@ public class HomeController {
                     }
                 }
 
-
-
             }else {
                 popup.setScene(popupScene);
                 popup.show();
@@ -248,7 +247,6 @@ public class HomeController {
 
 
 
-
     @FXML
     public void opencart() throws FileNotFoundException {
         List<CartEntry> entries = CartPay.getInstance().getEntries();
@@ -287,10 +285,12 @@ public class HomeController {
         Button sendCart = new Button("ENVOYER LA COMMANDE");
         total.setStyle("-fx-font-size:15pt;");
         this.totalPriceLabel = new Label(String.valueOf(totalPrice));
-        layout.getChildren().addAll(total,this.totalPriceLabel, sendCart);
+        commentary.setPromptText("Ajouter un commentaire concernant votre commande ici...");
+        layout.getChildren().addAll(total, this.totalPriceLabel, sendCart, commentary);
         sendCart.setOnAction(event -> {
             try {
-                envoyerCommande();
+                String commentaire = commentary.getText();
+                envoyerCommande(commentaire);
             } catch (SQLException e) {
                 try {
                     throw new SQLException("Error sending the command", e);
@@ -309,7 +309,7 @@ public class HomeController {
         return layout;
     }
 
-    private void envoyerCommande() throws SQLException, IOException {
+    private void envoyerCommande(String commentaire) throws SQLException, IOException {
         List<CartEntry> cartEntries = CartPay.getInstance().getEntries();
 
         // Effectuer les mises à jour de la base de données pour chaque CartEntry
@@ -327,7 +327,7 @@ public class HomeController {
         else if(CartPay.getInstance().isTypeCartTakeAway()) CartPay.getInstance().setTypeCartFinal("TAKE AWAY");
         else CartPay.getInstance().setTypeCartFinal("NON RENSEIGNE");
 
-        homeService.insertCommand();
+        homeService.insertCommand(commentaire);
         CartPay.getInstance().resetEntries();
         majnumcommande();
         cartPane.getChildren().clear();
