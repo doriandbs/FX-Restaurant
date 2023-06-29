@@ -291,6 +291,7 @@ public class HomeController {
             try {
                 String commentaire = commentary.getText();
                 envoyerCommande(commentaire);
+                commentary.clear();
             } catch (SQLException e) {
                 try {
                     throw new SQLException("Error sending the command", e);
@@ -346,8 +347,6 @@ public class HomeController {
         }
 
     }
-
-
 
 
     private HBox cartEntry(CartEntry cartEntry) throws FileNotFoundException {
