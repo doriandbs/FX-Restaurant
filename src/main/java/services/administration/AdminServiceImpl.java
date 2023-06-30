@@ -54,7 +54,6 @@ public class AdminServiceImpl implements IAdminService {
         List<ChiffreAffaire> ca = new ArrayList<>();
         try {
             DatabaseSingleton db = DatabaseSingleton.getInstance();
-            db.connect();
             PreparedStatement selectCA = db.prepareStatement(GETALLCA);
             ResultSet resultSet = selectCA.executeQuery();
             while (resultSet.next()) {
@@ -66,7 +65,7 @@ public class AdminServiceImpl implements IAdminService {
             }
             selectCA.close();
             //
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             logger.info(String.valueOf(e));
         }
         return ca;
@@ -90,7 +89,6 @@ public class AdminServiceImpl implements IAdminService {
                                ,String quantityNameProdBurg, String quantityNameProdBurg1, String quantityNameProdBurg2) throws  SQLException, IOException {
 
         DatabaseSingleton db = DatabaseSingleton.getInstance();
-        db.connect();
         PreparedStatement updateStockBurg = db.prepareStatement(UPDATEINGBURG);
         updateStockBurg.setString(1, quantityNameProdBurg);
         updateStockBurg.setString(2, inputNameProductBurgGet);
@@ -115,7 +113,6 @@ public class AdminServiceImpl implements IAdminService {
                            String quantityNameProd, String quantityNameProd1, String quantityNameProd2) throws  SQLException, IOException {
 
         DatabaseSingleton db = DatabaseSingleton.getInstance();
-        db.connect();
         PreparedStatement updateStockBurg = db.prepareStatement(UPDATESTOCKADMIN);
         updateStockBurg.setString(1, quantityNameProd);
         updateStockBurg.setString(2,inputNameProductGet );
@@ -137,7 +134,6 @@ public class AdminServiceImpl implements IAdminService {
     @Override
     public ObservableList<String> loadDataListProduct() throws SQLException, IOException {
         DatabaseSingleton db = DatabaseSingleton.getInstance();
-        db.connect();
         PreparedStatement selectProdName = db.prepareStatement(DATALISTPRODUCT);
         ResultSet resultSet = selectProdName.executeQuery();
         ObservableList<String> items = FXCollections.observableArrayList();
@@ -154,7 +150,6 @@ public class AdminServiceImpl implements IAdminService {
     @Override
     public ObservableList<String> loadDataListProductBurg() throws SQLException, IOException {
         DatabaseSingleton db = DatabaseSingleton.getInstance();
-        db.connect();
         PreparedStatement selectProdName = db.prepareStatement(DATALISTBURGER);
         ResultSet resultSet = selectProdName.executeQuery();
         ObservableList<String> items = FXCollections.observableArrayList();
