@@ -81,17 +81,17 @@ public class HomeServiceImpl implements IHomeService {
     }
 
     @Override
-    public void insertCommand() throws SQLException, IOException {
+    public void insertCommand(String commentaire) throws SQLException, IOException {
         DatabaseSingleton db = DatabaseSingleton.getInstance();
         db.connect();
         PreparedStatement insertCmd = db.prepareStatement(INSERTCOMMANDE);
         insertCmd.setString(1, String.valueOf(LocalDateTime. now()));
         insertCmd.setString(2, String.valueOf(CartPay.getInstance().calculateTotal()));
         insertCmd.setString(3,String.valueOf(CartPay.getInstance().getTypeCartFinal()));
+        insertCmd.setString(4,String.valueOf(commentaire));
         insertCmd.executeUpdate();
         insertCmd.close();
         db.close();
     }
-
 }
 

@@ -189,7 +189,7 @@
 
                 <VBox fx:id="cartPane" layoutX="8.0" prefHeight="425.0" prefWidth="834.0" />
                     </ScrollPane>
-               <TextArea fx:id="commentary" layoutX="653.0" layoutY="47.0" prefHeight="178.0" prefWidth="187.0" style="-fx-background-color: #FFD24D;" />
+               <TextArea fx:id="commentary" layoutX="653.0" layoutY="47.0" prefHeight="178.0" prefWidth="187.0" style="-fx-background-color: #FFD24D;"/>
                         </Pane>
             </children>
         </AnchorPane>

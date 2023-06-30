@@ -12,7 +12,7 @@ public class SQLConstants {
     public static final String COUNTEMPLOYEE = "SELECT COUNT(*) AS recordCount FROM employee";
     public static final String SELECTEMPLOYEE = "SELECT * FROM employee";
     public static final String INSERTEMPLOYEE = "INSERT INTO employee(NAME,BADGE,ISADMIN,FIRSTNAME,ADRESSE,DATEBIRTH, DATEHIRING, NUMTEL) VALUES(?,?,?,?,?,?,?,?)";
-    public static final String INSERTCOMMANDE ="INSERT INTO COMMANDES(DATE,TOTAL,TYPE) VALUES(?,?, ?)";
+    public static final String INSERTCOMMANDE ="INSERT INTO COMMANDES(DATE,TOTAL,TYPE,COMMENTARY) VALUES(?,?,?,?)";
 
     public static final String UPDATESTOCK ="UPDATE STOCKS SET QUANTITY = QUANTITY - ? WHERE NAME = ? ";
     public static final String UPDATESTOCKINGREDIENTBURGER ="UPDATE INGREDIENTS SET STOCK_INGREDIENT = "
